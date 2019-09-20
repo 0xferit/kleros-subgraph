@@ -51,55 +51,55 @@ export class NewPhase extends Entity {
     this.set("_phase", Value.fromI32(value));
   }
 }
-
-export class NewPeriod extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save NewPeriod entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save NewPeriod entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("NewPeriod", id.toString(), this);
-  }
-
-  static load(id: string): NewPeriod | null {
-    return store.get("NewPeriod", id) as NewPeriod | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get _disputeID(): BigInt {
-    let value = this.get("_disputeID");
-    return value.toBigInt();
-  }
-
-  set _disputeID(value: BigInt) {
-    this.set("_disputeID", Value.fromBigInt(value));
-  }
-
-  get _period(): i32 {
-    let value = this.get("_period");
-    return value.toI32();
-  }
-
-  set _period(value: i32) {
-    this.set("_period", Value.fromI32(value));
-  }
-}
+//
+// export class NewPeriod extends Entity {
+//   constructor(id: string) {
+//     super();
+//     this.set("id", Value.fromString(id));
+//   }
+//
+//   save(): void {
+//     let id = this.get("id");
+//     assert(id !== null, "Cannot save NewPeriod entity without an ID");
+//     assert(
+//       id.kind == ValueKind.STRING,
+//       "Cannot save NewPeriod entity with non-string ID. " +
+//         'Considering using .toHex() to convert the "id" to a string.'
+//     );
+//     store.set("NewPeriod", id.toString(), this);
+//   }
+//
+//   static load(id: string): NewPeriod | null {
+//     return store.get("NewPeriod", id) as NewPeriod | null;
+//   }
+//
+//   get id(): string {
+//     let value = this.get("id");
+//     return value.toString();
+//   }
+//
+//   set id(value: string) {
+//     this.set("id", Value.fromString(value));
+//   }
+//
+//   get _disputeID(): BigInt {
+//     let value = this.get("_disputeID");
+//     return value.toBigInt();
+//   }
+//
+//   set _disputeID(value: BigInt) {
+//     this.set("_disputeID", Value.fromBigInt(value));
+//   }
+//
+//   get _period(): i32 {
+//     let value = this.get("_period");
+//     return value.toI32();
+//   }
+//
+//   set _period(value: i32) {
+//     this.set("_period", Value.fromI32(value));
+//   }
+// }
 
 export class StakeSet extends Entity {
   constructor(id: string) {

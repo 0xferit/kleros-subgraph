@@ -76,7 +76,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - NewPhase
-        - NewPeriod
+       # - NewPeriod
         - StakeSet
         - Draw
         - TokenAndETHShift
@@ -89,8 +89,8 @@ dataSources:
       eventHandlers:
         - event: NewPhase(uint8)
           handler: handleNewPhase
-        - event: NewPeriod(uint256,uint8)
-          handler: handleNewPeriod
+        #- event: NewPeriod(uint256,uint8)
+        #  handler: handleNewPeriod
         - event: StakeSet(address,uint256,uint128,uint256)
           handler: handleStakeSet
         - event: Draw(address,uint256,uint256,uint256)

@@ -1,6 +1,6 @@
 import {
   NewPhase as NewPhaseEvent,
-  NewPeriod as NewPeriodEvent,
+  //NewPeriod as NewPeriodEvent,
   StakeSet as StakeSetEvent,
   Draw as DrawEvent,
   TokenAndETHShift as TokenAndETHShiftEvent,
@@ -10,7 +10,7 @@ import {
 } from "../generated/Contract/KlerosLiquid"
 import {
   NewPhase,
-  NewPeriod,
+  //NewPeriod,
   StakeSet,
   Draw,
   TokenAndETHShift,
@@ -26,15 +26,15 @@ export function handleNewPhase(event: NewPhaseEvent): void {
   entity._phase = event.params._phase
   entity.save()
 }
-
-export function handleNewPeriod(event: NewPeriodEvent): void {
-  let entity = new NewPeriod(
-    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
-  )
-  entity._disputeID = event.params._disputeID
-  entity._period = event.params._period
-  entity.save()
-}
+//
+// export function handleNewPeriod(event: NewPeriodEvent): void {
+//   let entity = new NewPeriod(
+//     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
+//   )
+//   entity._disputeID = event.params._disputeID
+//   entity._period = event.params._period
+//   entity.save()
+// }
 
 export function handleStakeSet(event: StakeSetEvent): void {
   let entity = new StakeSet(

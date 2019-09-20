@@ -32,27 +32,27 @@ export class NewPhase__Params {
   }
 }
 
-export class NewPeriod extends EthereumEvent {
-  get params(): NewPeriod__Params {
-    return new NewPeriod__Params(this);
-  }
-}
-
-export class NewPeriod__Params {
-  _event: NewPeriod;
-
-  constructor(event: NewPeriod) {
-    this._event = event;
-  }
-
-  get _disputeID(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get _period(): i32 {
-    return this._event.parameters[1].value.toI32();
-  }
-}
+// export class NewPeriod extends EthereumEvent {
+//   get params(): NewPeriod__Params {
+//     return new NewPeriod__Params(this);
+//   }
+// }
+//
+// export class NewPeriod__Params {
+//   _event: NewPeriod;
+//
+//   constructor(event: NewPeriod) {
+//     this._event = event;
+//   }
+//
+//   get _disputeID(): BigInt {
+//     return this._event.parameters[0].value.toBigInt();
+//   }
+//
+//   get _period(): i32 {
+//     return this._event.parameters[1].value.toI32();
+//   }
+// }
 
 export class StakeSet extends EthereumEvent {
   get params(): StakeSet__Params {

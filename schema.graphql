@@ -18,10 +18,10 @@ type ArbitrationReward @entity {
   _amount: BigInt! # uint256
 }
 
-type AppealPossible @entity {
-  id: ID!
-  _disputeID: BigInt! # uint256
-}
+#type AppealPossible @entity {
+#  id: ID!
+#  _disputeID: BigInt! # uint256
+#}
 
 type DisputeCreation @entity {
   id: ID!
@@ -67,11 +67,11 @@ type NewPhase @entity {
   _phase: Int! # uint8
 }
 
-type NewPeriod @entity {
-  id: ID!
-  _disputeID: BigInt! # uint256
-  _period: Int! # uint8
-}
+#type NewPeriod @entity {
+#  id: ID!
+#  _disputeID: BigInt! # uint256
+#  _period: Int! # uint8
+#}
 
 type StakeSet @entity {
   id: ID!
@@ -97,20 +97,20 @@ type TokenAndETHShift @entity {
   _ETHAmount: BigInt! # int256
 }
 
-type DisputeCreation @entity {
-  id: ID!
-  _disputeID: BigInt! # uint256
-  _arbitrable: Bytes! # address
-}
+#type DisputeCreation @entity {
+#  id: ID!
+#  _disputeID: BigInt! # uint256
+#  _arbitrable: Bytes! # address
+#}
 
 type AppealPossible @entity {
   id: ID!
   _disputeID: BigInt! # uint256
-  _arbitrable: Bytes! # address
+  _arbitrable: Bytes # address
 }
 
-type AppealDecision @entity {
-  id: ID!
-  _disputeID: BigInt! # uint256
-  _arbitrable: Bytes! # address
-}
+#type AppealDecision @entity {
+#  id: ID!
+#  _disputeID: BigInt! # uint256
+#  _arbitrable: Bytes! # address
+#}
