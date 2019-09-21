@@ -1,77 +1,42 @@
+# KlerosLiquid entities
+type NewPhase @entity {
+  id: ID!
+  _phase: Int! # uint8
+  _contractAddress: Bytes! # address
+  _timestamp: BigInt! # uint256
+}
+
 type NewPeriod @entity {
   id: ID!
+  _disputeID: BigInt! # uint256
   _period: Int! # uint8
-  _session: BigInt! # uint256
+  _contractAddress: Bytes! # address
+  _timestamp: BigInt! # uint256
 }
 
-type TokenShift @entity {
-  id: ID!
-  _account: Bytes! # address
-  _disputeID: BigInt! # uint256
-  _amount: BigInt! # int256
-}
-
-type ArbitrationReward @entity {
-  id: ID!
-  _account: Bytes! # address
-  _disputeID: BigInt! # uint256
-  _amount: BigInt! # uint256
-}
-
-#type AppealPossible @entity {
-#  id: ID!
-#  _disputeID: BigInt! # uint256
-#}
-
-type DisputeCreation @entity {
+type AppealPossible @entity {
   id: ID!
   _disputeID: BigInt! # uint256
-  _arbitrable: Bytes! # address
+  _arbitrable: Bytes # address
+  _contractAddress: Bytes! # address
+  _timestamp: BigInt! # uint256
 }
 
 type AppealDecision @entity {
   id: ID!
   _disputeID: BigInt! # uint256
   _arbitrable: Bytes! # address
+  _contractAddress: Bytes! # address
+  _timestamp: BigInt! # uint256
 }
 
-type ClaimedTokens @entity {
+type DisputeCreation @entity {
   id: ID!
-  _token: Bytes! # address
-  _controller: Bytes! # address
-  _amount: BigInt! # uint256
+  _disputeID: BigInt! # uint256
+  _arbitrable: Bytes! # address
+  _contractAddress: Bytes! # address
+  _timestamp: BigInt! # uint256
 }
-
-type Transfer @entity {
-  id: ID!
-  _from: Bytes! # address
-  _to: Bytes! # address
-  _amount: BigInt! # uint256
-}
-
-type NewCloneToken @entity {
-  id: ID!
-  _cloneToken: Bytes! # address
-  _snapshotBlock: BigInt! # uint256
-}
-
-type Approval @entity {
-  id: ID!
-  _owner: Bytes! # address
-  _spender: Bytes! # address
-  _amount: BigInt! # uint256
-}
-
-type NewPhase @entity {
-  id: ID!
-  _phase: Int! # uint8
-}
-
-#type NewPeriod @entity {
-#  id: ID!
-#  _disputeID: BigInt! # uint256
-#  _period: Int! # uint8
-#}
 
 type StakeSet @entity {
   id: ID!
@@ -79,6 +44,8 @@ type StakeSet @entity {
   _subcourtID: BigInt! # uint256
   _stake: BigInt! # uint128
   _newTotalStake: BigInt! # uint256
+  _contractAddress: Bytes! # address
+  _timestamp: BigInt! # uint256
 }
 
 type Draw @entity {
@@ -87,6 +54,8 @@ type Draw @entity {
   _disputeID: BigInt! # uint256
   _appeal: BigInt! # uint256
   _voteID: BigInt! # uint256
+  _contractAddress: Bytes! # address
+  _timestamp: BigInt! # uint256
 }
 
 type TokenAndETHShift @entity {
@@ -95,22 +64,42 @@ type TokenAndETHShift @entity {
   _disputeID: BigInt! # uint256
   _tokenAmount: BigInt! # int256
   _ETHAmount: BigInt! # int256
+  _contractAddress: Bytes! # address
+  _timestamp: BigInt! # uint256
 }
 
-#type DisputeCreation @entity {
-#  id: ID!
-#  _disputeID: BigInt! # uint256
-#  _arbitrable: Bytes! # address
-#}
-
-type AppealPossible @entity {
+# Minime token entities
+type ClaimedTokens @entity {
   id: ID!
-  _disputeID: BigInt! # uint256
-  _arbitrable: Bytes # address
+  _token: Bytes! # address
+  _controller: Bytes! # address
+  _amount: BigInt! # uint256
+  _contractAddress: Bytes! # address
+  _timestamp: BigInt! # uint256
 }
 
-#type AppealDecision @entity {
-#  id: ID!
-#  _disputeID: BigInt! # uint256
-#  _arbitrable: Bytes! # address
-#}
+type Transfer @entity {
+  id: ID!
+  _from: Bytes! # address
+  _to: Bytes! # address
+  _amount: BigInt! # uint256
+  _contractAddress: Bytes! # address
+  _timestamp: BigInt! # uint256
+}
+
+type NewCloneToken @entity {
+  id: ID!
+  _cloneToken: Bytes! # address
+  _snapshotBlock: BigInt! # uint256
+  _contractAddress: Bytes! # address
+  _timestamp: BigInt! # uint256
+}
+
+type Approval @entity {
+  id: ID!
+  _owner: Bytes! # address
+  _spender: Bytes! # address
+  _amount: BigInt! # uint256
+  _contractAddress: Bytes! # address
+  _timestamp: BigInt! # uint256
+}
