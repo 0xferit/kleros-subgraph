@@ -18,6 +18,8 @@ export function handleClaimedTokens(event: ClaimedTokensEvent): void {
   entity._token = event.params._token
   entity._controller = event.params._controller
   entity._amount = event.params._amount
+  entity._contractAddress = event.address
+  entity._timestamp = event.block.timestamp
   entity.save()
 }
 
@@ -28,6 +30,8 @@ export function handleTransfer(event: TransferEvent): void {
   entity._from = event.params._from
   entity._to = event.params._to
   entity._amount = event.params._amount
+  entity._contractAddress = event.address
+  entity._timestamp = event.block.timestamp
   entity.save()
 }
 
@@ -37,6 +41,8 @@ export function handleNewCloneToken(event: NewCloneTokenEvent): void {
   )
   entity._cloneToken = event.params._cloneToken
   entity._snapshotBlock = event.params._snapshotBlock
+  entity._contractAddress = event.address
+  entity._timestamp = event.block.timestamp
   entity.save()
 }
 
@@ -47,5 +53,7 @@ export function handleApproval(event: ApprovalEvent): void {
   entity._owner = event.params._owner
   entity._spender = event.params._spender
   entity._amount = event.params._amount
+  entity._contractAddress = event.address
+  entity._timestamp = event.block.timestamp
   entity.save()
 }

@@ -68,6 +68,24 @@ export class ClaimedTokens extends Entity {
   set _amount(value: BigInt) {
     this.set("_amount", Value.fromBigInt(value));
   }
+
+  get _contractAddress(): Bytes {
+    let value = this.get("_contractAddress");
+    return value.toBytes();
+  }
+
+  set _contractAddress(value: Bytes) {
+    this.set("_contractAddress", Value.fromBytes(value));
+  }
+
+  get _timestamp(): BigInt {
+    let value = this.get("_timestamp");
+    return value.toBigInt();
+  }
+
+  set _timestamp(value: BigInt) {
+    this.set("_timestamp", Value.fromBigInt(value));
+  }
 }
 
 export class Transfer extends Entity {
@@ -126,6 +144,24 @@ export class Transfer extends Entity {
   set _amount(value: BigInt) {
     this.set("_amount", Value.fromBigInt(value));
   }
+
+  get _contractAddress(): Bytes {
+    let value = this.get("_contractAddress");
+    return value.toBytes();
+  }
+
+  set _contractAddress(value: Bytes) {
+    this.set("_contractAddress", Value.fromBytes(value));
+  }
+
+  get _timestamp(): BigInt {
+    let value = this.get("_timestamp");
+    return value.toBigInt();
+  }
+
+  set _timestamp(value: BigInt) {
+    this.set("_timestamp", Value.fromBigInt(value));
+  }
 }
 
 export class NewCloneToken extends Entity {
@@ -174,6 +210,24 @@ export class NewCloneToken extends Entity {
 
   set _snapshotBlock(value: BigInt) {
     this.set("_snapshotBlock", Value.fromBigInt(value));
+  }
+
+  get _contractAddress(): Bytes {
+    let value = this.get("_contractAddress");
+    return value.toBytes();
+  }
+
+  set _contractAddress(value: Bytes) {
+    this.set("_contractAddress", Value.fromBytes(value));
+  }
+
+  get _timestamp(): BigInt {
+    let value = this.get("_timestamp");
+    return value.toBigInt();
+  }
+
+  set _timestamp(value: BigInt) {
+    this.set("_timestamp", Value.fromBigInt(value));
   }
 }
 
@@ -232,5 +286,23 @@ export class Approval extends Entity {
 
   set _amount(value: BigInt) {
     this.set("_amount", Value.fromBigInt(value));
+  }
+
+  get _contractAddress(): Bytes {
+    let value = this.get("_contractAddress");
+    return value.toBytes();
+  }
+
+  set _contractAddress(value: Bytes) {
+    this.set("_contractAddress", Value.fromBytes(value));
+  }
+
+  get _timestamp(): BigInt {
+    let value = this.get("_timestamp");
+    return value.toBigInt();
+  }
+
+  set _timestamp(value: BigInt) {
+    this.set("_timestamp", Value.fromBigInt(value));
   }
 }

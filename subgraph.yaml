@@ -3,40 +3,6 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Kleros
-    network: mainnet
-    source:
-      address: "0x211f01e59b425253c0a0e9a7bf612605b42ce82c"
-      abi: Kleros
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.2
-      language: wasm/assemblyscript
-      entities:
-        - NewPeriod
-        - TokenShift
-        - ArbitrationReward
-        - AppealPossible
-        - DisputeCreation
-        - AppealDecision
-      abis:
-        - name: Kleros
-          file: ./abis/Kleros.json
-      eventHandlers:
-        - event: NewPeriod(uint8,uint256)
-          handler: handleNewPeriod
-        - event: TokenShift(address,uint256,int256)
-          handler: handleTokenShift
-        - event: ArbitrationReward(address,uint256,uint256)
-          handler: handleArbitrationReward
-        - event: AppealPossible(uint256)
-          handler: handleAppealPossible
-        - event: DisputeCreation(uint256,address)
-          handler: handleDisputeCreation
-        - event: AppealDecision(uint256,address)
-          handler: handleAppealDecision
-      file: ./src/KlerosMapping.ts
-  - kind: ethereum/contract
     name: MiniMeToken
     network: mainnet
     source:
@@ -76,7 +42,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - NewPhase
-       # - NewPeriod
+        - NewPeriod
         - StakeSet
         - Draw
         - TokenAndETHShift
@@ -89,8 +55,8 @@ dataSources:
       eventHandlers:
         - event: NewPhase(uint8)
           handler: handleNewPhase
-        #- event: NewPeriod(uint256,uint8)
-        #  handler: handleNewPeriod
+        - event: NewPeriod(uint256,uint8)
+          handler: handleNewPeriod
         - event: StakeSet(address,uint256,uint128,uint256)
           handler: handleStakeSet
         - event: Draw(address,uint256,uint256,uint256)
