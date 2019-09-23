@@ -10,7 +10,7 @@ import {
 } from "../generated/Contract/KlerosLiquid"
 import {
   NewPhase,
-  //NewPeriod,
+  NewPeriod,
   StakeSet,
   Draw,
   TokenAndETHShift,
