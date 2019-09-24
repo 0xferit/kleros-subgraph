@@ -9,7 +9,7 @@ import {
   AppealDecision as AppealDecisionEvent,
 } from "../generated/Contract/KlerosLiquid"
 import {
-  NewPhase,
+  NewPolicy,
   NewPeriod,
   StakeSet,
   Draw,
@@ -20,12 +20,13 @@ import {
 } from "../generated/KlerosLiquidSchema"
 
 export function handleNewPhase(event: NewPhaseEvent): void {
-  let entity = new NewPhase(
+  let entity = new NewPolicy(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   )
   entity._phase = event.params._phase
   entity._contractAddress = event.address
   entity._timestamp = event.block.timestamp
+  entity._blockNumber = event.block.number
   entity.save()
 }
 
@@ -37,6 +38,7 @@ export function handleNewPeriod(event: NewPeriodEvent): void {
   entity._period = event.params._period
   entity._contractAddress = event.address
   entity._timestamp = event.block.timestamp
+  entity._blockNumber = event.block.number
   entity.save()
 }
 
@@ -50,6 +52,7 @@ export function handleStakeSet(event: StakeSetEvent): void {
   entity._newTotalStake = event.params._newTotalStake
   entity._contractAddress = event.address
   entity._timestamp = event.block.timestamp
+  entity._blockNumber = event.block.number
   entity.save()
 }
 
@@ -63,6 +66,7 @@ export function handleDraw(event: DrawEvent): void {
   entity._voteID = event.params._voteID
   entity._contractAddress = event.address
   entity._timestamp = event.block.timestamp
+  entity._blockNumber = event.block.number
   entity.save()
 }
 
@@ -76,6 +80,7 @@ export function handleTokenAndETHShift(event: TokenAndETHShiftEvent): void {
   entity._ETHAmount = event.params._ETHAmount
   entity._contractAddress = event.address
   entity._timestamp = event.block.timestamp
+  entity._blockNumber = event.block.number
   entity.save()
 }
 
@@ -87,6 +92,7 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   entity._arbitrable = event.params._arbitrable
   entity._contractAddress = event.address
   entity._timestamp = event.block.timestamp
+  entity._blockNumber = event.block.number
   entity.save()
 }
 
@@ -98,6 +104,7 @@ export function handleAppealPossible(event: AppealPossibleEvent): void {
   entity._arbitrable = event.params._arbitrable
   entity._contractAddress = event.address
   entity._timestamp = event.block.timestamp
+  entity._blockNumber = event.block.number
   entity.save()
 }
 
@@ -109,5 +116,6 @@ export function handleAppealDecision(event: AppealDecisionEvent): void {
   entity._arbitrable = event.params._arbitrable
   entity._contractAddress = event.address
   entity._timestamp = event.block.timestamp
+  entity._blockNumber = event.block.number
   entity.save()
 }

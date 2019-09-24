@@ -86,6 +86,15 @@ export class ClaimedTokens extends Entity {
   set _timestamp(value: BigInt) {
     this.set("_timestamp", Value.fromBigInt(value));
   }
+
+  get _blockNumber(): BigInt {
+    let value = this.get("_blockNumber");
+    return value.toBigInt();
+  }
+
+  set _blockNumber(value: BigInt) {
+    this.set("_blockNumber", Value.fromBigInt(value));
+  }
 }
 
 export class Transfer extends Entity {
@@ -162,6 +171,15 @@ export class Transfer extends Entity {
   set _timestamp(value: BigInt) {
     this.set("_timestamp", Value.fromBigInt(value));
   }
+
+  get _blockNumber(): BigInt {
+    let value = this.get("_blockNumber");
+    return value.toBigInt();
+  }
+
+  set _blockNumber(value: BigInt) {
+    this.set("_blockNumber", Value.fromBigInt(value));
+  }
 }
 
 export class NewCloneToken extends Entity {
@@ -228,6 +246,15 @@ export class NewCloneToken extends Entity {
 
   set _timestamp(value: BigInt) {
     this.set("_timestamp", Value.fromBigInt(value));
+  }
+
+  get _blockNumber(): BigInt {
+    let value = this.get("_blockNumber");
+    return value.toBigInt();
+  }
+
+  set _blockNumber(value: BigInt) {
+    this.set("_blockNumber", Value.fromBigInt(value));
   }
 }
 
@@ -304,5 +331,14 @@ export class Approval extends Entity {
 
   set _timestamp(value: BigInt) {
     this.set("_timestamp", Value.fromBigInt(value));
+  }
+
+  get _blockNumber(): BigInt {
+    let value = this.get("_blockNumber");
+    return value.toBigInt();
+  }
+
+  set _blockNumber(value: BigInt) {
+    this.set("_blockNumber", Value.fromBigInt(value));
   }
 }

@@ -12,7 +12,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class NewPhase extends Entity {
+export class NewPolicy extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -26,11 +26,11 @@ export class NewPhase extends Entity {
       "Cannot save NewPhase entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("NewPhase", id.toString(), this);
+    store.set("NewPolicy", id.toString(), this);
   }
 
-  static load(id: string): NewPhase | null {
-    return store.get("NewPhase", id) as NewPhase | null;
+  static load(id: string): NewPolicy | null {
+    return store.get("NewPolicy", id) as NewPolicy | null;
   }
 
   get id(): string {
@@ -67,6 +67,15 @@ export class NewPhase extends Entity {
 
   set _timestamp(value: BigInt) {
     this.set("_timestamp", Value.fromBigInt(value));
+  }
+
+  get _blockNumber(): BigInt {
+    let value = this.get("_blockNumber");
+    return value.toBigInt();
+  }
+
+  set _blockNumber(value: BigInt) {
+    this.set("_blockNumber", Value.fromBigInt(value));
   }
 }
 
@@ -134,6 +143,15 @@ export class NewPeriod extends Entity {
 
   set _timestamp(value: BigInt) {
     this.set("_timestamp", Value.fromBigInt(value));
+  }
+
+  get _blockNumber(): BigInt {
+    let value = this.get("_blockNumber");
+    return value.toBigInt();
+  }
+
+  set _blockNumber(value: BigInt) {
+    this.set("_blockNumber", Value.fromBigInt(value));
   }
 }
 
@@ -220,6 +238,15 @@ export class StakeSet extends Entity {
   set _timestamp(value: BigInt) {
     this.set("_timestamp", Value.fromBigInt(value));
   }
+
+  get _blockNumber(): BigInt {
+    let value = this.get("_blockNumber");
+    return value.toBigInt();
+  }
+
+  set _blockNumber(value: BigInt) {
+    this.set("_blockNumber", Value.fromBigInt(value));
+  }
 }
 
 export class Draw extends Entity {
@@ -304,6 +331,15 @@ export class Draw extends Entity {
 
   set _timestamp(value: BigInt) {
     this.set("_timestamp", Value.fromBigInt(value));
+  }
+
+  get _blockNumber(): BigInt {
+    let value = this.get("_blockNumber");
+    return value.toBigInt();
+  }
+
+  set _blockNumber(value: BigInt) {
+    this.set("_blockNumber", Value.fromBigInt(value));
   }
 }
 
@@ -390,6 +426,15 @@ export class TokenAndETHShift extends Entity {
   set _timestamp(value: BigInt) {
     this.set("_timestamp", Value.fromBigInt(value));
   }
+
+  get _blockNumber(): BigInt {
+    let value = this.get("_blockNumber");
+    return value.toBigInt();
+  }
+
+  set _blockNumber(value: BigInt) {
+    this.set("_blockNumber", Value.fromBigInt(value));
+  }
 }
 
 export class DisputeCreation extends Entity {
@@ -456,6 +501,15 @@ export class DisputeCreation extends Entity {
 
   set _timestamp(value: BigInt) {
     this.set("_timestamp", Value.fromBigInt(value));
+  }
+
+  get _blockNumber(): BigInt {
+    let value = this.get("_blockNumber");
+    return value.toBigInt();
+  }
+
+  set _blockNumber(value: BigInt) {
+    this.set("_blockNumber", Value.fromBigInt(value));
   }
 }
 
@@ -524,6 +578,15 @@ export class AppealPossible extends Entity {
   set _timestamp(value: BigInt) {
     this.set("_timestamp", Value.fromBigInt(value));
   }
+
+  get _blockNumber(): BigInt {
+    let value = this.get("_blockNumber");
+    return value.toBigInt();
+  }
+
+  set _blockNumber(value: BigInt) {
+    this.set("_blockNumber", Value.fromBigInt(value));
+  }
 }
 
 export class AppealDecision extends Entity {
@@ -590,5 +653,14 @@ export class AppealDecision extends Entity {
 
   set _timestamp(value: BigInt) {
     this.set("_timestamp", Value.fromBigInt(value));
+  }
+
+  get _blockNumber(): BigInt {
+    let value = this.get("_blockNumber");
+    return value.toBigInt();
+  }
+
+  set _blockNumber(value: BigInt) {
+    this.set("_blockNumber", Value.fromBigInt(value));
   }
 }

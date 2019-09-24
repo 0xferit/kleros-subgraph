@@ -4,6 +4,7 @@ type NewPhase @entity {
   _phase: Int! # uint8
   _contractAddress: Bytes! # address
   _timestamp: BigInt! # uint256
+  _blockNumber: BigInt! # unit256
 }
 
 type NewPeriod @entity {
@@ -12,6 +13,7 @@ type NewPeriod @entity {
   _period: Int! # uint8
   _contractAddress: Bytes! # address
   _timestamp: BigInt! # uint256
+  _blockNumber: BigInt! # unit256
 }
 
 type AppealPossible @entity {
@@ -20,6 +22,7 @@ type AppealPossible @entity {
   _arbitrable: Bytes # address
   _contractAddress: Bytes! # address
   _timestamp: BigInt! # uint256
+  _blockNumber: BigInt! # unit256
 }
 
 type AppealDecision @entity {
@@ -28,6 +31,7 @@ type AppealDecision @entity {
   _arbitrable: Bytes! # address
   _contractAddress: Bytes! # address
   _timestamp: BigInt! # uint256
+  _blockNumber: BigInt! # unit256
 }
 
 type DisputeCreation @entity {
@@ -36,6 +40,7 @@ type DisputeCreation @entity {
   _arbitrable: Bytes! # address
   _contractAddress: Bytes! # address
   _timestamp: BigInt! # uint256
+  _blockNumber: BigInt! # unit256
 }
 
 type StakeSet @entity {
@@ -46,6 +51,7 @@ type StakeSet @entity {
   _newTotalStake: BigInt! # uint256
   _contractAddress: Bytes! # address
   _timestamp: BigInt! # uint256
+  _blockNumber: BigInt! # unit256
 }
 
 type Draw @entity {
@@ -56,6 +62,7 @@ type Draw @entity {
   _voteID: BigInt! # uint256
   _contractAddress: Bytes! # address
   _timestamp: BigInt! # uint256
+  _blockNumber: BigInt! # unit256
 }
 
 type TokenAndETHShift @entity {
@@ -66,6 +73,7 @@ type TokenAndETHShift @entity {
   _ETHAmount: BigInt! # int256
   _contractAddress: Bytes! # address
   _timestamp: BigInt! # uint256
+  _blockNumber: BigInt! # unit256
 }
 
 # Minime token entities
@@ -76,6 +84,7 @@ type ClaimedTokens @entity {
   _amount: BigInt! # uint256
   _contractAddress: Bytes! # address
   _timestamp: BigInt! # uint256
+  _blockNumber: BigInt! # unit256
 }
 
 type Transfer @entity {
@@ -85,6 +94,7 @@ type Transfer @entity {
   _amount: BigInt! # uint256
   _contractAddress: Bytes! # address
   _timestamp: BigInt! # uint256
+  _blockNumber: BigInt! # unit256
 }
 
 type NewCloneToken @entity {
@@ -93,6 +103,7 @@ type NewCloneToken @entity {
   _snapshotBlock: BigInt! # uint256
   _contractAddress: Bytes! # address
   _timestamp: BigInt! # uint256
+  _blockNumber: BigInt! # unit256
 }
 
 type Approval @entity {
@@ -102,4 +113,14 @@ type Approval @entity {
   _amount: BigInt! # uint256
   _contractAddress: Bytes! # address
   _timestamp: BigInt! # uint256
+  _blockNumber: BigInt! # unit256
+}
+
+type PolicyUpdate @entity {
+  id: ID!
+  _subcourtID: BigInt! # uint256
+  _policy: String! # String
+  _contractAddress: Bytes! # address
+  _timestamp: BigInt! # uint256
+  _blockNumber: BigInt! # unit256
 }
