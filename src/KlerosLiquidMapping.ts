@@ -19,6 +19,7 @@ import {
   AppealDecision, DisputeStatistic
 } from "../generated/KlerosLiquidSchema"
 import {
+  log,
   TypedMap,
   Entity,
   Value,
@@ -106,9 +107,13 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   entity._blockNumber = event.block.number
   entity.save()
 
-  let entity1 = new DisputeStatistic('globalID')
-  entity1._totalDisputes = entity1._totalDisputes | BigInt.fromI32(0)
-  entity1._totalDisputes = entity1._totalDisputes.plus(BigInt.fromI32(1))
+  let entity1 = DisputeStatistic.load('singleID')
+  if (entity1 == null) {
+    entity1 = new DisputeStatistic('singleID')
+    entity1._totalDisputes = BigInt.fromI32(1)
+  } else{
+    entity1._totalDisputes = entity1._totalDisputes.plus(BigInt.fromI32(1))
+  }
   entity1.save()
 }
 

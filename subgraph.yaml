@@ -1,4 +1,4 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
 schema:
   file: ./schema.graphql
 dataSources:
@@ -10,7 +10,7 @@ dataSources:
       abi: PolicyRegistry
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.3
       language: wasm/assemblyscript
       entities:
         - PolicyUpdate
@@ -18,7 +18,7 @@ dataSources:
         - name: PolicyRegistry
           file: ./abis/PolicyRegistry.json
       eventHandlers:
-        - event: PolicyUpdate(uint256,string)
+        - event: PolicyUpdate(indexed uint256,string)
           handler: handlePolicyUpdate
       file: ./src/PolicyRegistryMapping.ts
   - kind: ethereum/contract
@@ -29,7 +29,7 @@ dataSources:
       abi: MiniMeToken
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.3
       language: wasm/assemblyscript
       entities:
         - ClaimedTokens
@@ -40,13 +40,13 @@ dataSources:
         - name: MiniMeToken
           file: ./abis/MiniMeToken.json
       eventHandlers:
-        - event: ClaimedTokens(address,address,uint256)
+        - event: ClaimedTokens(indexed address,indexed address,uint256)
           handler: handleClaimedTokens
-        - event: Transfer(address,address,uint256)
+        - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-        - event: NewCloneToken(address,uint256)
+        - event: NewCloneToken(indexed address,uint256)
           handler: handleNewCloneToken
-        - event: Approval(address,address,uint256)
+        - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
       file: ./src/MiniMeTokenMapping.ts
   - kind: ethereum/contract
@@ -57,7 +57,7 @@ dataSources:
       abi: KlerosLiquid
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.3
       language: wasm/assemblyscript
       entities:
         - NewPhase
@@ -74,18 +74,18 @@ dataSources:
       eventHandlers:
         - event: NewPhase(uint8)
           handler: handleNewPhase
-        - event: NewPeriod(uint256,uint8)
+        - event: NewPeriod(indexed uint256,uint8)
           handler: handleNewPeriod
-        - event: StakeSet(address,uint256,uint128,uint256)
+        - event: StakeSet(indexed address,uint256,uint128,uint256)
           handler: handleStakeSet
-        - event: Draw(address,uint256,uint256,uint256)
+        - event: Draw(indexed address,indexed uint256,uint256,uint256)
           handler: handleDraw
-        - event: TokenAndETHShift(address,uint256,int256,int256)
+        - event: TokenAndETHShift(indexed address,indexed uint256,int256,int256)
           handler: handleTokenAndETHShift
-        - event: DisputeCreation(uint256,address)
+        - event: DisputeCreation(indexed uint256,indexed address)
           handler: handleDisputeCreation
-        - event: AppealPossible(uint256,address)
+        - event: AppealPossible(indexed uint256,indexed address)
           handler: handleAppealPossible
-        - event: AppealDecision(uint256,address)
+        - event: AppealDecision(indexed uint256,indexed address)
           handler: handleAppealDecision
       file: ./src/KlerosLiquidMapping.ts
