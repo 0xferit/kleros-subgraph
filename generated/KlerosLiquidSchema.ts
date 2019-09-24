@@ -664,3 +664,43 @@ export class AppealDecision extends Entity {
     this.set("_blockNumber", Value.fromBigInt(value));
   }
 }
+
+export class DisputeStatistic extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save DisputeStatistic entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save DisputeStatistic entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("DisputeStatistic", id.toString(), this);
+  }
+
+  static load(id: string): DisputeStatistic | null {
+    return store.get("DisputeStatistic", id) as DisputeStatistic | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get _totalDisputes(): BigInt {
+    let value = this.get("_totalDisputes");
+    return value.toBigInt();
+  }
+
+  set _totalDisputes(value: BigInt) {
+    this.set("_totalDisputes", Value.fromBigInt(value));
+  }
+}

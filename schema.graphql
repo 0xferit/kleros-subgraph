@@ -124,3 +124,8 @@ type PolicyUpdate @entity {
   _timestamp: BigInt! # uint256
   _blockNumber: BigInt! # unit256
 }
+
+type DisputeStatistic @entity {
+  id: ID!
+  _totalDisputes: BigInt! # uint256
+}

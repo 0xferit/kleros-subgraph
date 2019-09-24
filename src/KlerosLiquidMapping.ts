@@ -16,8 +16,19 @@ import {
   TokenAndETHShift,
   DisputeCreation,
   AppealPossible,
-  AppealDecision
+  AppealDecision, DisputeStatistic
 } from "../generated/KlerosLiquidSchema"
+import {
+  TypedMap,
+  Entity,
+  Value,
+  ValueKind,
+  store,
+  Address,
+  Bytes,
+  BigInt,
+  BigDecimal
+} from "@graphprotocol/graph-ts";
 
 export function handleNewPhase(event: NewPhaseEvent): void {
   let entity = new NewPolicy(
@@ -94,6 +105,10 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   entity._timestamp = event.block.timestamp
   entity._blockNumber = event.block.number
   entity.save()
+
+  let entity1 = new DisputeStatistic('globalID')
+  entity1._totalDisputes = entity1._totalDisputes.plus(BigInt.fromI32(1))
+  entity1.save()
 }
 
 export function handleAppealPossible(event: AppealPossibleEvent): void {
