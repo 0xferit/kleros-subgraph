@@ -28,7 +28,8 @@ import {
   Address,
   Bytes,
   BigInt,
-  BigDecimal
+  BigDecimal,
+  json
 } from "@graphprotocol/graph-ts";
 
 export function handleNewPhase(event: NewPhaseEvent): void {
@@ -94,6 +95,31 @@ export function handleTokenAndETHShift(event: TokenAndETHShiftEvent): void {
   entity._timestamp = event.block.timestamp
   entity._blockNumber = event.block.number
   entity.save()
+
+  let entity1 = DisputeStatistic.load('singleID')
+  if (entity1 == null) {
+    entity1 = new DisputeStatistic('singleID')
+    log.debug('handleTokenAndETHShift.entity1 not present', [entity1._totalRewardedTokenAmount.toString()])
+    if(event.params._tokenAmount.gt(BigInt.fromI32(0))){
+      log.debug('handleTokenAndETHShift.entity1 initializing amount', [])
+      entity1._totalRewardedTokenAmount = event.params._tokenAmount
+      entity1._totalRewardedEthAmount = event.params._ETHAmount
+    } else {
+      log.debug('handleTokenAndETHShift.entity1 +ve tokenamount', [event.params._tokenAmount.toString()])
+      entity1._totalPunishedTokenAmount = event.params._tokenAmount
+    }
+  } else{
+    log.debug('handleTokenAndETHShift.entity1 present', [entity1._totalRewardedTokenAmount.toString()])
+    if(event.params._tokenAmount.gt(BigInt.fromI32(0))){
+      log.debug('handleTokenAndETHShift.entity1 adding amount', [])
+      entity1._totalRewardedTokenAmount = entity1._totalRewardedTokenAmount.plus(event.params._tokenAmount)
+      entity1._totalRewardedEthAmount = entity1._totalRewardedEthAmount.plus(event.params._ETHAmount)
+    } else {
+      log.debug('handleTokenAndETHShift.entity1 -ve tokenamount', [event.params._tokenAmount.toString()])
+      entity1._totalPunishedTokenAmount = entity1._totalPunishedTokenAmount.plus(event.params._tokenAmount)
+    }
+  }
+  entity1.save()
 }
 
 export function handleDisputeCreation(event: DisputeCreationEvent): void {

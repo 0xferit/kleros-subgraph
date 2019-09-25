@@ -128,4 +128,7 @@ type PolicyUpdate @entity {
 type DisputeStatistic @entity {
   id: ID!
   _totalDisputes: BigInt! # uint256
+  _totalRewardedTokenAmount: BigInt! # uint256
+  _totalRewardedEthAmount: BigInt! # uin256
+  _totalPunishedTokenAmount: BigInt! # uint256
 }
