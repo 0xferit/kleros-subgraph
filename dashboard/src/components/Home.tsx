@@ -133,6 +133,7 @@ export default class Home extends React.Component<Props, State> {
                                         xAxis={"Juror"}
                                         yAxis={"PNK Token in Kilo(1000) ether"}
                                         title={"Top 5 juror by stake amount"}
+                                        hideXAxis={true}
               />;
             }}
           </Query>

@@ -41,7 +41,7 @@ export default class DisputesTable extends React.Component<Props, State> {
   render() {
     return <Card style={{height:"400px",overflow:"scroll"}}>
       <Card.Body>
-        <Card.Title>Disputes`</Card.Title>
+        <Card.Title>Recent Disputes</Card.Title>
         <TableRow
           col={[
             <strong>Id</strong>,
