@@ -16,7 +16,12 @@ import {
   TokenAndETHShift,
   DisputeCreation,
   AppealPossible,
-  AppealDecision, DisputeStatistic, PeriodDisputeStatistic, JurorStakeAmount, RewardStatistic
+  AppealDecision,
+  DisputeStatistic,
+  PeriodDisputeStatistic,
+  JurorStakeAmount,
+  RewardStatistic,
+  SubCourtDisputeStatistic
 } from "../generated/KlerosLiquidSchema"
 import {
   log,
@@ -158,6 +163,7 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   entity.timestamp = event.block.timestamp
   entity.blockNumber = event.block.number
 
+  log.info('binding KlerosLiquid', [])
   let contract = KlerosLiquid.bind(event.address)
   log.info('reading dispute', [])
   let disputeObj = contract.disputes(event.params.disputeID)
@@ -178,6 +184,19 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
     entity1.totalDisputes = entity1.totalDisputes.plus(BigInt.fromI32(1))
   }
   entity1.save()
+
+  // Save SubCourtDisputeStatistic
+  let id = entity.subcourtID.toHex()
+  let entity2 = SubCourtDisputeStatistic.load(id)
+  if (entity2 == null) {
+    entity2 = new SubCourtDisputeStatistic(id)
+    entity2.subcourtID = entity.subcourtID
+    entity2.totalDisputes = BigInt.fromI32(1)
+  } else{
+    entity2.subcourtID = entity.subcourtID
+    entity2.totalDisputes = entity2.totalDisputes.plus(BigInt.fromI32(1))
+  }
+  entity2.save()
 
 }
 

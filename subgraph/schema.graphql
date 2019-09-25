@@ -152,3 +152,9 @@ type RewardStatistic @entity {
   totalRewardedEthAmount: BigInt! # uin256
   totalPunishedTokenAmount: BigInt! # uint256
 }
+
+type SubCourtDisputeStatistic @entity {
+  id: ID!
+  subcourtID: BigInt! # uint256
+  totalDisputes: BigInt! # uint256
+}
