@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Badge from "react-bootstrap/Badge";
 import {Query} from 'react-apollo'
-import {DISPUTE_COUNT} from "../graphql/queries";
+import {DISPUTE_COUNT, TOTAL_COURTS} from "../graphql/queries";
 
 interface Props {
 }
@@ -17,6 +17,12 @@ interface DisputeData {
   disputeStatistics: Array<{
     id: string;
     totalDisputes: string;
+  }>
+}
+
+interface CourtData {
+  policyUpdates: Array<{
+    subcourtID: string;
   }>
 }
 
@@ -42,7 +48,6 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
 
             <Query<DisputeData, Variable> query={DISPUTE_COUNT}>
               {({loading, error, data}) => {
-                console.log('data  ', data);
                 if (loading) return <span>{'Loading...'}</span>;
                 if (error) return <span>{`Error! ${error.message}`}</span>;
 
@@ -52,10 +57,21 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
           </Badge>
           </Col>
           <Col>
-            <strong>Total active courts:</strong> <Badge variant="secondary">8</Badge>
+            <strong>Total active courts:</strong> <Badge variant="secondary">
+            <Query<CourtData, Variable> query={TOTAL_COURTS}>
+              {({loading, error, data}) => {
+                if (loading) return <span>{'Loading...'}</span>;
+                if (error) return <span>{`Error! ${error.message}`}</span>;
+
+                return <span>{parseInt(data.policyUpdates[0].subcourtID) + 1}</span>;
+              }}
+            </Query>
+
+          </Badge>
           </Col>
           <Col>
-            <strong>Total Staked Amount:</strong>  <Badge variant="secondary">700PNK</Badge>
+            <strong>Total Staked Amount:</strong> <Badge variant="secondary">
+            700PNK</Badge>
 
           </Col>
         </Row>
