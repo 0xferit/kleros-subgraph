@@ -26,7 +26,7 @@ export default class CourtsTable extends React.Component<Props, State> {
         <Card.Title>Courts</Card.Title>
         <TableRow
           col={[
-            <strong>Court"</strong>,
+            <strong>Court</strong>,
             <strong>Title</strong>,
             <strong>Total disputes</strong>,
             <strong>Stake amount</strong>
