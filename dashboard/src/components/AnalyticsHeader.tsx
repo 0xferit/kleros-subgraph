@@ -31,7 +31,7 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
             <strong>Total active courts:</strong> <Badge variant="secondary">8</Badge>
           </Col>
           <Col>
-            <strong>Total Staked Amount:</strong>  <Badge variant="secondary">700ETH</Badge>
+            <strong>Total Staked Amount:</strong>  <Badge variant="secondary">700PNK</Badge>
 
           </Col>
         </Row>

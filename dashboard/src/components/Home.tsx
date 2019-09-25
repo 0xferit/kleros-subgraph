@@ -77,12 +77,22 @@ export default class Home extends React.Component<Props, State> {
         </Col>
       </Row>
       <Row>
+        <Col>
         <BarGraphComponent data={topTenBountyHunters}
                            dataKey='count'
                            xAxis={"Name of Juror"}
                            yAxis={"Arbitration fees "}
-                           title={"Top 10 Juror"}
+                           title={"Top 10 earner"}
         />
+        </Col>
+        <Col>
+          <BarGraphComponent data={topTenBountyHunters}
+                             dataKey='count'
+                             xAxis={"Name of Juror"}
+                             yAxis={"Penalty fees "}
+                             title={"Top 10 looser"}
+          />
+        </Col>
       </Row>
     </Container>;
   }
