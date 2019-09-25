@@ -1,137 +1,137 @@
 # KlerosLiquid entities
 type NewPhase @entity {
   id: ID!
-  _phase: Int! # uint8
-  _contractAddress: Bytes! # address
-  _timestamp: BigInt! # uint256
-  _blockNumber: BigInt! # unit256
+  phase: Int! # uint8
+  contractAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt! # unit256
 }
 
 type NewPeriod @entity {
   id: ID!
-  _disputeID: BigInt! # uint256
-  _period: Int! # uint8
-  _contractAddress: Bytes! # address
-  _timestamp: BigInt! # uint256
-  _blockNumber: BigInt! # unit256
+  disputeID: BigInt! # uint256
+  period: Int! # uint8
+  contractAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt! # unit256
 }
 
 type AppealPossible @entity {
   id: ID!
-  _disputeID: BigInt! # uint256
-  _arbitrable: Bytes # address
-  _contractAddress: Bytes! # address
-  _timestamp: BigInt! # uint256
-  _blockNumber: BigInt! # unit256
+  disputeID: BigInt! # uint256
+  arbitrable: Bytes # address
+  contractAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt! # unit256
 }
 
 type AppealDecision @entity {
   id: ID!
-  _disputeID: BigInt! # uint256
-  _arbitrable: Bytes! # address
-  _contractAddress: Bytes! # address
-  _timestamp: BigInt! # uint256
-  _blockNumber: BigInt! # unit256
+  disputeID: BigInt! # uint256
+  arbitrable: Bytes! # address
+  contractAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt! # unit256
 }
 
 type DisputeCreation @entity {
   id: ID!
-  _disputeID: BigInt! # uint256
-  _arbitrable: Bytes! # address
-  _contractAddress: Bytes! # address
-  _timestamp: BigInt! # uint256
-  _blockNumber: BigInt! # unit256
+  disputeID: BigInt! # uint256
+  arbitrable: Bytes! # address
+  contractAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt! # unit256
 }
 
 type StakeSet @entity {
   id: ID!
-  _address: Bytes! # address
-  _subcourtID: BigInt! # uint256
-  _stake: BigInt! # uint128
-  _newTotalStake: BigInt! # uint256
-  _contractAddress: Bytes! # address
-  _timestamp: BigInt! # uint256
-  _blockNumber: BigInt! # unit256
+  address: Bytes! # address
+  subcourtID: BigInt! # uint256
+  stake: BigInt! # uint128
+  newTotalStake: BigInt! # uint256
+  contractAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt! # unit256
 }
 
 type Draw @entity {
   id: ID!
-  _address: Bytes! # address
-  _disputeID: BigInt! # uint256
-  _appeal: BigInt! # uint256
-  _voteID: BigInt! # uint256
-  _contractAddress: Bytes! # address
-  _timestamp: BigInt! # uint256
-  _blockNumber: BigInt! # unit256
+  address: Bytes! # address
+  disputeID: BigInt! # uint256
+  appeal: BigInt! # uint256
+  voteID: BigInt! # uint256
+  contractAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt! # unit256
 }
 
 type TokenAndETHShift @entity {
   id: ID!
-  _address: Bytes! # address
-  _disputeID: BigInt! # uint256
-  _tokenAmount: BigInt! # int256
-  _ETHAmount: BigInt! # int256
-  _contractAddress: Bytes! # address
-  _timestamp: BigInt! # uint256
-  _blockNumber: BigInt! # unit256
+  address: Bytes! # address
+  disputeID: BigInt! # uint256
+  tokenAmount: BigInt! # int256
+  ETHAmount: BigInt! # int256
+  contractAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt! # unit256
 }
 
 # Minime token entities
 type ClaimedTokens @entity {
   id: ID!
-  _token: Bytes! # address
-  _controller: Bytes! # address
-  _amount: BigInt! # uint256
-  _contractAddress: Bytes! # address
-  _timestamp: BigInt! # uint256
-  _blockNumber: BigInt! # unit256
+  token: Bytes! # address
+  controller: Bytes! # address
+  amount: BigInt! # uint256
+  contractAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt! # unit256
 }
 
 type Transfer @entity {
   id: ID!
-  _from: Bytes! # address
-  _to: Bytes! # address
-  _amount: BigInt! # uint256
-  _contractAddress: Bytes! # address
-  _timestamp: BigInt! # uint256
-  _blockNumber: BigInt! # unit256
+  from: Bytes! # address
+  to: Bytes! # address
+  amount: BigInt! # uint256
+  contractAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt! # unit256
 }
 
 type NewCloneToken @entity {
   id: ID!
-  _cloneToken: Bytes! # address
-  _snapshotBlock: BigInt! # uint256
-  _contractAddress: Bytes! # address
-  _timestamp: BigInt! # uint256
-  _blockNumber: BigInt! # unit256
+  cloneToken: Bytes! # address
+  snapshotBlock: BigInt! # uint256
+  contractAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt! # unit256
 }
 
 type Approval @entity {
   id: ID!
-  _owner: Bytes! # address
-  _spender: Bytes! # address
-  _amount: BigInt! # uint256
-  _contractAddress: Bytes! # address
-  _timestamp: BigInt! # uint256
-  _blockNumber: BigInt! # unit256
+  owner: Bytes! # address
+  spender: Bytes! # address
+  amount: BigInt! # uint256
+  contractAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt! # unit256
 }
 
 type PolicyUpdate @entity {
   id: ID!
-  _subcourtID: BigInt! # uint256
-  _policy: String! # String
-  _contractAddress: Bytes! # address
-  _timestamp: BigInt! # uint256
-  _blockNumber: BigInt! # unit256
+  subcourtID: BigInt! # uint256
+  policy: String! # String
+  contractAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt! # unit256
 }
 
 type DisputeStatistic @entity {
   id: ID!
-  _totalDisputes: BigInt! # uint256
+  totalDisputes: BigInt! # uint256
 }
 
 type PeriodDisputeStatistic @entity {
   id: ID! # id is period here
-  _period: Int! # uint8
-  _totalDisputes: BigInt! #uint256
+  period: Int! # uint8
+  totalDisputes: BigInt! #uint256
 }

@@ -27,7 +27,7 @@ export class NewPhase__Params {
     this._event = event;
   }
 
-  get _phase(): i32 {
+  get phase(): i32 {
     return this._event.parameters[0].value.toI32();
   }
 }
@@ -45,11 +45,11 @@ export class NewPeriod__Params {
     this._event = event;
   }
 
-  get _disputeID(): BigInt {
+  get disputeID(): BigInt {
     return this._event.parameters[0].value.toBigInt();
   }
 
-  get _period(): i32 {
+  get period(): i32 {
     return this._event.parameters[1].value.toI32();
   }
 }
@@ -67,19 +67,19 @@ export class StakeSet__Params {
     this._event = event;
   }
 
-  get _address(): Address {
+  get address(): Address {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get _subcourtID(): BigInt {
+  get subcourtID(): BigInt {
     return this._event.parameters[1].value.toBigInt();
   }
 
-  get _stake(): BigInt {
+  get stake(): BigInt {
     return this._event.parameters[2].value.toBigInt();
   }
 
-  get _newTotalStake(): BigInt {
+  get newTotalStake(): BigInt {
     return this._event.parameters[3].value.toBigInt();
   }
 }
@@ -97,19 +97,19 @@ export class Draw__Params {
     this._event = event;
   }
 
-  get _address(): Address {
+  get address(): Address {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get _disputeID(): BigInt {
+  get disputeID(): BigInt {
     return this._event.parameters[1].value.toBigInt();
   }
 
-  get _appeal(): BigInt {
+  get appeal(): BigInt {
     return this._event.parameters[2].value.toBigInt();
   }
 
-  get _voteID(): BigInt {
+  get voteID(): BigInt {
     return this._event.parameters[3].value.toBigInt();
   }
 }
@@ -127,19 +127,19 @@ export class TokenAndETHShift__Params {
     this._event = event;
   }
 
-  get _address(): Address {
+  get address(): Address {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get _disputeID(): BigInt {
+  get disputeID(): BigInt {
     return this._event.parameters[1].value.toBigInt();
   }
 
-  get _tokenAmount(): BigInt {
+  get tokenAmount(): BigInt {
     return this._event.parameters[2].value.toBigInt();
   }
 
-  get _ETHAmount(): BigInt {
+  get ETHAmount(): BigInt {
     return this._event.parameters[3].value.toBigInt();
   }
 }
@@ -157,11 +157,11 @@ export class DisputeCreation__Params {
     this._event = event;
   }
 
-  get _disputeID(): BigInt {
+  get disputeID(): BigInt {
     return this._event.parameters[0].value.toBigInt();
   }
 
-  get _arbitrable(): Address {
+  get arbitrable(): Address {
     return this._event.parameters[1].value.toAddress();
   }
 }
@@ -179,11 +179,11 @@ export class AppealPossible__Params {
     this._event = event;
   }
 
-  get _disputeID(): BigInt {
+  get disputeID(): BigInt {
     return this._event.parameters[0].value.toBigInt();
   }
 
-  get _arbitrable(): Address {
+  get arbitrable(): Address {
     return this._event.parameters[1].value.toAddress();
   }
 }
@@ -201,11 +201,11 @@ export class AppealDecision__Params {
     this._event = event;
   }
 
-  get _disputeID(): BigInt {
+  get disputeID(): BigInt {
     return this._event.parameters[0].value.toBigInt();
   }
 
-  get _arbitrable(): Address {
+  get arbitrable(): Address {
     return this._event.parameters[1].value.toAddress();
   }
 }

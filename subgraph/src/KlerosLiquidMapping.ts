@@ -35,10 +35,10 @@ export function handleNewPhase(event: NewPhaseEvent): void {
   let entity = new NewPolicy(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   )
-  entity._phase = event.params._phase
-  entity._contractAddress = event.address
-  entity._timestamp = event.block.timestamp
-  entity._blockNumber = event.block.number
+  entity.phase = event.params.phase
+  entity.contractAddress = event.address
+  entity.timestamp = event.block.timestamp
+  entity.blockNumber = event.block.number
   entity.save()
 }
 
@@ -46,25 +46,25 @@ export function handleNewPeriod(event: NewPeriodEvent): void {
   let entity = new NewPeriod(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   )
-  entity._disputeID = event.params._disputeID
-  entity._period = event.params._period
-  entity._contractAddress = event.address
-  entity._timestamp = event.block.timestamp
-  entity._blockNumber = event.block.number
+  entity.disputeID = event.params.disputeID
+  entity.period = event.params.period
+  entity.contractAddress = event.address
+  entity.timestamp = event.block.timestamp
+  entity.blockNumber = event.block.number
   entity.save()
 
   // Save Period Vs Dispute stats
-  let charCodePeriod = String.fromCharCode(event.params._period)
+  let charCodePeriod = String.fromCharCode(event.params.period)
   log.info('Period', [charCodePeriod])
   let entity1 = PeriodDisputeStatistic.load(charCodePeriod)
   if (entity1 == null) {
     entity1 = new PeriodDisputeStatistic(charCodePeriod)
-    entity1._period = event.params._period
-    entity1._totalDisputes = BigInt.fromI32(1)
+    entity1.period = event.params.period
+    entity1.totalDisputes = BigInt.fromI32(1)
     log.info('Initializing Period', [charCodePeriod])
   } else{
-    entity1._period = event.params._period
-    entity1._totalDisputes = entity1._totalDisputes.plus(BigInt.fromI32(1))
+    entity1.period = event.params.period
+    entity1.totalDisputes = entity1.totalDisputes.plus(BigInt.fromI32(1))
     log.info('Incrementing dispute count', [charCodePeriod])
   }
   entity1.save()
@@ -74,13 +74,13 @@ export function handleStakeSet(event: StakeSetEvent): void {
   let entity = new StakeSet(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   )
-  entity._address = event.params._address
-  entity._subcourtID = event.params._subcourtID
-  entity._stake = event.params._stake
-  entity._newTotalStake = event.params._newTotalStake
-  entity._contractAddress = event.address
-  entity._timestamp = event.block.timestamp
-  entity._blockNumber = event.block.number
+  entity.address = event.params.address
+  entity.subcourtID = event.params.subcourtID
+  entity.stake = event.params.stake
+  entity.newTotalStake = event.params.newTotalStake
+  entity.contractAddress = event.address
+  entity.timestamp = event.block.timestamp
+  entity.blockNumber = event.block.number
   entity.save()
 }
 
@@ -88,13 +88,13 @@ export function handleDraw(event: DrawEvent): void {
   let entity = new Draw(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   )
-  entity._address = event.params._address
-  entity._disputeID = event.params._disputeID
-  entity._appeal = event.params._appeal
-  entity._voteID = event.params._voteID
-  entity._contractAddress = event.address
-  entity._timestamp = event.block.timestamp
-  entity._blockNumber = event.block.number
+  entity.address = event.params.address
+  entity.disputeID = event.params.disputeID
+  entity.appeal = event.params.appeal
+  entity.voteID = event.params.voteID
+  entity.contractAddress = event.address
+  entity.timestamp = event.block.timestamp
+  entity.blockNumber = event.block.number
   entity.save()
 }
 
@@ -102,13 +102,13 @@ export function handleTokenAndETHShift(event: TokenAndETHShiftEvent): void {
   let entity = new TokenAndETHShift(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   )
-  entity._address = event.params._address
-  entity._disputeID = event.params._disputeID
-  entity._tokenAmount = event.params._tokenAmount
-  entity._ETHAmount = event.params._ETHAmount
-  entity._contractAddress = event.address
-  entity._timestamp = event.block.timestamp
-  entity._blockNumber = event.block.number
+  entity.address = event.params.address
+  entity.disputeID = event.params.disputeID
+  entity.tokenAmount = event.params.tokenAmount
+  entity.ETHAmount = event.params.ETHAmount
+  entity.contractAddress = event.address
+  entity.timestamp = event.block.timestamp
+  entity.blockNumber = event.block.number
   entity.save()
 }
 
@@ -116,19 +116,19 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   let entity = new DisputeCreation(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   )
-  entity._disputeID = event.params._disputeID
-  entity._arbitrable = event.params._arbitrable
-  entity._contractAddress = event.address
-  entity._timestamp = event.block.timestamp
-  entity._blockNumber = event.block.number
+  entity.disputeID = event.params.disputeID
+  entity.arbitrable = event.params.arbitrable
+  entity.contractAddress = event.address
+  entity.timestamp = event.block.timestamp
+  entity.blockNumber = event.block.number
   entity.save()
 
   let entity1 = DisputeStatistic.load('singleID')
   if (entity1 == null) {
     entity1 = new DisputeStatistic('singleID')
-    entity1._totalDisputes = BigInt.fromI32(1)
+    entity1.totalDisputes = BigInt.fromI32(1)
   } else{
-    entity1._totalDisputes = entity1._totalDisputes.plus(BigInt.fromI32(1))
+    entity1.totalDisputes = entity1.totalDisputes.plus(BigInt.fromI32(1))
   }
   entity1.save()
 }
@@ -137,11 +137,11 @@ export function handleAppealPossible(event: AppealPossibleEvent): void {
   let entity = new AppealPossible(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   )
-  entity._disputeID = event.params._disputeID
-  entity._arbitrable = event.params._arbitrable
-  entity._contractAddress = event.address
-  entity._timestamp = event.block.timestamp
-  entity._blockNumber = event.block.number
+  entity.disputeID = event.params.disputeID
+  entity.arbitrable = event.params.arbitrable
+  entity.contractAddress = event.address
+  entity.timestamp = event.block.timestamp
+  entity.blockNumber = event.block.number
   entity.save()
 }
 
@@ -149,10 +149,10 @@ export function handleAppealDecision(event: AppealDecisionEvent): void {
   let entity = new AppealDecision(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   )
-  entity._disputeID = event.params._disputeID
-  entity._arbitrable = event.params._arbitrable
-  entity._contractAddress = event.address
-  entity._timestamp = event.block.timestamp
-  entity._blockNumber = event.block.number
+  entity.disputeID = event.params.disputeID
+  entity.arbitrable = event.params.arbitrable
+  entity.contractAddress = event.address
+  entity.timestamp = event.block.timestamp
+  entity.blockNumber = event.block.number
   entity.save()
 }
