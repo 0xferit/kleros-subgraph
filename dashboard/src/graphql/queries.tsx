@@ -22,3 +22,10 @@ export const TOTAL_COURTS = gql`
     }
   }
 `;
+
+export const DISPUTE_WITH_PERIOD = gql`{
+    periodDisputeStatistics{
+    period
+    totalDisputes
+  }
+}`;
