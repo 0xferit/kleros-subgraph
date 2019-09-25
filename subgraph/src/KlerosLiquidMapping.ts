@@ -16,7 +16,7 @@ import {
   TokenAndETHShift,
   DisputeCreation,
   AppealPossible,
-  AppealDecision, DisputeStatistic, PeriodDisputeStatistic, JurorStakeAmount
+  AppealDecision, DisputeStatistic, PeriodDisputeStatistic, JurorStakeAmount, RewardStatistic
 } from "../generated/KlerosLiquidSchema"
 import {
   log,
@@ -28,7 +28,8 @@ import {
   Address,
   Bytes,
   BigInt,
-  BigDecimal
+  BigDecimal,
+  json
 } from "@graphprotocol/graph-ts";
 
 export function handleNewPhase(event: NewPhaseEvent): void {
@@ -123,6 +124,28 @@ export function handleTokenAndETHShift(event: TokenAndETHShiftEvent): void {
   entity.timestamp = event.block.timestamp
   entity.blockNumber = event.block.number
   entity.save()
+
+  // Reward stats
+  let entity1 = RewardStatistic.load('ID')
+  if (entity1 == null) {
+    entity1 = new RewardStatistic('ID')
+    // Initialize
+    entity1.totalRewardedTokenAmount = BigInt.fromI32(0)
+    entity1.totalRewardedEthAmount = BigInt.fromI32(0)
+    entity1.totalPunishedTokenAmount = BigInt.fromI32(0)
+  }
+  // log.info('handleTokenAndETHShift.entity1 present',
+  // [entity1.totalRewardedTokenAmount.toString()])
+  if(event.params.tokenAmount.ge(BigInt.fromI32(0))){
+    // log.info('handleTokenAndETHShift.entity1 adding amount', [])
+    entity1.totalRewardedTokenAmount = entity1.totalRewardedTokenAmount.plus(event.params.tokenAmount)
+    entity1.totalRewardedEthAmount = entity1.totalRewardedEthAmount.plus(event.params.ETHAmount)
+  } else {
+    // log.info('handleTokenAndETHShift.entity1 -ve tokenamount',
+    // [event.params.tokenAmount.toString()])
+    entity1.totalPunishedTokenAmount = entity1.totalPunishedTokenAmount.plus(event.params.tokenAmount)
+  }
+  entity1.save()
 }
 
 export function handleDisputeCreation(event: DisputeCreationEvent): void {
@@ -142,9 +165,9 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   entity.lastPeriodChange = disputeObj.value4
   entity.save()
 
-  let entity1 = DisputeStatistic.load('singleID')
+  let entity1 = DisputeStatistic.load('ID')
   if (entity1 == null) {
-    entity1 = new DisputeStatistic('singleID')
+    entity1 = new DisputeStatistic('ID')
     entity1.totalDisputes = BigInt.fromI32(1)
   } else{
     entity1.totalDisputes = entity1.totalDisputes.plus(BigInt.fromI32(1))

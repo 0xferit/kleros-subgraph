@@ -122,17 +122,18 @@ export default class Home extends React.Component<Props, State> {
               console.log(data);
               const graphData = data.jurorStakeAmounts.map(d => {
                   return {
-                    count: parseInt(Web3.utils.fromWei(d.stakeAmount, 'ether')) / 1000,
+                    tokens: parseInt(Web3.utils.fromWei(d.stakeAmount, 'ether')) / 1000,
                     name: d.juror
                   };
                 }
               );
 
               return <BarGraphComponent data={graphData}
-                                        dataKey='count'
+                                        dataKey='tokens'
                                         xAxis={"Juror"}
                                         yAxis={"PNK Token in Kilo(1000) ether"}
                                         title={"Top 5 juror by stake amount"}
+                                        hideXAxis={true}
               />;
             }}
           </Query>
@@ -148,17 +149,17 @@ export default class Home extends React.Component<Props, State> {
               console.log(data);
               const graphData = data.periodDisputeStatistics.map(d => {
                   return {
-                    count: d.totalDisputes,
+                    disputes: d.totalDisputes,
                     name: Period[parseInt(d.period + "")]
                   };
                 }
               );
 
               return <BarGraphComponent data={graphData}
-                                        dataKey='count'
-                                        xAxis={"Dispute state(period)"}
-                                        yAxis={"Dispute count"}
-                                        title={"Dispute by status(Period)"}
+                                        dataKey='disputes'
+                                        xAxis={"Disputes state(period)"}
+                                        yAxis={"Disputes count"}
+                                        title={"Disputes by status(Period)"}
               />;
             }}
           </Query>

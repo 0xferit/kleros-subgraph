@@ -10,6 +10,7 @@ interface Props {
   xAxis: string;
   yAxis: string;
   title: string;
+  hideXAxis?:boolean;
 }
 
 interface State {
@@ -45,7 +46,7 @@ export default class BarGraphComponent extends React.Component<Props, State> {
             }}
           >
             <CartesianGrid strokeDasharray="3 3"/>
-            <XAxis dataKey="name"  >
+            <XAxis dataKey="name" hide={this.props.hideXAxis} >
               <Label value={this.props.xAxis}
                      offset={-5}
                      position="insideBottom"/>

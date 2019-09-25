@@ -21,12 +21,12 @@ export default class CourtsTable extends React.Component<Props, State> {
 
 
   render() {
-    return <Card>
+    return <Card style={{height:"400px",overflow:"scroll"}}>
       <Card.Body>
         <Card.Title>Courts</Card.Title>
         <TableRow
           col={[
-            <strong>Court"</strong>,
+            <strong>Court</strong>,
             <strong>Title</strong>,
             <strong>Total disputes</strong>,
             <strong>Stake amount</strong>

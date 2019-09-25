@@ -18,6 +18,7 @@ export default class Address extends Component<Props, State> {
 
 
   render() {
+    const link =`https://etherscan.io/address/${this.props.address}`;
     return <OverlayTrigger
       trigger={[ 'hover','click']}
       placement="top"
@@ -28,10 +29,10 @@ export default class Address extends Component<Props, State> {
           </Popover.Content>
         </Popover>}
     >
-      <u>{this.props.address.substr(0, 10)}</u>
-
+      <a
+        href={link}
+        target="_blank"> {this.props.address.substr(0, 10) + '...'}</a>
     </OverlayTrigger>
-
 
   }
 }

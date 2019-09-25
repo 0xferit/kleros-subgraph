@@ -37,3 +37,16 @@ export const TOP_FIVE_JURY_BY_STAKE_AMOUNT = gql`
       stakeAmount
     }
   }`;
+
+
+export const DISPUTES = gql`
+  {
+    disputeCreations(orderBy: timestamp, orderDirection: desc, first:10){
+      id
+      disputeID
+      arbitrable
+      contractAddress
+      timestamp
+    }
+  }
+`;
