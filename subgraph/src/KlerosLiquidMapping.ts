@@ -16,7 +16,7 @@ import {
   TokenAndETHShift,
   DisputeCreation,
   AppealPossible,
-  AppealDecision, DisputeStatistic, PeriodDisputeStatistic
+  AppealDecision, DisputeStatistic, PeriodDisputeStatistic, JurorStakeAmount
 } from "../generated/KlerosLiquidSchema"
 import {
   log,
@@ -83,12 +83,16 @@ export function handleStakeSet(event: StakeSetEvent): void {
   entity.blockNumber = event.block.number
   entity.save()
 
-  let entity1 = DisputeStatistic.load('singleID')
+  // Always update with the latest total stake for a juror
+  let parsedId = event.params.address.toHex();
+  let entity1 = JurorStakeAmount.load(parsedId)
   if (entity1 == null) {
-    entity1 = new DisputeStatistic('singleID')
-    entity1._totalStakedAmount = event.params._newTotalStake
+    entity1 = new JurorStakeAmount(parsedId)
+    entity1.juror = event.params.address
+    entity1.stakeAmount = event.params.newTotalStake
   } else{
-    entity1._totalStakedAmount = entity1._totalStakedAmount.plus(event.params._newTotalStake)
+    entity1.juror = event.params.address
+    entity1.stakeAmount = event.params.newTotalStake
   }
   entity1.save()
 }

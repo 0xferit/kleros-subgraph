@@ -128,11 +128,16 @@ type PolicyUpdate @entity {
 type DisputeStatistic @entity {
   id: ID!
   totalDisputes: BigInt! # uint256
- totalStakedAmount: BigInt! # uint256
 }
 
 type PeriodDisputeStatistic @entity {
   id: ID! # id is period here
   period: Int! # uint8
   totalDisputes: BigInt! #uint256
+}
+
+type JurorStakeAmount @entity {
+  id: ID! # id
+  juror: Bytes! # address
+  stakeAmount: BigInt! #uint256
 }
