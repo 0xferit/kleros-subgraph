@@ -20,7 +20,8 @@
     "apollo-link-http": "^1.5.4",
     "graphql": "^14.0.0",
     "graphql-tag": "^2.9.2",
-    "react-apollo": "^2.1.11"
+    "react-apollo": "^2.1.11",
+    "unfetch": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
