@@ -29,7 +29,7 @@ export default class Header extends React.Component<Props, State> {
             className="d-inline-block align-top"
           />
         </Navbar.Brand>
-        <Navbar.Brand style={{marginLeft: "37%"}}>Dashboard</Navbar.Brand>
+        <Navbar.Brand style={{marginLeft: "31%"}}><strong style={{fontSize:"34px"}}>Kleros Dashboard</strong></Navbar.Brand>
       </Navbar>
     </Container>
   }

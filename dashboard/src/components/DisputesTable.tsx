@@ -26,7 +26,12 @@ export default class DisputesTable extends React.Component<Props, State> {
       <Card.Body>
         <Card.Title>Disputes`</Card.Title>
         <TableRow
-          col={["Id", "Period(Status)", "Arbitaor", "court"]}/>
+          col={[
+            <strong>Id</strong>,
+            <strong>Period(Status)</strong>,
+            <strong>Arbitaor</strong>,
+            <strong>court</strong>
+          ]}/>
         <TableRow
           col={["1", "Securing Evidence", <Address
             address="0xab0b2a0ef64db239ec0441d64eaeb164c34a2bc6"/>, "1"]}/>

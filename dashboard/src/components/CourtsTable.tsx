@@ -25,15 +25,20 @@ export default class CourtsTable extends React.Component<Props, State> {
       <Card.Body>
         <Card.Title>Courts</Card.Title>
         <TableRow
-          col={["Court", "Description", "Total disputes", "Stake amount"]}/>
+          col={[
+            <strong>Court"</strong>,
+            <strong>Title</strong>,
+            <strong>Total disputes</strong>,
+            <strong>"Stake amount</strong>
+              ]}/>
         <TableRow
-          col={["Court 1", "Description 1", "50", "34ETH"]}/>
+          col={["Court 1", "Title 1", "50", "34ETH"]}/>
         <TableRow
-          col={["Court 2", "Description 2", "63", "23ETH"]}/>
+          col={["Court 2", "Title 2", "63", "23ETH"]}/>
         <TableRow
-          col={["Court 3", "Description 3", "32", "12ETH"]}/>
+          col={["Court 3", "Title 3", "32", "12ETH"]}/>
         <TableRow
-          col={["Court 4", "Description 4", "46", "10ETH"]}/>
+          col={["Court 4", "Title 4", "46", "10ETH"]}/>
       </Card.Body>
     </Card>
   }

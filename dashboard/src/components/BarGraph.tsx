@@ -34,7 +34,7 @@ export default class BarGraphComponent extends React.Component<Props, State> {
     return (
       <Card style={{height: "100%"}}>
         <Card.Body>
-          <Card.Title>{this.props.title}</Card.Title>
+           <Card.Title>{this.props.title}</Card.Title>
           <BarChart
 
             width={500}
