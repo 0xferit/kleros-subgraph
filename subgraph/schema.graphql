@@ -128,9 +128,6 @@ type PolicyUpdate @entity {
 type DisputeStatistic @entity {
   id: ID!
   totalDisputes: BigInt! # uint256
-  totalRewardedTokenAmount: BigInt! # uint256
-  totalRewardedEthAmount: BigInt! # uin256
-  totalPunishedTokenAmount: BigInt! # uint256
 }
 
 type PeriodDisputeStatistic @entity {
@@ -143,4 +140,11 @@ type JurorStakeAmount @entity {
   id: ID! # id
   juror: Bytes! # address
   stakeAmount: BigInt! #uint256
+}
+
+type RewardStatistic @entity {
+  id: ID!
+  totalRewardedTokenAmount: BigInt! # uint256
+  totalRewardedEthAmount: BigInt! # uin256
+  totalPunishedTokenAmount: BigInt! # uint256
 }

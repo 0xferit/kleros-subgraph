@@ -16,7 +16,7 @@ import {
   TokenAndETHShift,
   DisputeCreation,
   AppealPossible,
-  AppealDecision, DisputeStatistic, PeriodDisputeStatistic, JurorStakeAmount
+  AppealDecision, DisputeStatistic, PeriodDisputeStatistic, JurorStakeAmount, RewardStatistic
 } from "../generated/KlerosLiquidSchema"
 import {
   log,
@@ -125,9 +125,9 @@ export function handleTokenAndETHShift(event: TokenAndETHShiftEvent): void {
   entity.blockNumber = event.block.number
   entity.save()
 
-  let entity1 = DisputeStatistic.load('singleID')
+  let entity1 = RewardStatistic.load('ID')
   if (entity1 == null) {
-    entity1 = new DisputeStatistic('singleID')
+    entity1 = new RewardStatistic('ID')
     log.info('handleTokenAndETHShift.entity1 not present', [entity1.totalRewardedTokenAmount.toString()])
     if(event.params.tokenAmount.gt(BigInt.fromI32(0))){
       log.info('handleTokenAndETHShift.entity1 initializing amount', [])
@@ -162,9 +162,9 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   entity.blockNumber = event.block.number
   entity.save()
 
-  let entity1 = DisputeStatistic.load('singleID')
+  let entity1 = DisputeStatistic.load('ID')
   if (entity1 == null) {
-    entity1 = new DisputeStatistic('singleID')
+    entity1 = new DisputeStatistic('ID')
     entity1.totalDisputes = BigInt.fromI32(1)
   } else{
     entity1.totalDisputes = entity1.totalDisputes.plus(BigInt.fromI32(1))
