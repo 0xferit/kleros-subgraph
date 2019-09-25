@@ -6,7 +6,7 @@ import {
   TokenAndETHShift as TokenAndETHShiftEvent,
   DisputeCreation as DisputeCreationEvent,
   AppealPossible as AppealPossibleEvent,
-  AppealDecision as AppealDecisionEvent,
+  AppealDecision as AppealDecisionEvent, KlerosLiquid,
 } from "../generated/Contract/KlerosLiquid"
 import {
   NewPolicy,
@@ -129,11 +129,17 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   let entity = new DisputeCreation(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   )
+  let contract = KlerosLiquid.bind(event.address)
+  let disputeObj = contract.disputes(event.params.disputeID)
   entity.disputeID = event.params.disputeID
   entity.arbitrable = event.params.arbitrable
   entity.contractAddress = event.address
   entity.timestamp = event.block.timestamp
   entity.blockNumber = event.block.number
+  entity.subcourtID = disputeObj.subcourtID
+  entity.period = disputeObj.period
+  entity.numberOfChoices = disputeObj.numberOfChoices
+  entity.lastPeriodChange = disputeObj.lastPeriodChange
   entity.save()
 
   let entity1 = DisputeStatistic.load('singleID')
@@ -144,6 +150,7 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
     entity1.totalDisputes = entity1.totalDisputes.plus(BigInt.fromI32(1))
   }
   entity1.save()
+
 }
 
 export function handleAppealPossible(event: AppealPossibleEvent): void {
