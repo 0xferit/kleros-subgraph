@@ -703,6 +703,33 @@ export class DisputeStatistic extends Entity {
   set totalDisputes(value: BigInt) {
     this.set("totalDisputes", Value.fromBigInt(value));
   }
+
+  get totalRewardedTokenAmount(): BigInt {
+    let value = this.get("totalRewardedTokenAmount");
+    return value.toBigInt();
+  }
+
+  set totalRewardedTokenAmount(value: BigInt) {
+    this.set("totalRewardedTokenAmount", Value.fromBigInt(value));
+  }
+
+  get totalRewardedEthAmount(): BigInt {
+    let value = this.get("totalRewardedEthAmount");
+    return value.toBigInt();
+  }
+
+  set totalRewardedEthAmount(value: BigInt) {
+    this.set("totalRewardedEthAmount", Value.fromBigInt(value));
+  }
+
+  get totalPunishedTokenAmount(): BigInt {
+    let value = this.get("totalPunishedTokenAmount");
+    return value.toBigInt();
+  }
+
+  set totalPunishedTokenAmount(value: BigInt) {
+    this.set("totalPunishedTokenAmount", Value.fromBigInt(value));
+  }
 }
 
 export class PeriodDisputeStatistic extends Entity {
@@ -751,32 +778,5 @@ export class PeriodDisputeStatistic extends Entity {
 
   set totalDisputes(value: BigInt) {
     this.set("totalDisputes", Value.fromBigInt(value));
-  }
-
-  get _totalRewardedTokenAmount(): BigInt {
-    let value = this.get("totalRewardedTokenAmount");
-    return value.toBigInt();
-  }
-
-  set _totalRewardedTokenAmount(value: BigInt) {
-    this.set("_totalRewardedTokenAmount", Value.fromBigInt(value));
-  }
-
-  get _totalRewardedEthAmount(): BigInt {
-    let value = this.get("totalRewardedEthAmount");
-    return value.toBigInt();
-  }
-
-  set _totalRewardedEthAmount(value: BigInt) {
-    this.set("_totalRewardedEthAmount", Value.fromBigInt(value));
-  }
-
-  get _totalPunishedTokenAmount(): BigInt {
-    let value = this.get("totalPunishedTokenAmount");
-    return value.toBigInt();
-  }
-
-  set _totalPunishedTokenAmount(value: BigInt) {
-    this.set("_totalPunishedTokenAmount", Value.fromBigInt(value));
   }
 }
