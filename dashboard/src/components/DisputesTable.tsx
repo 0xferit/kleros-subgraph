@@ -5,12 +5,29 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import TableRow from "./TableRow";
 import Address from "./Address";
+import {Query} from 'react-apollo'
+import {TOTAL_COURTS, DISPUTES} from "../graphql/queries";
+import Badge from "react-bootstrap/Badge";
 
 interface Props {
 }
 
 interface State {
 
+}
+
+interface Variable {
+
+}
+
+interface DisputesData {
+  disputeCreations: Array<{
+    arbitrable:string;
+    contractAddress:string;
+    disputeID:string;
+    id:string;
+    timestamp:string
+  }>
 }
 
 export default class DisputesTable extends React.Component<Props, State> {
@@ -29,21 +46,22 @@ export default class DisputesTable extends React.Component<Props, State> {
           col={[
             <strong>Id</strong>,
             <strong>Period(Status)</strong>,
-            <strong>Arbitaor</strong>,
+            <strong>Arbitrable</strong>,
             <strong>court</strong>
           ]}/>
-        <TableRow
-          col={["1", "Securing Evidence", <Address
-            address="0xab0b2a0ef64db239ec0441d64eaeb164c34a2bc6"/>, "1"]}/>
-        <TableRow
-          col={["2", "Analysis", <Address
-            address="0xab0b2a0ef64db239ec0441d64eaeb164c34a2bc6"/>, "2"]}/>
-        <TableRow
-          col={["3", "Appeal", <Address
-            address="0xab0b2a0ef64db239ec0441d64eaeb164c34a2bc6"/>, "3"]}/>
-        <TableRow
-          col={["4", "Token Redistribution", <Address
-            address="0xab0b2a0ef64db239ec0441d64eaeb164c34a2bc6"/>, "4"]}/>
+        <Query<DisputesData, Variable> query={DISPUTES}>
+          {({loading, error, data}) => {
+            if (loading) return <span>{'Loading...'}</span>;
+            if (error) return <span>{`Error! ${error.message}`}</span>;
+
+            console.log('dataa of disputes ',data);
+            return data.disputeCreations.map(d => {
+              return <TableRow
+                col={[d.disputeID, "Appeal", <Address
+                  address={d.arbitrable}/>, "1"]}/>
+            })
+          }}
+        </Query>
       </Card.Body>
     </Card>
   }

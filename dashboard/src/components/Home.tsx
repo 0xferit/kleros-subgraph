@@ -156,9 +156,9 @@ export default class Home extends React.Component<Props, State> {
 
               return <BarGraphComponent data={graphData}
                                         dataKey='count'
-                                        xAxis={"Dispute state(period)"}
-                                        yAxis={"Dispute count"}
-                                        title={"Dispute by status(Period)"}
+                                        xAxis={"Disputes state(period)"}
+                                        yAxis={"Disputes count"}
+                                        title={"Disputes by status(Period)"}
               />;
             }}
           </Query>
