@@ -50,3 +50,14 @@ export const DISPUTES = gql`
     }
   }
 `;
+
+export const REWARD_AND_PUNISHMENT = gql`
+  {
+    rewardStatistics(first: 1){
+      id
+      totalRewardedTokenAmount
+      totalRewardedEthAmount
+      totalPunishedTokenAmount
+    }
+  }
+`;
