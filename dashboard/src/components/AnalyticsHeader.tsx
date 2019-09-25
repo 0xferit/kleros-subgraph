@@ -1,14 +1,26 @@
 import * as React from "react";
-import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Badge from "react-bootstrap/Badge";
+import {Query} from 'react-apollo'
+import {DISPUTE_COUNT} from "../graphql/queries";
 
 interface Props {
 }
 
 interface State {
+
+}
+
+interface DisputeData {
+  disputeStatistics: Array<{
+    id: string;
+    totalDisputes: string;
+  }>
+}
+
+interface Variable {
 
 }
 
@@ -21,11 +33,23 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
 
 
   render() {
+
     return <Card>
       <Card.Body>
         <Row>
           <Col>
-            <strong>Total Disputes:</strong> <Badge variant="secondary">150</Badge>
+            <strong>Total Disputes:</strong> <Badge variant="secondary">
+
+            <Query<DisputeData, Variable> query={DISPUTE_COUNT}>
+              {({loading, error, data}) => {
+                console.log('data  ', data);
+                if (loading) return <span>{'Loading...'}</span>;
+                if (error) return <span>{`Error! ${error.message}`}</span>;
+
+                return <span>{data.disputeStatistics[0].totalDisputes}</span>;
+              }}
+            </Query>
+          </Badge>
           </Col>
           <Col>
             <strong>Total active courts:</strong> <Badge variant="secondary">8</Badge>
