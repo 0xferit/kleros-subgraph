@@ -6,7 +6,8 @@ import {
   TokenAndETHShift as TokenAndETHShiftEvent,
   DisputeCreation as DisputeCreationEvent,
   AppealPossible as AppealPossibleEvent,
-  AppealDecision as AppealDecisionEvent, KlerosLiquid,
+  AppealDecision as AppealDecisionEvent,
+  KlerosLiquid,
 } from "../generated/Contract/KlerosLiquid"
 import {
   NewPolicy,
@@ -163,17 +164,17 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   entity.timestamp = event.block.timestamp
   entity.blockNumber = event.block.number
 
-  log.info('binding KlerosLiquid contract', [])
+  log.debug('binding KlerosLiquid contract', [])
   let contract = KlerosLiquid.bind(event.address)
-  log.info('reading dispute mapping', [])
+  log.debug('reading dispute mapping', [])
   let disputeObj = contract.disputes(event.params.disputeID)
-  log.info('dispute mapping is read', [])
-  log.info('disputeObj value0', [disputeObj.value0.toHex()])
+  log.debug('dispute mapping is read', [])
+  log.debug('disputeObj value0', [disputeObj.value0.toHex()])
   entity.subcourtID = disputeObj.value0
   entity.numberOfChoices = disputeObj.value2
   entity.period = disputeObj.value3
   entity.lastPeriodChange = disputeObj.value4
-  log.info('Saving entity', [])
+  log.debug('Saving entity', [])
   entity.save()
 
   let entity1 = DisputeStatistic.load('ID')
