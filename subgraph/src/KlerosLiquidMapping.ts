@@ -136,10 +136,10 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   entity.contractAddress = event.address
   entity.timestamp = event.block.timestamp
   entity.blockNumber = event.block.number
-  entity.subcourtID = disputeObj.subcourtID
-  entity.period = disputeObj.period
-  entity.numberOfChoices = disputeObj.numberOfChoices
-  entity.lastPeriodChange = disputeObj.lastPeriodChange
+  entity.subcourtID = disputeObj.value0
+  entity.numberOfChoices = disputeObj.value2
+  entity.period = disputeObj.value3
+  entity.lastPeriodChange = disputeObj.value4
   entity.save()
 
   let entity1 = DisputeStatistic.load('singleID')

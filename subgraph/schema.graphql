@@ -41,6 +41,10 @@ type DisputeCreation @entity {
   contractAddress: Bytes! # address
   timestamp: BigInt! # uint256
   blockNumber: BigInt! # unit256
+  subcourtID: BigInt! # unit256
+  numberOfChoices: BigInt! # unit256
+  period: Int! # Enum
+  lastPeriodChange: BigInt! # unit256
 }
 
 type StakeSet @entity {

@@ -511,6 +511,42 @@ export class DisputeCreation extends Entity {
   set blockNumber(value: BigInt) {
     this.set("blockNumber", Value.fromBigInt(value));
   }
+
+  get subcourtID(): BigInt {
+    let value = this.get("subcourtID");
+    return value.toBigInt();
+  }
+
+  set subcourtID(value: BigInt) {
+    this.set("subcourtID", Value.fromBigInt(value));
+  }
+
+  get numberOfChoices(): BigInt {
+    let value = this.get("numberOfChoices");
+    return value.toBigInt();
+  }
+
+  set numberOfChoices(value: BigInt) {
+    this.set("numberOfChoices", Value.fromBigInt(value));
+  }
+
+  get period(): i32 {
+    let value = this.get("period");
+    return value.toI32();
+  }
+
+  set period(value: i32) {
+    this.set("period", Value.fromI32(value));
+  }
+
+  get lastPeriodChange(): BigInt {
+    let value = this.get("lastPeriodChange");
+    return value.toBigInt();
+  }
+
+  set lastPeriodChange(value: BigInt) {
+    this.set("lastPeriodChange", Value.fromBigInt(value));
+  }
 }
 
 export class AppealPossible extends Entity {
