@@ -23,6 +23,7 @@ export default class CourtsTable extends React.Component<Props, State> {
   render() {
     return <Card>
       <Card.Body>
+        <Card.Title>Courts</Card.Title>
         <TableRow
           col={["Court", "Description", "Total disputes", "Stake amount"]}/>
         <TableRow
