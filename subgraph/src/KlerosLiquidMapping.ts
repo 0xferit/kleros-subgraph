@@ -56,18 +56,18 @@ export function handleNewPeriod(event: NewPeriodEvent): void {
   // Save Period Vs Dispute stats
   let charCodePeriod = String.fromCharCode(event.params.period)
   log.info('Period', [charCodePeriod])
-  let entity1 = PeriodDisputeStatistic.load(charCodePeriod)
-  if (entity1 == null) {
-    entity1 = new PeriodDisputeStatistic(charCodePeriod)
-    entity1.period = event.params.period
-    entity1.totalDisputes = BigInt.fromI32(1)
+  let entity2 = PeriodDisputeStatistic.load(charCodePeriod)
+  if (entity2 == null) {
+    entity2 = new PeriodDisputeStatistic(charCodePeriod)
+    entity2.period = event.params.period
+    entity2.totalDisputes = BigInt.fromI32(1)
     log.info('Initializing Period', [charCodePeriod])
   } else{
-    entity1.period = event.params.period
-    entity1.totalDisputes = entity1.totalDisputes.plus(BigInt.fromI32(1))
+    entity2.period = event.params.period
+    entity2.totalDisputes = entity2.totalDisputes.plus(BigInt.fromI32(1))
     log.info('Incrementing dispute count', [charCodePeriod])
   }
-  entity1.save()
+  entity2.save()
 }
 
 export function handleStakeSet(event: StakeSetEvent): void {
