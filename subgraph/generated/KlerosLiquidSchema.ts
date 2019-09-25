@@ -704,3 +704,52 @@ export class DisputeStatistic extends Entity {
     this.set("_totalDisputes", Value.fromBigInt(value));
   }
 }
+
+export class PeriodDisputeStatistic extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save DisputeStatistic entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save PeriodDisputeStatistic entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("PeriodDisputeStatistic", id.toString(), this);
+  }
+
+  static load(id: string): PeriodDisputeStatistic | null {
+    return store.get("PeriodDisputeStatistic", id) as PeriodDisputeStatistic | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get _period(): i32 {
+    let value = this.get("_period");
+    return value.toI32();
+  }
+
+  set _period(value: i32) {
+    this.set("_period", Value.fromI32(value));
+  }
+
+  get _totalDisputes(): BigInt {
+    let value = this.get("_totalDisputes");
+    return value.toBigInt();
+  }
+
+  set _totalDisputes(value: BigInt) {
+    this.set("_totalDisputes", Value.fromBigInt(value));
+  }
+}
