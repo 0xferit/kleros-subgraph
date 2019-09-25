@@ -9,10 +9,10 @@ export function handlePolicyUpdate(event: NewPolicyUpdateEvent): void {
   let entity = new PolicyUpdate(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   )
-  entity._subcourtID = event.params._subcourtID
-  entity._policy = event.params._policy
-  entity._contractAddress = event.address
-  entity._timestamp = event.block.timestamp
-  entity._blockNumber = event.block.number
+  entity.subcourtID = event.params.subcourtID
+  entity.policy = event.params.policy
+  entity.contractAddress = event.address
+  entity.timestamp = event.block.timestamp
+  entity.blockNumber = event.block.number
   entity.save()
 }

@@ -42,40 +42,40 @@ export class NewPolicy extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get _phase(): i32 {
-    let value = this.get("_phase");
+  get phase(): i32 {
+    let value = this.get("phase");
     return value.toI32();
   }
 
-  set _phase(value: i32) {
-    this.set("_phase", Value.fromI32(value));
+  set phase(value: i32) {
+    this.set("phase", Value.fromI32(value));
   }
 
-  get _contractAddress(): Bytes {
-    let value = this.get("_contractAddress");
+  get contractAddress(): Bytes {
+    let value = this.get("contractAddress");
     return value.toBytes();
   }
 
-  set _contractAddress(value: Bytes) {
-    this.set("_contractAddress", Value.fromBytes(value));
+  set contractAddress(value: Bytes) {
+    this.set("contractAddress", Value.fromBytes(value));
   }
 
-  get _timestamp(): BigInt {
-    let value = this.get("_timestamp");
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
     return value.toBigInt();
   }
 
-  set _timestamp(value: BigInt) {
-    this.set("_timestamp", Value.fromBigInt(value));
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get _blockNumber(): BigInt {
-    let value = this.get("_blockNumber");
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
     return value.toBigInt();
   }
 
-  set _blockNumber(value: BigInt) {
-    this.set("_blockNumber", Value.fromBigInt(value));
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
   }
 }
 
@@ -109,49 +109,49 @@ export class NewPeriod extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get _disputeID(): BigInt {
-    let value = this.get("_disputeID");
+  get disputeID(): BigInt {
+    let value = this.get("disputeID");
     return value.toBigInt();
   }
 
-  set _disputeID(value: BigInt) {
-    this.set("_disputeID", Value.fromBigInt(value));
+  set disputeID(value: BigInt) {
+    this.set("disputeID", Value.fromBigInt(value));
   }
 
-  get _period(): i32 {
-    let value = this.get("_period");
+  get period(): i32 {
+    let value = this.get("period");
     return value.toI32();
   }
 
-  set _period(value: i32) {
-    this.set("_period", Value.fromI32(value));
+  set period(value: i32) {
+    this.set("period", Value.fromI32(value));
   }
 
-  get _contractAddress(): Bytes {
-    let value = this.get("_contractAddress");
+  get contractAddress(): Bytes {
+    let value = this.get("contractAddress");
     return value.toBytes();
   }
 
-  set _contractAddress(value: Bytes) {
-    this.set("_contractAddress", Value.fromBytes(value));
+  set contractAddress(value: Bytes) {
+    this.set("contractAddress", Value.fromBytes(value));
   }
 
-  get _timestamp(): BigInt {
-    let value = this.get("_timestamp");
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
     return value.toBigInt();
   }
 
-  set _timestamp(value: BigInt) {
-    this.set("_timestamp", Value.fromBigInt(value));
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get _blockNumber(): BigInt {
-    let value = this.get("_blockNumber");
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
     return value.toBigInt();
   }
 
-  set _blockNumber(value: BigInt) {
-    this.set("_blockNumber", Value.fromBigInt(value));
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
   }
 }
 
@@ -185,67 +185,67 @@ export class StakeSet extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get _address(): Bytes {
-    let value = this.get("_address");
+  get address(): Bytes {
+    let value = this.get("address");
     return value.toBytes();
   }
 
-  set _address(value: Bytes) {
-    this.set("_address", Value.fromBytes(value));
+  set address(value: Bytes) {
+    this.set("address", Value.fromBytes(value));
   }
 
-  get _subcourtID(): BigInt {
-    let value = this.get("_subcourtID");
+  get subcourtID(): BigInt {
+    let value = this.get("subcourtID");
     return value.toBigInt();
   }
 
-  set _subcourtID(value: BigInt) {
-    this.set("_subcourtID", Value.fromBigInt(value));
+  set subcourtID(value: BigInt) {
+    this.set("subcourtID", Value.fromBigInt(value));
   }
 
-  get _stake(): BigInt {
-    let value = this.get("_stake");
+  get stake(): BigInt {
+    let value = this.get("stake");
     return value.toBigInt();
   }
 
-  set _stake(value: BigInt) {
-    this.set("_stake", Value.fromBigInt(value));
+  set stake(value: BigInt) {
+    this.set("stake", Value.fromBigInt(value));
   }
 
-  get _newTotalStake(): BigInt {
-    let value = this.get("_newTotalStake");
+  get newTotalStake(): BigInt {
+    let value = this.get("newTotalStake");
     return value.toBigInt();
   }
 
-  set _newTotalStake(value: BigInt) {
-    this.set("_newTotalStake", Value.fromBigInt(value));
+  set newTotalStake(value: BigInt) {
+    this.set("newTotalStake", Value.fromBigInt(value));
   }
 
-  get _contractAddress(): Bytes {
-    let value = this.get("_contractAddress");
+  get contractAddress(): Bytes {
+    let value = this.get("contractAddress");
     return value.toBytes();
   }
 
-  set _contractAddress(value: Bytes) {
-    this.set("_contractAddress", Value.fromBytes(value));
+  set contractAddress(value: Bytes) {
+    this.set("contractAddress", Value.fromBytes(value));
   }
 
-  get _timestamp(): BigInt {
-    let value = this.get("_timestamp");
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
     return value.toBigInt();
   }
 
-  set _timestamp(value: BigInt) {
-    this.set("_timestamp", Value.fromBigInt(value));
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get _blockNumber(): BigInt {
-    let value = this.get("_blockNumber");
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
     return value.toBigInt();
   }
 
-  set _blockNumber(value: BigInt) {
-    this.set("_blockNumber", Value.fromBigInt(value));
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
   }
 }
 
@@ -279,67 +279,67 @@ export class Draw extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get _address(): Bytes {
-    let value = this.get("_address");
+  get address(): Bytes {
+    let value = this.get("address");
     return value.toBytes();
   }
 
-  set _address(value: Bytes) {
-    this.set("_address", Value.fromBytes(value));
+  set address(value: Bytes) {
+    this.set("address", Value.fromBytes(value));
   }
 
-  get _disputeID(): BigInt {
-    let value = this.get("_disputeID");
+  get disputeID(): BigInt {
+    let value = this.get("disputeID");
     return value.toBigInt();
   }
 
-  set _disputeID(value: BigInt) {
-    this.set("_disputeID", Value.fromBigInt(value));
+  set disputeID(value: BigInt) {
+    this.set("disputeID", Value.fromBigInt(value));
   }
 
-  get _appeal(): BigInt {
-    let value = this.get("_appeal");
+  get appeal(): BigInt {
+    let value = this.get("appeal");
     return value.toBigInt();
   }
 
-  set _appeal(value: BigInt) {
-    this.set("_appeal", Value.fromBigInt(value));
+  set appeal(value: BigInt) {
+    this.set("appeal", Value.fromBigInt(value));
   }
 
-  get _voteID(): BigInt {
-    let value = this.get("_voteID");
+  get voteID(): BigInt {
+    let value = this.get("voteID");
     return value.toBigInt();
   }
 
-  set _voteID(value: BigInt) {
-    this.set("_voteID", Value.fromBigInt(value));
+  set voteID(value: BigInt) {
+    this.set("voteID", Value.fromBigInt(value));
   }
 
-  get _contractAddress(): Bytes {
-    let value = this.get("_contractAddress");
+  get contractAddress(): Bytes {
+    let value = this.get("contractAddress");
     return value.toBytes();
   }
 
-  set _contractAddress(value: Bytes) {
-    this.set("_contractAddress", Value.fromBytes(value));
+  set contractAddress(value: Bytes) {
+    this.set("contractAddress", Value.fromBytes(value));
   }
 
-  get _timestamp(): BigInt {
-    let value = this.get("_timestamp");
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
     return value.toBigInt();
   }
 
-  set _timestamp(value: BigInt) {
-    this.set("_timestamp", Value.fromBigInt(value));
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get _blockNumber(): BigInt {
-    let value = this.get("_blockNumber");
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
     return value.toBigInt();
   }
 
-  set _blockNumber(value: BigInt) {
-    this.set("_blockNumber", Value.fromBigInt(value));
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
   }
 }
 
@@ -373,67 +373,67 @@ export class TokenAndETHShift extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get _address(): Bytes {
-    let value = this.get("_address");
+  get address(): Bytes {
+    let value = this.get("address");
     return value.toBytes();
   }
 
-  set _address(value: Bytes) {
-    this.set("_address", Value.fromBytes(value));
+  set address(value: Bytes) {
+    this.set("address", Value.fromBytes(value));
   }
 
-  get _disputeID(): BigInt {
-    let value = this.get("_disputeID");
+  get disputeID(): BigInt {
+    let value = this.get("disputeID");
     return value.toBigInt();
   }
 
-  set _disputeID(value: BigInt) {
-    this.set("_disputeID", Value.fromBigInt(value));
+  set disputeID(value: BigInt) {
+    this.set("disputeID", Value.fromBigInt(value));
   }
 
-  get _tokenAmount(): BigInt {
-    let value = this.get("_tokenAmount");
+  get tokenAmount(): BigInt {
+    let value = this.get("tokenAmount");
     return value.toBigInt();
   }
 
-  set _tokenAmount(value: BigInt) {
-    this.set("_tokenAmount", Value.fromBigInt(value));
+  set tokenAmount(value: BigInt) {
+    this.set("tokenAmount", Value.fromBigInt(value));
   }
 
-  get _ETHAmount(): BigInt {
-    let value = this.get("_ETHAmount");
+  get ETHAmount(): BigInt {
+    let value = this.get("ETHAmount");
     return value.toBigInt();
   }
 
-  set _ETHAmount(value: BigInt) {
-    this.set("_ETHAmount", Value.fromBigInt(value));
+  set ETHAmount(value: BigInt) {
+    this.set("ETHAmount", Value.fromBigInt(value));
   }
 
-  get _contractAddress(): Bytes {
-    let value = this.get("_contractAddress");
+  get contractAddress(): Bytes {
+    let value = this.get("contractAddress");
     return value.toBytes();
   }
 
-  set _contractAddress(value: Bytes) {
-    this.set("_contractAddress", Value.fromBytes(value));
+  set contractAddress(value: Bytes) {
+    this.set("contractAddress", Value.fromBytes(value));
   }
 
-  get _timestamp(): BigInt {
-    let value = this.get("_timestamp");
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
     return value.toBigInt();
   }
 
-  set _timestamp(value: BigInt) {
-    this.set("_timestamp", Value.fromBigInt(value));
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get _blockNumber(): BigInt {
-    let value = this.get("_blockNumber");
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
     return value.toBigInt();
   }
 
-  set _blockNumber(value: BigInt) {
-    this.set("_blockNumber", Value.fromBigInt(value));
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
   }
 }
 
@@ -467,49 +467,49 @@ export class DisputeCreation extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get _disputeID(): BigInt {
-    let value = this.get("_disputeID");
+  get disputeID(): BigInt {
+    let value = this.get("disputeID");
     return value.toBigInt();
   }
 
-  set _disputeID(value: BigInt) {
-    this.set("_disputeID", Value.fromBigInt(value));
+  set disputeID(value: BigInt) {
+    this.set("disputeID", Value.fromBigInt(value));
   }
 
-  get _arbitrable(): Bytes {
-    let value = this.get("_arbitrable");
+  get arbitrable(): Bytes {
+    let value = this.get("arbitrable");
     return value.toBytes();
   }
 
-  set _arbitrable(value: Bytes) {
-    this.set("_arbitrable", Value.fromBytes(value));
+  set arbitrable(value: Bytes) {
+    this.set("arbitrable", Value.fromBytes(value));
   }
 
-  get _contractAddress(): Bytes {
-    let value = this.get("_contractAddress");
+  get contractAddress(): Bytes {
+    let value = this.get("contractAddress");
     return value.toBytes();
   }
 
-  set _contractAddress(value: Bytes) {
-    this.set("_contractAddress", Value.fromBytes(value));
+  set contractAddress(value: Bytes) {
+    this.set("contractAddress", Value.fromBytes(value));
   }
 
-  get _timestamp(): BigInt {
-    let value = this.get("_timestamp");
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
     return value.toBigInt();
   }
 
-  set _timestamp(value: BigInt) {
-    this.set("_timestamp", Value.fromBigInt(value));
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get _blockNumber(): BigInt {
-    let value = this.get("_blockNumber");
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
     return value.toBigInt();
   }
 
-  set _blockNumber(value: BigInt) {
-    this.set("_blockNumber", Value.fromBigInt(value));
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
   }
 }
 
@@ -543,49 +543,49 @@ export class AppealPossible extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get _disputeID(): BigInt {
-    let value = this.get("_disputeID");
+  get disputeID(): BigInt {
+    let value = this.get("disputeID");
     return value.toBigInt();
   }
 
-  set _disputeID(value: BigInt) {
-    this.set("_disputeID", Value.fromBigInt(value));
+  set disputeID(value: BigInt) {
+    this.set("disputeID", Value.fromBigInt(value));
   }
 
-  get _arbitrable(): Bytes {
-    let value = this.get("_arbitrable");
+  get arbitrable(): Bytes {
+    let value = this.get("arbitrable");
     return value.toBytes();
   }
 
-  set _arbitrable(value: Bytes) {
-    this.set("_arbitrable", Value.fromBytes(value));
+  set arbitrable(value: Bytes) {
+    this.set("arbitrable", Value.fromBytes(value));
   }
 
-  get _contractAddress(): Bytes {
-    let value = this.get("_contractAddress");
+  get contractAddress(): Bytes {
+    let value = this.get("contractAddress");
     return value.toBytes();
   }
 
-  set _contractAddress(value: Bytes) {
-    this.set("_contractAddress", Value.fromBytes(value));
+  set contractAddress(value: Bytes) {
+    this.set("contractAddress", Value.fromBytes(value));
   }
 
-  get _timestamp(): BigInt {
-    let value = this.get("_timestamp");
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
     return value.toBigInt();
   }
 
-  set _timestamp(value: BigInt) {
-    this.set("_timestamp", Value.fromBigInt(value));
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get _blockNumber(): BigInt {
-    let value = this.get("_blockNumber");
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
     return value.toBigInt();
   }
 
-  set _blockNumber(value: BigInt) {
-    this.set("_blockNumber", Value.fromBigInt(value));
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
   }
 }
 
@@ -619,49 +619,49 @@ export class AppealDecision extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get _disputeID(): BigInt {
-    let value = this.get("_disputeID");
+  get disputeID(): BigInt {
+    let value = this.get("disputeID");
     return value.toBigInt();
   }
 
-  set _disputeID(value: BigInt) {
-    this.set("_disputeID", Value.fromBigInt(value));
+  set disputeID(value: BigInt) {
+    this.set("disputeID", Value.fromBigInt(value));
   }
 
-  get _arbitrable(): Bytes {
-    let value = this.get("_arbitrable");
+  get arbitrable(): Bytes {
+    let value = this.get("arbitrable");
     return value.toBytes();
   }
 
-  set _arbitrable(value: Bytes) {
-    this.set("_arbitrable", Value.fromBytes(value));
+  set arbitrable(value: Bytes) {
+    this.set("arbitrable", Value.fromBytes(value));
   }
 
-  get _contractAddress(): Bytes {
-    let value = this.get("_contractAddress");
+  get contractAddress(): Bytes {
+    let value = this.get("contractAddress");
     return value.toBytes();
   }
 
-  set _contractAddress(value: Bytes) {
-    this.set("_contractAddress", Value.fromBytes(value));
+  set contractAddress(value: Bytes) {
+    this.set("contractAddress", Value.fromBytes(value));
   }
 
-  get _timestamp(): BigInt {
-    let value = this.get("_timestamp");
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
     return value.toBigInt();
   }
 
-  set _timestamp(value: BigInt) {
-    this.set("_timestamp", Value.fromBigInt(value));
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get _blockNumber(): BigInt {
-    let value = this.get("_blockNumber");
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
     return value.toBigInt();
   }
 
-  set _blockNumber(value: BigInt) {
-    this.set("_blockNumber", Value.fromBigInt(value));
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
   }
 }
 
@@ -695,13 +695,62 @@ export class DisputeStatistic extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get _totalDisputes(): BigInt {
-    let value = this.get("_totalDisputes");
+  get totalDisputes(): BigInt {
+    let value = this.get("totalDisputes");
     return value.toBigInt();
   }
 
-  set _totalDisputes(value: BigInt) {
-    this.set("_totalDisputes", Value.fromBigInt(value));
+  set totalDisputes(value: BigInt) {
+    this.set("totalDisputes", Value.fromBigInt(value));
+  }
+}
+
+export class PeriodDisputeStatistic extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save DisputeStatistic entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save PeriodDisputeStatistic entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("PeriodDisputeStatistic", id.toString(), this);
+  }
+
+  static load(id: string): PeriodDisputeStatistic | null {
+    return store.get("PeriodDisputeStatistic", id) as PeriodDisputeStatistic | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get period(): i32 {
+    let value = this.get("period");
+    return value.toI32();
+  }
+
+  set period(value: i32) {
+    this.set("period", Value.fromI32(value));
+  }
+
+  get totalDisputes(): BigInt {
+    let value = this.get("totalDisputes");
+    return value.toBigInt();
+  }
+
+  set totalDisputes(value: BigInt) {
+    this.set("totalDisputes", Value.fromBigInt(value));
   }
 
   get _totalStakedAmount(): BigInt {
