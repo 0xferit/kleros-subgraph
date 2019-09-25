@@ -152,13 +152,15 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   let entity = new DisputeCreation(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   )
-  let contract = KlerosLiquid.bind(event.address)
-  let disputeObj = contract.disputes(event.params.disputeID)
   entity.disputeID = event.params.disputeID
   entity.arbitrable = event.params.arbitrable
   entity.contractAddress = event.address
   entity.timestamp = event.block.timestamp
   entity.blockNumber = event.block.number
+
+  let contract = KlerosLiquid.bind(event.address)
+  let disputeObj = contract.disputes(event.params.disputeID)
+  log.info('disputeObj', [disputeObj.value0.toString(), disputeObj.value2.toString(), disputeObj.value3.toString(), disputeObj.value4.toString()])
   entity.subcourtID = disputeObj.value0
   entity.numberOfChoices = disputeObj.value2
   entity.period = disputeObj.value3
