@@ -128,25 +128,21 @@ export function handleTokenAndETHShift(event: TokenAndETHShiftEvent): void {
   let entity1 = RewardStatistic.load('ID')
   if (entity1 == null) {
     entity1 = new RewardStatistic('ID')
-    log.info('handleTokenAndETHShift.entity1 not present', [entity1.totalRewardedTokenAmount.toString()])
-    if(event.params.tokenAmount.gt(BigInt.fromI32(0))){
-      log.info('handleTokenAndETHShift.entity1 initializing amount', [])
-      entity1.totalRewardedTokenAmount = event.params.tokenAmount
-      entity1.totalRewardedEthAmount = event.params.ETHAmount
-    } else {
-      log.info('handleTokenAndETHShift.entity1 -ve tokenamount', [event.params.tokenAmount.toString()])
-      entity1.totalPunishedTokenAmount = event.params.tokenAmount
-    }
-  } else{
-    log.info('handleTokenAndETHShift.entity1 present', [entity1.totalRewardedTokenAmount.toString()])
-    if(event.params.tokenAmount.gt(BigInt.fromI32(0))){
-      log.info('handleTokenAndETHShift.entity1 adding amount', [])
-      entity1.totalRewardedTokenAmount = entity1.totalRewardedTokenAmount.plus(event.params.tokenAmount)
-      entity1.totalRewardedEthAmount = entity1.totalRewardedEthAmount.plus(event.params.ETHAmount)
-    } else {
-      log.info('handleTokenAndETHShift.entity1 -ve tokenamount', [event.params.tokenAmount.toString()])
-      entity1.totalPunishedTokenAmount = entity1.totalPunishedTokenAmount.plus(event.params.tokenAmount)
-    }
+    // Initialize
+    entity1.totalRewardedTokenAmount = BigInt.fromI32(0)
+    entity1.totalRewardedEthAmount = BigInt.fromI32(0)
+    entity1.totalPunishedTokenAmount = BigInt.fromI32(0)
+  }
+  // log.info('handleTokenAndETHShift.entity1 present',
+  // [entity1.totalRewardedTokenAmount.toString()])
+  if(event.params.tokenAmount.ge(BigInt.fromI32(0))){
+    // log.info('handleTokenAndETHShift.entity1 adding amount', [])
+    entity1.totalRewardedTokenAmount = entity1.totalRewardedTokenAmount.plus(event.params.tokenAmount)
+    entity1.totalRewardedEthAmount = entity1.totalRewardedEthAmount.plus(event.params.ETHAmount)
+  } else {
+    // log.info('handleTokenAndETHShift.entity1 -ve tokenamount',
+    // [event.params.tokenAmount.toString()])
+    entity1.totalPunishedTokenAmount = entity1.totalPunishedTokenAmount.plus(event.params.tokenAmount)
   }
   entity1.save()
 }
