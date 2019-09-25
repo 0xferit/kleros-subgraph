@@ -42,48 +42,48 @@ export class PolicyUpdate extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get _subcourtID(): BigInt {
-    let value = this.get("_subcourtID");
+  get subcourtID(): BigInt {
+    let value = this.get("subcourtID");
     return value.toBigInt();
   }
 
-  set _subcourtID(value: BigInt) {
-    this.set("_subcourtID", Value.fromBigInt(value));
+  set subcourtID(value: BigInt) {
+    this.set("subcourtID", Value.fromBigInt(value));
   }
 
-  get _policy(): string {
-    let value = this.get("_policy");
+  get policy(): string {
+    let value = this.get("policy");
     return value.toString();
   }
 
-  set _policy(value: string) {
-    this.set("_policy", Value.fromString(value));
+  set policy(value: string) {
+    this.set("policy", Value.fromString(value));
   }
 
-  get _contractAddress(): Bytes {
-    let value = this.get("_contractAddress");
+  get contractAddress(): Bytes {
+    let value = this.get("contractAddress");
     return value.toBytes();
   }
 
-  set _contractAddress(value: Bytes) {
-    this.set("_contractAddress", Value.fromBytes(value));
+  set contractAddress(value: Bytes) {
+    this.set("contractAddress", Value.fromBytes(value));
   }
 
-  get _timestamp(): BigInt {
-    let value = this.get("_timestamp");
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
     return value.toBigInt();
   }
 
-  set _timestamp(value: BigInt) {
-    this.set("_timestamp", Value.fromBigInt(value));
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get _blockNumber(): BigInt {
-    let value = this.get("_blockNumber");
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
     return value.toBigInt();
   }
 
-  set _blockNumber(value: BigInt) {
-    this.set("_blockNumber", Value.fromBigInt(value));
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
   }
 }

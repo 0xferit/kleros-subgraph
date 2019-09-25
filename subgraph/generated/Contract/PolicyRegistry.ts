@@ -27,11 +27,11 @@ export class PolicyUpdate__Params {
     this._event = event;
   }
 
-  get _subcourtID(): BigInt {
+  get subcourtID(): BigInt {
     return this._event.parameters[0].value.toBigInt();
   }
 
-  get _policy(): string {
+  get policy(): string {
     return this._event.parameters[1].value.toString();
   }
 }
@@ -71,7 +71,7 @@ export class ChangeGovernorCall__Inputs {
     this._call = call;
   }
 
-  get _governor(): Address {
+  get governor(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 }
@@ -101,11 +101,11 @@ export class SetPolicyCall__Inputs {
     this._call = call;
   }
 
-  get _subcourtID(): BigInt {
+  get subcourtID(): BigInt {
     return this._call.inputValues[0].value.toBigInt();
   }
 
-  get _policy(): string {
+  get policy(): string {
     return this._call.inputValues[1].value.toString();
   }
 }
@@ -135,7 +135,7 @@ export class ConstructorCall__Inputs {
     this._call = call;
   }
 
-  get _governor(): Address {
+  get governor(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 }

@@ -27,15 +27,15 @@ export class ClaimedTokens__Params {
     this._event = event;
   }
 
-  get _token(): Address {
+  get token(): Address {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get _controller(): Address {
+  get controller(): Address {
     return this._event.parameters[1].value.toAddress();
   }
 
-  get _amount(): BigInt {
+  get amount(): BigInt {
     return this._event.parameters[2].value.toBigInt();
   }
 }
@@ -53,15 +53,15 @@ export class Transfer__Params {
     this._event = event;
   }
 
-  get _from(): Address {
+  get from(): Address {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get _to(): Address {
+  get to(): Address {
     return this._event.parameters[1].value.toAddress();
   }
 
-  get _amount(): BigInt {
+  get amount(): BigInt {
     return this._event.parameters[2].value.toBigInt();
   }
 }
@@ -79,11 +79,11 @@ export class NewCloneToken__Params {
     this._event = event;
   }
 
-  get _cloneToken(): Address {
+  get cloneToken(): Address {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get _snapshotBlock(): BigInt {
+  get snapshotBlock(): BigInt {
     return this._event.parameters[1].value.toBigInt();
   }
 }
@@ -101,15 +101,15 @@ export class Approval__Params {
     this._event = event;
   }
 
-  get _owner(): Address {
+  get owner(): Address {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get _spender(): Address {
+  get spender(): Address {
     return this._event.parameters[1].value.toAddress();
   }
 
-  get _amount(): BigInt {
+  get amount(): BigInt {
     return this._event.parameters[2].value.toBigInt();
   }
 }
@@ -220,11 +220,11 @@ export class ApproveCall__Inputs {
     this._call = call;
   }
 
-  get _spender(): Address {
+  get spender(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get _amount(): BigInt {
+  get amount(): BigInt {
     return this._call.inputValues[1].value.toBigInt();
   }
 }
@@ -258,15 +258,15 @@ export class TransferFromCall__Inputs {
     this._call = call;
   }
 
-  get _from(): Address {
+  get from(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get _to(): Address {
+  get to(): Address {
     return this._call.inputValues[1].value.toAddress();
   }
 
-  get _amount(): BigInt {
+  get amount(): BigInt {
     return this._call.inputValues[2].value.toBigInt();
   }
 }
@@ -300,7 +300,7 @@ export class ChangeControllerCall__Inputs {
     this._call = call;
   }
 
-  get _newController(): Address {
+  get newController(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 }
@@ -330,23 +330,23 @@ export class CreateCloneTokenCall__Inputs {
     this._call = call;
   }
 
-  get _cloneTokenName(): string {
+  get cloneTokenName(): string {
     return this._call.inputValues[0].value.toString();
   }
 
-  get _cloneDecimalUnits(): i32 {
+  get cloneDecimalUnits(): i32 {
     return this._call.inputValues[1].value.toI32();
   }
 
-  get _cloneTokenSymbol(): string {
+  get cloneTokenSymbol(): string {
     return this._call.inputValues[2].value.toString();
   }
 
-  get _snapshotBlock(): BigInt {
+  get snapshotBlock(): BigInt {
     return this._call.inputValues[3].value.toBigInt();
   }
 
-  get _transfersEnabled(): boolean {
+  get transfersEnabled(): boolean {
     return this._call.inputValues[4].value.toBoolean();
   }
 }
@@ -380,11 +380,11 @@ export class GenerateTokensCall__Inputs {
     this._call = call;
   }
 
-  get _owner(): Address {
+  get owner(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get _amount(): BigInt {
+  get amount(): BigInt {
     return this._call.inputValues[1].value.toBigInt();
   }
 }
@@ -418,11 +418,11 @@ export class TransferCall__Inputs {
     this._call = call;
   }
 
-  get _to(): Address {
+  get to(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get _amount(): BigInt {
+  get amount(): BigInt {
     return this._call.inputValues[1].value.toBigInt();
   }
 }
@@ -456,15 +456,15 @@ export class ApproveAndCallCall__Inputs {
     this._call = call;
   }
 
-  get _spender(): Address {
+  get spender(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get _amount(): BigInt {
+  get amount(): BigInt {
     return this._call.inputValues[1].value.toBigInt();
   }
 
-  get _extraData(): Bytes {
+  get extraData(): Bytes {
     return this._call.inputValues[2].value.toBytes();
   }
 }
@@ -498,11 +498,11 @@ export class DestroyTokensCall__Inputs {
     this._call = call;
   }
 
-  get _owner(): Address {
+  get owner(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get _amount(): BigInt {
+  get amount(): BigInt {
     return this._call.inputValues[1].value.toBigInt();
   }
 }
@@ -536,7 +536,7 @@ export class ClaimTokensCall__Inputs {
     this._call = call;
   }
 
-  get _token(): Address {
+  get token(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 }
@@ -566,7 +566,7 @@ export class EnableTransfersCall__Inputs {
     this._call = call;
   }
 
-  get _transfersEnabled(): boolean {
+  get transfersEnabled(): boolean {
     return this._call.inputValues[0].value.toBoolean();
   }
 }
@@ -596,31 +596,31 @@ export class ConstructorCall__Inputs {
     this._call = call;
   }
 
-  get _tokenFactory(): Address {
+  get tokenFactory(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get _parentToken(): Address {
+  get parentToken(): Address {
     return this._call.inputValues[1].value.toAddress();
   }
 
-  get _parentSnapShotBlock(): BigInt {
+  get parentSnapShotBlock(): BigInt {
     return this._call.inputValues[2].value.toBigInt();
   }
 
-  get _tokenName(): string {
+  get tokenName(): string {
     return this._call.inputValues[3].value.toString();
   }
 
-  get _decimalUnits(): i32 {
+  get decimalUnits(): i32 {
     return this._call.inputValues[4].value.toI32();
   }
 
-  get _tokenSymbol(): string {
+  get tokenSymbol(): string {
     return this._call.inputValues[5].value.toString();
   }
 
-  get _transfersEnabled(): boolean {
+  get transfersEnabled(): boolean {
     return this._call.inputValues[6].value.toBoolean();
   }
 }
