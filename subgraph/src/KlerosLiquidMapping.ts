@@ -16,7 +16,12 @@ import {
   TokenAndETHShift,
   DisputeCreation,
   AppealPossible,
-  AppealDecision, DisputeStatistic, PeriodDisputeStatistic, JurorStakeAmount, RewardStatistic
+  AppealDecision,
+  DisputeStatistic,
+  PeriodDisputeStatistic,
+  JurorStakeAmount,
+  RewardStatistic,
+  DisputePeriodMap
 } from "../generated/KlerosLiquidSchema"
 import {
   log,
@@ -53,6 +58,14 @@ export function handleNewPeriod(event: NewPeriodEvent): void {
   entity.timestamp = event.block.timestamp
   entity.blockNumber = event.block.number
   entity.save()
+
+  let disputeId = event.params.disputeID.toString()
+  let entity1 = DisputePeriodMap.load(disputeId)
+  if(entity1 == null){
+    entity1 = new DisputePeriodMap(disputeId)
+  }
+  entity1.period = event.params.period
+  entity1.save()
 
   // Save Period Vs Dispute stats
   let charCodePeriod = String.fromCharCode(event.params.period)
