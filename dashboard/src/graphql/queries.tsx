@@ -29,3 +29,11 @@ export const DISPUTE_WITH_PERIOD = gql`{
     totalDisputes
   }
 }`;
+
+export const TOP_FIVE_JURY_BY_STAKE_AMOUNT = gql`
+  {
+    jurorStakeAmounts(first: 5, orderBy: stakeAmount, orderDirection: desc, where:{stakeAmount_gt:0}){
+      juror
+      stakeAmount
+    }
+  }`;

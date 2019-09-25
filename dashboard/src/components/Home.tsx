@@ -9,8 +9,13 @@ import AnalyticsHeader from "./AnalyticsHeader";
 import Header from "./Header";
 import BarGraphComponent from "./BarGraph";
 import {Query} from 'react-apollo'
-import {DISPUTE_WITH_PERIOD, TOTAL_COURTS} from "../graphql/queries";
+import {
+  DISPUTE_WITH_PERIOD,
+  TOP_FIVE_JURY_BY_STAKE_AMOUNT,
+  TOTAL_COURTS
+} from "../graphql/queries";
 import Badge from "react-bootstrap/Badge";
+import Web3 from 'web3';
 
 interface Props {
 
@@ -35,6 +40,14 @@ interface DisputeWithPeriod {
     totalDisputes: string;
   }>
 }
+
+interface TopFiveJuryByStakeAmount {
+  jurorStakeAmounts: Array<{
+    juror: string;
+    stakeAmount: string;
+  }>
+}
+
 
 interface Variable {
 
@@ -100,12 +113,30 @@ export default class Home extends React.Component<Props, State> {
       </Row>
       <Row>
         <Col>
-        <BarGraphComponent data={topTenBountyHunters}
-                           dataKey='count'
-                           xAxis={"Name of Juror"}
-                           yAxis={"Arbitration fees "}
-                           title={"Top 10 earner"}
-        />
+          <Query<TopFiveJuryByStakeAmount, Variable>
+            query={TOP_FIVE_JURY_BY_STAKE_AMOUNT}>
+            {({loading, error, data}) => {
+              if (loading) return <span>{'Loading...'}</span>;
+              if (error) return <span>{`Error! ${error.message}`}</span>;
+
+              console.log(data);
+              const graphData = data.jurorStakeAmounts.map(d => {
+                  return {
+                    count: parseInt(Web3.utils.fromWei(d.stakeAmount, 'ether')) / 1000,
+                    name: d.juror
+                  };
+                }
+              );
+
+              return <BarGraphComponent data={graphData}
+                                        dataKey='count'
+                                        xAxis={"Juror"}
+                                        yAxis={"PNK Token in Kilo(1000) ether"}
+                                        title={"Top 5 juror by stake amount"}
+              />;
+            }}
+          </Query>
+
         </Col>
         <Col>
 
@@ -123,7 +154,6 @@ export default class Home extends React.Component<Props, State> {
                 }
               );
 
-              console.log('graph data  ', graphData);
               return <BarGraphComponent data={graphData}
                                         dataKey='count'
                                         xAxis={"Dispute state(period)"}
