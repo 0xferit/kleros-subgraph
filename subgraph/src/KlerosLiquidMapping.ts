@@ -16,7 +16,7 @@ import {
   TokenAndETHShift,
   DisputeCreation,
   AppealPossible,
-  AppealDecision, DisputeStatistic
+  AppealDecision, DisputeStatistic, PeriodDisputeStatistic
 } from "../generated/KlerosLiquidSchema"
 import {
   log,
@@ -52,6 +52,20 @@ export function handleNewPeriod(event: NewPeriodEvent): void {
   entity._timestamp = event.block.timestamp
   entity._blockNumber = event.block.number
   entity.save()
+
+  // Save Period Vs Dispute stats
+  let period = String.fromCharCode(event.params._period)
+  log.info('Period', [period])
+  let entity1 = PeriodDisputeStatistic.load(period)
+  if (entity1 == null) {
+    entity1 = new PeriodDisputeStatistic(period)
+    entity1._totalDisputes = BigInt.fromI32(1)
+    log.info('Initializing Period', [period])
+  } else{
+    entity1._totalDisputes = entity1._totalDisputes.plus(BigInt.fromI32(1))
+    log.info('Incrmenting dispute count', [period])
+  }
+  entity1.save()
 }
 
 export function handleStakeSet(event: StakeSetEvent): void {
