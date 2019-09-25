@@ -42,7 +42,14 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
 
     return <Card>
       <Card.Body>
-        <Row>
+        <Row style={{
+          borderBottom: "1px",
+          borderBottomStyle: "solid",
+          borderColor: "#e7eaf3",
+          marginTop: ".75rem",
+          marginBottom: ".75rem",
+          padding:"5px"
+        }}>
           <Col>
             <strong>Total Disputes:</strong> <Badge variant="secondary">
 
@@ -71,6 +78,46 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
           </Col>
           <Col>
             <strong>Total Staked Amount:</strong> <Badge variant="secondary">
+            700PNK</Badge>
+
+          </Col>
+        </Row>
+        <Row style={{
+          borderBottom: "1px",
+          borderBottomStyle: "solid",
+          borderColor: "#e7eaf3",
+          marginTop: ".75rem",
+          marginBottom: ".75rem",
+          padding:"5px"
+        }}>
+          <Col>
+            <strong>Total Earning(eth):</strong> <Badge variant="secondary">
+
+            <Query<DisputeData, Variable> query={DISPUTE_COUNT}>
+              {({loading, error, data}) => {
+                if (loading) return <span>{'Loading...'}</span>;
+                if (error) return <span>{`Error! ${error.message}`}</span>;
+
+                return <span>{data.disputeStatistics[0].totalDisputes}</span>;
+              }}
+            </Query>
+          </Badge>
+          </Col>
+          <Col>
+            <strong>Total Earning(PNK):</strong> <Badge variant="secondary">
+            <Query<CourtData, Variable> query={TOTAL_COURTS}>
+              {({loading, error, data}) => {
+                if (loading) return <span>{'Loading...'}</span>;
+                if (error) return <span>{`Error! ${error.message}`}</span>;
+
+                return <span>{parseInt(data.policyUpdates[0].subcourtID) + 1}</span>;
+              }}
+            </Query>
+
+          </Badge>
+          </Col>
+          <Col>
+            <strong>Total Penalty(PNK):</strong> <Badge variant="secondary">
             700PNK</Badge>
 
           </Col>
