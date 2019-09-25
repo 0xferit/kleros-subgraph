@@ -66,6 +66,15 @@ export function handleStakeSet(event: StakeSetEvent): void {
   entity._timestamp = event.block.timestamp
   entity._blockNumber = event.block.number
   entity.save()
+
+  let entity1 = DisputeStatistic.load('singleID')
+  if (entity1 == null) {
+    entity1 = new DisputeStatistic('singleID')
+    entity1._totalStakedAmount = event.params._newTotalStake
+  } else{
+    entity1._totalStakedAmount = entity1._totalStakedAmount.plus(event.params._newTotalStake)
+  }
+  entity1.save()
 }
 
 export function handleDraw(event: DrawEvent): void {

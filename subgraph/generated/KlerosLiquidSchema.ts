@@ -703,4 +703,13 @@ export class DisputeStatistic extends Entity {
   set _totalDisputes(value: BigInt) {
     this.set("_totalDisputes", Value.fromBigInt(value));
   }
+
+  get _totalStakedAmount(): BigInt {
+    let value = this.get("_totalStakedAmount");
+    return value.toBigInt();
+  }
+
+  set _totalStakedAmount(value: BigInt) {
+    this.set("_totalStakedAmount", Value.fromBigInt(value));
+  }
 }
