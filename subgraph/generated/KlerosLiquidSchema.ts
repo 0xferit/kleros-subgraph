@@ -735,6 +735,15 @@ export class PeriodDisputeStatistic extends Entity {
     this.set("id", Value.fromString(value));
   }
 
+  get _period(): i32 {
+    let value = this.get("_period");
+    return value.toI32();
+  }
+
+  set _period(value: i32) {
+    this.set("_period", Value.fromI32(value));
+  }
+
   get _totalDisputes(): BigInt {
     let value = this.get("_totalDisputes");
     return value.toBigInt();

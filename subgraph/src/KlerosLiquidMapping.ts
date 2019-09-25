@@ -54,16 +54,18 @@ export function handleNewPeriod(event: NewPeriodEvent): void {
   entity.save()
 
   // Save Period Vs Dispute stats
-  let period = String.fromCharCode(event.params._period)
-  log.info('Period', [period])
-  let entity1 = PeriodDisputeStatistic.load(period)
+  let charCodePeriod = String.fromCharCode(event.params._period)
+  log.info('Period', [charCodePeriod])
+  let entity1 = PeriodDisputeStatistic.load(charCodePeriod)
   if (entity1 == null) {
-    entity1 = new PeriodDisputeStatistic(period)
+    entity1 = new PeriodDisputeStatistic(charCodePeriod)
+    entity1._period = event.params._period
     entity1._totalDisputes = BigInt.fromI32(1)
-    log.info('Initializing Period', [period])
+    log.info('Initializing Period', [charCodePeriod])
   } else{
+    entity1._period = event.params._period
     entity1._totalDisputes = entity1._totalDisputes.plus(BigInt.fromI32(1))
-    log.info('Incrmenting dispute count', [period])
+    log.info('Incrementing dispute count', [charCodePeriod])
   }
   entity1.save()
 }

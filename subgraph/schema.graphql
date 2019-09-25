@@ -132,5 +132,6 @@ type DisputeStatistic @entity {
 
 type PeriodDisputeStatistic @entity {
   id: ID! # id is period here
+  _period: Int! # uint8
   _totalDisputes: BigInt! #uint256
 }
