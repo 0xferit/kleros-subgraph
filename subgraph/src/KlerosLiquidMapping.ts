@@ -159,12 +159,15 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   entity.blockNumber = event.block.number
 
   let contract = KlerosLiquid.bind(event.address)
+  log.info('reading dispute', [])
   let disputeObj = contract.disputes(event.params.disputeID)
-  log.info('disputeObj', [disputeObj.value0.toString(), disputeObj.value2.toString(), disputeObj.value3.toString(), disputeObj.value4.toString()])
+  log.info('disputeObj is read', [])
+  log.info('disputeObj', [disputeObj.value0.toHex()])
   entity.subcourtID = disputeObj.value0
   entity.numberOfChoices = disputeObj.value2
   entity.period = disputeObj.value3
   entity.lastPeriodChange = disputeObj.value4
+  log.info('Saving disputeObj', [])
   entity.save()
 
   let entity1 = DisputeStatistic.load('ID')
