@@ -125,6 +125,7 @@ export function handleTokenAndETHShift(event: TokenAndETHShiftEvent): void {
   entity.blockNumber = event.block.number
   entity.save()
 
+  // Reward stats
   let entity1 = RewardStatistic.load('ID')
   if (entity1 == null) {
     entity1 = new RewardStatistic('ID')
