@@ -173,6 +173,6 @@ type TotalJuror @entity {
 }
 
 type TotalStaked @entity {
-    id: ID!
-    totalStaked: BigInt!
+  id: ID!
+  totalStaked: BigInt!
 }
