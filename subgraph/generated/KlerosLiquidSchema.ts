@@ -570,7 +570,7 @@ export class DisputeCreation extends Entity {
     this.set("ruled", Value.fromBoolean(value));
   }
 
-  get ruled(): Boolean {
+  get ruled(): boolean {
     let value = this.get("ruled");
     return value.toBoolean();
   }

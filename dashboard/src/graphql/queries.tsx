@@ -41,7 +41,7 @@ export const TOP_FIVE_JURY_BY_STAKE_AMOUNT = gql`
 
 export const DISPUTES = gql`
   {
-    disputeCreations(orderBy: blockNumber, orderDirection:asc, first:10){
+    disputeCreations(orderBy: blockNumber, orderDirection:desc, first:10){
       id
       disputeID
       arbitrable
@@ -69,3 +69,13 @@ export const REWARD_AND_PUNISHMENT = gql`
     }
   }
 `;
+
+export const DISPUTE_PERIODS = gql`  {
+  newPeriods(first: 100, where: {disputeID:$disputeID}, orderBy: timestamp, orderDirection: asc) {
+    id
+    disputeID
+    period
+    timestamp
+    contractAddress
+  }
+}`;
