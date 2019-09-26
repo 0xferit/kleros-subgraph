@@ -117,7 +117,9 @@ export function handleStakeSet(event: StakeSetEvent): void {
 
   let totalJurorEntity = TotalJurors.load('ID')
   if(totalJurorEntity == null) {
+    log.debug('initializing total jurors entity', [])
     totalJurorEntity = new TotalJurors('ID')
+    totalJurorEntity.totalJurors = BigInt.fromI32(0)
   }
 
   // Always update with the latest total stake for a juror
