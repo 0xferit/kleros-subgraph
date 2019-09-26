@@ -23,7 +23,7 @@ import {
   JurorStakeAmount,
   RewardStatistic,
   DisputePeriodMap,
-  SubCourtDisputeStatistic
+  SubCourtDisputeStatistic, TotalJurors
 } from "../generated/KlerosLiquidSchema"
 import {
   log,
@@ -106,6 +106,10 @@ export function handleStakeSet(event: StakeSetEvent): void {
   entity.blockNumber = event.block.number
   entity.save()
 
+  let totalJurorEntity = TotalJurors.load('ID')
+  if(totalJurorEntity == null) {
+    totalJurorEntity = new TotalJurors('ID')
+  }
   // Always update with the latest total stake for a juror
   let parsedId = event.params.address.toHex();
   let entity1 = JurorStakeAmount.load(parsedId)
@@ -113,11 +117,15 @@ export function handleStakeSet(event: StakeSetEvent): void {
     entity1 = new JurorStakeAmount(parsedId)
     entity1.juror = event.params.address
     entity1.stakeAmount = event.params.newTotalStake
+
+    // First time juror staked
+    totalJurorEntity.totalJurors = totalJurorEntity.totalJurors.plus(BigInt.fromI32(1))
   } else{
     entity1.juror = event.params.address
     entity1.stakeAmount = event.params.newTotalStake
   }
   entity1.save()
+  totalJurorEntity.save()
 }
 
 export function handleDraw(event: DrawEvent): void {

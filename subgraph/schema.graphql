@@ -166,3 +166,13 @@ type SubCourtDisputeStatistic @entity {
   subcourtID: BigInt! # uint256
   totalDisputes: BigInt! # uint256
 }
+
+type TotalJuror @entity {
+  id: ID!
+  totalJurors: BigInt! # uint256
+}
+
+type TotalJuror @entity {
+  id: ID!
+  totalJurors: BigInt! # uint256
+}
