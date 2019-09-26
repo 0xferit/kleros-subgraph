@@ -1040,3 +1040,43 @@ export class SubCourtDisputeStatistic extends Entity {
     this.set("totalDisputes", Value.fromBigInt(value));
   }
 }
+
+export class TotalStaked extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save TotalStaked entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save TotalStaked entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("TotalStaked", id.toString(), this);
+  }
+
+  static load(id: string): TotalStaked | null {
+    return store.get("TotalStaked", id) as TotalStaked | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get totalStaked(): BigInt {
+    let value = this.get("totalStaked");
+    return value.toBigInt();
+  }
+
+  set totalStaked(value: BigInt) {
+    this.set("totalStaked", Value.fromBigInt(value));
+  }
+}
