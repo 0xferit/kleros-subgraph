@@ -70,7 +70,7 @@ export const REWARD_AND_PUNISHMENT = gql`
   }
 `;
 
-export const DISPUTE_PERIODS = gql`  {
+export const DISPUTE_PERIODS = gql`query ($disputeID: BigInt!) {
   newPeriods(first: 100, where: {disputeID:$disputeID}, orderBy: timestamp, orderDirection: asc) {
     id
     disputeID
@@ -79,3 +79,12 @@ export const DISPUTE_PERIODS = gql`  {
     contractAddress
   }
 }`;
+
+export const DISPUTE_REWARD = gql
+  `query ($disputeID: BigInt!) {
+    tokenAndETHShifts(where: {disputeID: $disputeID}, orderBy: timestamp, orderDirection: desc) {
+    address
+    tokenAmount
+    ETHAmount
+  }
+}`

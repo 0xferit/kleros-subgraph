@@ -72,7 +72,7 @@ export default class DisputesTable extends React.Component<Props, State> {
           onHide={this.onCloseModal}
           content={<DisputesDetails disputeId={this.state.disputeId}/>}
           heading="Dispute Details"
-          title={"Dispute 108"}
+          title={`Dispute Id ${this.state.disputeId}`}
         />
         <TableRow
           col={[
@@ -87,7 +87,6 @@ export default class DisputesTable extends React.Component<Props, State> {
             if (loading) return <span>{'Loading...'}</span>;
             if (error) return <span>{`Error! ${error.message}`}</span>;
 
-            console.log('dataa of disputes ',data);
             return data.disputeCreations.map(d => {
               return <TableRow onClick={() => {
                 this.onClickDispute(d.disputeID)
