@@ -48,6 +48,7 @@ type DisputeCreation @entity {
   drawsInRound: BigInt! # uint256
   commitsInRound: BigInt! # uint256
   ruled: Boolean! # Boolean
+  periods: [NewPeriod!]
 }
 
 type StakeSet @entity {

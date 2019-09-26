@@ -116,7 +116,7 @@ export class Approval__Params {
 
 export class MiniMeToken extends SmartContract {
   static bind(address: Address): MiniMeToken {
-    return new MiniMeToken("Contract", address);
+    return new MiniMeToken("MiniMeToken", address);
   }
 
   name(): string {
