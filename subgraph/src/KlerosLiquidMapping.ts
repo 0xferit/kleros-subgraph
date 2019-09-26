@@ -24,8 +24,7 @@ import {
   RewardStatistic,
   DisputePeriodMap,
   SubCourtDisputeStatistic,
-  TotalJurors,
-  TotalStaked
+  TotalStaked, TotalJuror
 } from "../generated/KlerosLiquidSchema"
 import {
   log,
@@ -112,14 +111,14 @@ export function handleStakeSet(event: StakeSetEvent): void {
   if (totalStakedEntity == null){
     log.debug('initializing total staked entity', [])
     totalStakedEntity = new TotalStaked('ID')
-    totalStakedEntity.totalStaked = BigInt.fromI32(0)
+    totalStakedEntity.totalStakedAmount = BigInt.fromI32(0)
   }
 
-  let totalJurorEntity = TotalJurors.load('ID')
+  let totalJurorEntity = TotalJuror.load('ID')
   if(totalJurorEntity == null) {
     log.debug('initializing total jurors entity', [])
-    totalJurorEntity = new TotalJurors('ID')
-    totalJurorEntity.totalJurors = BigInt.fromI32(0)
+    totalJurorEntity = new TotalJuror('ID')
+    totalJurorEntity.totalJurorCount = BigInt.fromI32(0)
   }
 
   // Always update with the latest total stake for a juror
@@ -132,19 +131,19 @@ export function handleStakeSet(event: StakeSetEvent): void {
 
     // Add newTotalStake amount for first time juror
     log.debug('sum total staked entity for first time juror', [event.params.newTotalStake.toString()])
-    totalStakedEntity.totalStaked = totalStakedEntity.totalStaked.plus(event.params.newTotalStake)
+    totalStakedEntity.totalStakedAmount = totalStakedEntity.totalStakedAmount.plus(event.params.newTotalStake)
 
     // First time juror staked
-    totalJurorEntity.totalJurors = totalJurorEntity.totalJurors.plus(BigInt.fromI32(1))
+    totalJurorEntity.totalJurorCount = totalJurorEntity.totalJurorCount.plus(BigInt.fromI32(1))
   } else{
     jurorStakedAmountEntity.juror = event.params.address
     // Subtract old staked amount and sum new staked amount
     log.debug('sum total staked entity for repeting juror', [event.params.newTotalStake.toString()])
-    totalStakedEntity.totalStaked = (totalStakedEntity.totalStaked.plus(event.params.newTotalStake)).minus(jurorStakedAmountEntity.stakeAmount)
+    totalStakedEntity.totalStakedAmount = (totalStakedEntity.totalStakedAmount.plus(event.params.newTotalStake)).minus(jurorStakedAmountEntity.stakeAmount)
     // update juror staked amount
     jurorStakedAmountEntity.stakeAmount = event.params.newTotalStake
   }
-  log.debug('updated total staked', [totalStakedEntity.totalStaked.toString()])
+  log.debug('updated total staked', [totalStakedEntity.totalStakedAmount.toString()])
   jurorStakedAmountEntity.save()
   totalStakedEntity.save()
   totalJurorEntity.save()

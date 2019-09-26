@@ -1071,17 +1071,17 @@ export class TotalStaked extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get totalStaked(): BigInt {
-    let value = this.get("totalStaked");
+  get totalStakedAmount(): BigInt {
+    let value = this.get("totalStakedAmount");
     return value.toBigInt();
   }
 
-  set totalStaked(value: BigInt) {
-    this.set("totalStaked", Value.fromBigInt(value));
+  set totalStakedAmount(value: BigInt) {
+    this.set("totalStakedAmount", Value.fromBigInt(value));
   }
 }
 
-export class TotalJurors extends Entity {
+export class TotalJuror extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -1089,17 +1089,17 @@ export class TotalJurors extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save TotalJurors entity without an ID");
+    assert(id !== null, "Cannot save TotalJuror entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save TotalJurors entity with non-string ID. " +
+      "Cannot save TotalJuror entity with non-string ID. " +
       'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("TotalJurors", id.toString(), this);
+    store.set("TotalJuror", id.toString(), this);
   }
 
-  static load(id: string): TotalJurors | null {
-    return store.get("TotalJurors", id) as TotalJurors | null;
+  static load(id: string): TotalJuror | null {
+    return store.get("TotalJuror", id) as TotalJuror | null;
   }
 
   get id(): string {
@@ -1111,12 +1111,12 @@ export class TotalJurors extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get totalJurors(): BigInt {
-    let value = this.get("totalJurors");
+  get totalJurorCount(): BigInt {
+    let value = this.get("totalJurorCount");
     return value.toBigInt();
   }
 
-  set totalJurors(value: BigInt) {
-    this.set("totalJurors", Value.fromBigInt(value));
+  set totalJurorCount(value: BigInt) {
+    this.set("totalJurorCount", Value.fromBigInt(value));
   }
 }
