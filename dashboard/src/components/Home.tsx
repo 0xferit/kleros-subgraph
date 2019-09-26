@@ -25,7 +25,7 @@ interface State {
 
 }
 
-enum Period {
+export enum Period {
   evidence,
   commit,
   vote,

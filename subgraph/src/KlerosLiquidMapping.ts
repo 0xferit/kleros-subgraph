@@ -7,6 +7,7 @@ import {
   DisputeCreation as DisputeCreationEvent,
   AppealPossible as AppealPossibleEvent,
   AppealDecision as AppealDecisionEvent,
+  KlerosLiquid,
 } from "../generated/Contract/KlerosLiquid"
 import {
   NewPolicy,
@@ -16,7 +17,13 @@ import {
   TokenAndETHShift,
   DisputeCreation,
   AppealPossible,
-  AppealDecision, DisputeStatistic, PeriodDisputeStatistic, JurorStakeAmount, RewardStatistic
+  AppealDecision,
+  DisputeStatistic,
+  PeriodDisputeStatistic,
+  JurorStakeAmount,
+  RewardStatistic,
+  DisputePeriodMap,
+  SubCourtDisputeStatistic
 } from "../generated/KlerosLiquidSchema"
 import {
   log,
@@ -54,21 +61,36 @@ export function handleNewPeriod(event: NewPeriodEvent): void {
   entity.blockNumber = event.block.number
   entity.save()
 
+  // load dispute vs period map
+  let disputeId = event.params.disputeID.toString()
+  let entity1 = DisputePeriodMap.load(disputeId)
+  if(entity1 == null){
+    entity1 = new DisputePeriodMap(disputeId)
+  } else {
+    // Subtract count if dispute exists with a different/same period to avoid duplicate counts
+    let charCodePeriod = String.fromCharCode(entity1.period)
+    let entity2 = PeriodDisputeStatistic.load(charCodePeriod)
+    entity2.totalDisputes = entity2.totalDisputes.minus(BigInt.fromI32(1))
+    entity2.save()
+  }
+  entity1.period = event.params.period
+  entity1.save()
+
   // Save Period Vs Dispute stats
   let charCodePeriod = String.fromCharCode(event.params.period)
   log.info('Period', [charCodePeriod])
-  let entity1 = PeriodDisputeStatistic.load(charCodePeriod)
-  if (entity1 == null) {
-    entity1 = new PeriodDisputeStatistic(charCodePeriod)
-    entity1.period = event.params.period
-    entity1.totalDisputes = BigInt.fromI32(1)
+  let entity2 = PeriodDisputeStatistic.load(charCodePeriod)
+  if (entity2 == null) {
+    entity2 = new PeriodDisputeStatistic(charCodePeriod)
+    entity2.period = event.params.period
+    entity2.totalDisputes = BigInt.fromI32(1)
     log.info('Initializing Period', [charCodePeriod])
   } else{
-    entity1.period = event.params.period
-    entity1.totalDisputes = entity1.totalDisputes.plus(BigInt.fromI32(1))
+    entity2.period = event.params.period
+    entity2.totalDisputes = entity2.totalDisputes.plus(BigInt.fromI32(1))
     log.info('Incrementing dispute count', [charCodePeriod])
   }
-  entity1.save()
+  entity2.save()
 }
 
 export function handleStakeSet(event: StakeSetEvent): void {
@@ -157,6 +179,21 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   entity.contractAddress = event.address
   entity.timestamp = event.block.timestamp
   entity.blockNumber = event.block.number
+
+  log.debug('binding KlerosLiquid contract', [])
+  let contract = KlerosLiquid.bind(event.address)
+  log.debug('reading dispute mapping', [])
+  let disputeObj = contract.disputes(event.params.disputeID)
+  log.debug('dispute mapping is read', [])
+  log.debug('disputeObj value0', [disputeObj.value0.toHex()])
+  entity.subcourtID = disputeObj.value0
+  entity.numberOfChoices = disputeObj.value2
+  entity.period = disputeObj.value3
+  entity.lastPeriodChange = disputeObj.value4
+  entity.drawsInRound = disputeObj.value5;
+  entity.commitsInRound = disputeObj.value6;
+  entity.ruled = disputeObj.value7;
+  log.debug('Saving entity', [])
   entity.save()
 
   let entity1 = DisputeStatistic.load('ID')
@@ -167,6 +204,20 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
     entity1.totalDisputes = entity1.totalDisputes.plus(BigInt.fromI32(1))
   }
   entity1.save()
+
+  // Save SubCourtDisputeStatistic
+  let id = entity.subcourtID.toHex()
+  let entity2 = SubCourtDisputeStatistic.load(id)
+  if (entity2 == null) {
+    entity2 = new SubCourtDisputeStatistic(id)
+    entity2.subcourtID = entity.subcourtID
+    entity2.totalDisputes = BigInt.fromI32(1)
+  } else{
+    entity2.subcourtID = entity.subcourtID
+    entity2.totalDisputes = entity2.totalDisputes.plus(BigInt.fromI32(1))
+  }
+  entity2.save()
+
 }
 
 export function handleAppealPossible(event: AppealPossibleEvent): void {

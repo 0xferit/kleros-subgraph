@@ -511,6 +511,70 @@ export class DisputeCreation extends Entity {
   set blockNumber(value: BigInt) {
     this.set("blockNumber", Value.fromBigInt(value));
   }
+
+  get subcourtID(): BigInt {
+    let value = this.get("subcourtID");
+    return value.toBigInt();
+  }
+
+  set subcourtID(value: BigInt) {
+    this.set("subcourtID", Value.fromBigInt(value));
+  }
+
+  get numberOfChoices(): BigInt {
+    let value = this.get("numberOfChoices");
+    return value.toBigInt();
+  }
+
+  set numberOfChoices(value: BigInt) {
+    this.set("numberOfChoices", Value.fromBigInt(value));
+  }
+
+  get period(): i32 {
+    let value = this.get("period");
+    return value.toI32();
+  }
+
+  set period(value: i32) {
+    this.set("period", Value.fromI32(value));
+  }
+
+  get lastPeriodChange(): BigInt {
+    let value = this.get("lastPeriodChange");
+    return value.toBigInt();
+  }
+
+  set lastPeriodChange(value: BigInt) {
+    this.set("lastPeriodChange", Value.fromBigInt(value));
+  }
+
+  set drawsInRound(value: BigInt) {
+    this.set("drawsInRound", Value.fromBigInt(value));
+  }
+
+  get drawsInRound(): BigInt {
+    let value = this.get("drawsInRound");
+    return value.toBigInt();
+  }
+
+  set commitsInRound(value: BigInt) {
+    this.set("commitsInRound", Value.fromBigInt(value));
+  }
+
+  get commitsInRound(): BigInt {
+    let value = this.get("commitsInRound");
+    return value.toBigInt();
+  }
+
+  set ruled(value: boolean) {
+    this.set("ruled", Value.fromBoolean(value));
+  }
+
+  get ruled(): boolean {
+    let value = this.get("ruled");
+    return value.toBoolean();
+  }
+
 }
 
 export class AppealPossible extends Entity {
@@ -781,6 +845,46 @@ export class PeriodDisputeStatistic extends Entity {
   }
 }
 
+export class DisputePeriodMap extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save DisputePeriodMap entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save DisputePeriodMap entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("DisputePeriodMap", id.toString(), this);
+  }
+
+  static load(id: string): DisputePeriodMap | null {
+    return store.get("DisputePeriodMap", id) as DisputePeriodMap | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get period(): i32 {
+    let value = this.get("period");
+    return value.toI32();
+  }
+
+  set period(value: i32) {
+    this.set("period", Value.fromI32(value));
+  }
+}
+
 export class JurorStakeAmount extends Entity {
   constructor(id: string) {
     super();
@@ -885,5 +989,54 @@ export class RewardStatistic extends Entity {
 
   set totalPunishedTokenAmount(value: BigInt) {
     this.set("totalPunishedTokenAmount", Value.fromBigInt(value));
+  }
+}
+
+export class SubCourtDisputeStatistic extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save SubCourtDisputeStatistic entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save SubCourtDisputeStatistic entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("SubCourtDisputeStatistic", id.toString(), this);
+  }
+
+  static load(id: string): SubCourtDisputeStatistic | null {
+    return store.get("SubCourtDisputeStatistic", id) as SubCourtDisputeStatistic | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get subcourtID(): BigInt {
+    let value = this.get("subcourtID");
+    return value.toBigInt();
+  }
+
+  set subcourtID(value: BigInt) {
+    this.set("subcourtID", Value.fromBigInt(value));
+  }
+
+  get totalDisputes(): BigInt {
+    let value = this.get("totalDisputes");
+    return value.toBigInt();
+  }
+
+  set totalDisputes(value: BigInt) {
+    this.set("totalDisputes", Value.fromBigInt(value));
   }
 }
