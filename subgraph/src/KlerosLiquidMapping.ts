@@ -66,6 +66,12 @@ export function handleNewPeriod(event: NewPeriodEvent): void {
   let entity1 = DisputePeriodMap.load(disputeId)
   if(entity1 == null){
     entity1 = new DisputePeriodMap(disputeId)
+  } else {
+    // Subtract count if dispute exists with a different/same period to avoid duplicate counts
+    let charCodePeriod = String.fromCharCode(entity1.period)
+    let entity2 = PeriodDisputeStatistic.load(charCodePeriod)
+    entity2.totalDisputes = entity2.totalDisputes.minus(BigInt.fromI32(1))
+    entity2.save()
   }
   entity1.period = event.params.period
   entity1.save()
