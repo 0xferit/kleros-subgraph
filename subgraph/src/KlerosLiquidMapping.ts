@@ -23,7 +23,9 @@ import {
   JurorStakeAmount,
   RewardStatistic,
   DisputePeriodMap,
-  SubCourtDisputeStatistic, TotalStaked
+  SubCourtDisputeStatistic,
+  TotalJurors,
+  TotalStaked
 } from "../generated/KlerosLiquidSchema"
 import {
   log,
@@ -113,6 +115,11 @@ export function handleStakeSet(event: StakeSetEvent): void {
     totalStakedEntity.totalStaked = BigInt.fromI32(0)
   }
 
+  let totalJurorEntity = TotalJurors.load('ID')
+  if(totalJurorEntity == null) {
+    totalJurorEntity = new TotalJurors('ID')
+  }
+
   // Always update with the latest total stake for a juror
   let parsedId = event.params.address.toHex();
   let jurorStakedAmountEntity = JurorStakeAmount.load(parsedId)
@@ -124,6 +131,9 @@ export function handleStakeSet(event: StakeSetEvent): void {
     // Add newTotalStake amount for first time juror
     log.debug('sum total staked entity for first time juror', [event.params.newTotalStake.toString()])
     totalStakedEntity.totalStaked = totalStakedEntity.totalStaked.plus(event.params.newTotalStake)
+
+    // First time juror staked
+    totalJurorEntity.totalJurors = totalJurorEntity.totalJurors.plus(BigInt.fromI32(1))
   } else{
     jurorStakedAmountEntity.juror = event.params.address
     // Subtract old staked amount and sum new staked amount
@@ -135,6 +145,7 @@ export function handleStakeSet(event: StakeSetEvent): void {
   log.debug('updated total staked', [totalStakedEntity.totalStaked.toString()])
   jurorStakedAmountEntity.save()
   totalStakedEntity.save()
+  totalJurorEntity.save()
 }
 
 export function handleDraw(event: DrawEvent): void {
