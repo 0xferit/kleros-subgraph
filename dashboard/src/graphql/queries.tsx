@@ -41,12 +41,20 @@ export const TOP_FIVE_JURY_BY_STAKE_AMOUNT = gql`
 
 export const DISPUTES = gql`
   {
-    disputeCreations(orderBy: timestamp, orderDirection: desc, first:10){
+    disputeCreations(orderBy: blockNumber, orderDirection:desc, first:10){
       id
       disputeID
       arbitrable
       contractAddress
       timestamp
+      blockNumber
+      subcourtID
+      numberOfChoices
+      period
+      lastPeriodChange
+      drawsInRound
+      commitsInRound
+      ruled
     }
   }
 `;
@@ -61,3 +69,22 @@ export const REWARD_AND_PUNISHMENT = gql`
     }
   }
 `;
+
+export const DISPUTE_PERIODS = gql`query ($disputeID: BigInt!) {
+  newPeriods(first: 100, where: {disputeID:$disputeID}, orderBy: timestamp, orderDirection: asc) {
+    id
+    disputeID
+    period
+    timestamp
+    contractAddress
+  }
+}`;
+
+export const DISPUTE_REWARD = gql
+  `query ($disputeID: BigInt!) {
+    tokenAndETHShifts(where: {disputeID: $disputeID}, orderBy: timestamp, orderDirection: desc) {
+    address
+    tokenAmount
+    ETHAmount
+  }
+}`

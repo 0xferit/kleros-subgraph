@@ -41,6 +41,13 @@ type DisputeCreation @entity {
   contractAddress: Bytes! # address
   timestamp: BigInt! # uint256
   blockNumber: BigInt! # unit256
+  subcourtID: BigInt! # unit256
+  numberOfChoices: BigInt! # unit256
+  period: Int! # Enum
+  lastPeriodChange: BigInt! # unit256
+  drawsInRound: BigInt! # uint256
+  commitsInRound: BigInt! # uint256
+  ruled: Boolean! # Boolean
 }
 
 type StakeSet @entity {
@@ -152,4 +159,10 @@ type RewardStatistic @entity {
   totalRewardedTokenAmount: BigInt! # uint256
   totalRewardedEthAmount: BigInt! # uin256
   totalPunishedTokenAmount: BigInt! # uint256
+}
+
+type SubCourtDisputeStatistic @entity {
+  id: ID!
+  subcourtID: BigInt! # uint256
+  totalDisputes: BigInt! # uint256
 }

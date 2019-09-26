@@ -7,6 +7,7 @@ import {
   DisputeCreation as DisputeCreationEvent,
   AppealPossible as AppealPossibleEvent,
   AppealDecision as AppealDecisionEvent,
+  KlerosLiquid,
 } from "../generated/Contract/KlerosLiquid"
 import {
   NewPolicy,
@@ -21,7 +22,8 @@ import {
   PeriodDisputeStatistic,
   JurorStakeAmount,
   RewardStatistic,
-  DisputePeriodMap
+  DisputePeriodMap,
+  SubCourtDisputeStatistic
 } from "../generated/KlerosLiquidSchema"
 import {
   log,
@@ -170,6 +172,21 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   entity.contractAddress = event.address
   entity.timestamp = event.block.timestamp
   entity.blockNumber = event.block.number
+
+  log.debug('binding KlerosLiquid contract', [])
+  let contract = KlerosLiquid.bind(event.address)
+  log.debug('reading dispute mapping', [])
+  let disputeObj = contract.disputes(event.params.disputeID)
+  log.debug('dispute mapping is read', [])
+  log.debug('disputeObj value0', [disputeObj.value0.toHex()])
+  entity.subcourtID = disputeObj.value0
+  entity.numberOfChoices = disputeObj.value2
+  entity.period = disputeObj.value3
+  entity.lastPeriodChange = disputeObj.value4
+  entity.drawsInRound = disputeObj.value5;
+  entity.commitsInRound = disputeObj.value6;
+  entity.ruled = disputeObj.value7;
+  log.debug('Saving entity', [])
   entity.save()
 
   let entity1 = DisputeStatistic.load('ID')
@@ -180,6 +197,20 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
     entity1.totalDisputes = entity1.totalDisputes.plus(BigInt.fromI32(1))
   }
   entity1.save()
+
+  // Save SubCourtDisputeStatistic
+  let id = entity.subcourtID.toHex()
+  let entity2 = SubCourtDisputeStatistic.load(id)
+  if (entity2 == null) {
+    entity2 = new SubCourtDisputeStatistic(id)
+    entity2.subcourtID = entity.subcourtID
+    entity2.totalDisputes = BigInt.fromI32(1)
+  } else{
+    entity2.subcourtID = entity.subcourtID
+    entity2.totalDisputes = entity2.totalDisputes.plus(BigInt.fromI32(1))
+  }
+  entity2.save()
+
 }
 
 export function handleAppealPossible(event: AppealPossibleEvent): void {
