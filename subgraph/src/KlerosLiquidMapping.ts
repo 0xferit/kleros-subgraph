@@ -23,7 +23,9 @@ import {
   JurorStakeAmount,
   RewardStatistic,
   DisputePeriodMap,
-  SubCourtDisputeStatistic, TotalJurors
+  SubCourtDisputeStatistic,
+  TotalJurors,
+  TotalStaked
 } from "../generated/KlerosLiquidSchema"
 import {
   log,
@@ -106,25 +108,45 @@ export function handleStakeSet(event: StakeSetEvent): void {
   entity.blockNumber = event.block.number
   entity.save()
 
+  let totalStakedEntity = TotalStaked.load('ID')
+  if (totalStakedEntity == null){
+    log.debug('initializing total staked entity', [])
+    totalStakedEntity = new TotalStaked('ID')
+    totalStakedEntity.totalStaked = BigInt.fromI32(0)
+  }
+
   let totalJurorEntity = TotalJurors.load('ID')
   if(totalJurorEntity == null) {
+    log.debug('initializing total jurors entity', [])
     totalJurorEntity = new TotalJurors('ID')
+    totalJurorEntity.totalJurors = BigInt.fromI32(0)
   }
+
   // Always update with the latest total stake for a juror
   let parsedId = event.params.address.toHex();
-  let entity1 = JurorStakeAmount.load(parsedId)
-  if (entity1 == null) {
-    entity1 = new JurorStakeAmount(parsedId)
-    entity1.juror = event.params.address
-    entity1.stakeAmount = event.params.newTotalStake
+  let jurorStakedAmountEntity = JurorStakeAmount.load(parsedId)
+  if (jurorStakedAmountEntity == null) {
+    jurorStakedAmountEntity = new JurorStakeAmount(parsedId)
+    jurorStakedAmountEntity.juror = event.params.address
+    jurorStakedAmountEntity.stakeAmount = event.params.newTotalStake
+
+    // Add newTotalStake amount for first time juror
+    log.debug('sum total staked entity for first time juror', [event.params.newTotalStake.toString()])
+    totalStakedEntity.totalStaked = totalStakedEntity.totalStaked.plus(event.params.newTotalStake)
 
     // First time juror staked
     totalJurorEntity.totalJurors = totalJurorEntity.totalJurors.plus(BigInt.fromI32(1))
   } else{
-    entity1.juror = event.params.address
-    entity1.stakeAmount = event.params.newTotalStake
+    jurorStakedAmountEntity.juror = event.params.address
+    // Subtract old staked amount and sum new staked amount
+    log.debug('sum total staked entity for repeting juror', [event.params.newTotalStake.toString()])
+    totalStakedEntity.totalStaked = (totalStakedEntity.totalStaked.plus(event.params.newTotalStake)).minus(jurorStakedAmountEntity.stakeAmount)
+    // update juror staked amount
+    jurorStakedAmountEntity.stakeAmount = event.params.newTotalStake
   }
-  entity1.save()
+  log.debug('updated total staked', [totalStakedEntity.totalStaked.toString()])
+  jurorStakedAmountEntity.save()
+  totalStakedEntity.save()
   totalJurorEntity.save()
 }
 

@@ -172,7 +172,7 @@ type TotalJuror @entity {
   totalJurors: BigInt! # uint256
 }
 
-type TotalJuror @entity {
+type TotalStaked @entity {
   id: ID!
-  totalJurors: BigInt! # uint256
+  totalStaked: BigInt!
 }
