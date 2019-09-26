@@ -61,6 +61,7 @@ export function handleNewPeriod(event: NewPeriodEvent): void {
   entity.blockNumber = event.block.number
   entity.save()
 
+  // load dispute vs period map
   let disputeId = event.params.disputeID.toString()
   let entity1 = DisputePeriodMap.load(disputeId)
   if(entity1 == null){
