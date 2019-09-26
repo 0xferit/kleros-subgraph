@@ -8,13 +8,6 @@ export const DISPUTE_COUNT = gql`
     }
   }`;
 
-export const TOTAL_STAKE_AMOUNT = gql`
-  {
-    stakeSets{
-      _newTotalStake
-    }
-  }`;
-
 export const TOTAL_COURTS = gql`
   {
     policyUpdates(first: 1,orderBy: subcourtID, orderDirection: desc, where:{policy_not:""}){
@@ -87,4 +80,18 @@ export const DISPUTE_REWARD = gql
     tokenAmount
     ETHAmount
   }
-}`
+}`;
+
+export const TOTAL_STAKED_AMOUNT = gql`{
+        totalStakeds {
+            totalStakedAmount
+        }
+    }
+`;
+
+export const TOTAL_JUROR = gql`{
+    totalJurors{
+        totalJurorCount
+    }
+}
+`;

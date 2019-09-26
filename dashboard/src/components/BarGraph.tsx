@@ -49,7 +49,7 @@ export default class BarGraphComponent extends React.Component<Props, State> {
             <XAxis dataKey="name" hide={this.props.hideXAxis} >
               <Label value={this.props.xAxis}
                      offset={-5}
-                     position="insideBottom"/>
+                     position="insideBottom" />
             </XAxis>
             <YAxis label={{
               value: `${this.props.yAxis}`,

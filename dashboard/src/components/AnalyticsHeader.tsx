@@ -7,7 +7,7 @@ import {Query} from 'react-apollo'
 import {
   DISPUTE_COUNT,
   REWARD_AND_PUNISHMENT,
-  TOTAL_COURTS
+  TOTAL_COURTS, TOTAL_JUROR, TOTAL_STAKED_AMOUNT
 } from "../graphql/queries";
 import Web3 from 'web3';
 
@@ -28,6 +28,18 @@ interface DisputeData {
 interface CourtData {
   policyUpdates: Array<{
     subcourtID: string;
+  }>
+}
+
+interface TotalStakedData {
+  totalStakeds: Array<{
+    totalStakedAmount: string;
+  }>
+}
+
+interface TotalJurorData {
+  totalJurors: Array<{
+    totalJurorCount: string;
   }>
 }
 
@@ -90,9 +102,23 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
           </Badge>
           </Col>
           <Col>
-            <strong>Total Staked Amount:</strong> <Badge variant="secondary">
-            700PNK</Badge>
+            <strong>Total staked amount:</strong>
+            <Badge variant="secondary">
+            <Query<TotalStakedData, Variable> query={TOTAL_STAKED_AMOUNT}>
+            {({loading, error, data}) => {
+              if (loading) return <span>{'Loading...'}</span>;
+              if (error) return <span>{`Error! ${error.message}`}</span>;
 
+              return <span>{
+                parseFloat(Web3.utils.fromWei(
+                  data.totalStakeds[0].totalStakedAmount,
+                  'ether'
+                )).toFixed(3)
+              }</span>;
+            }}
+          </Query>
+
+          </Badge>
           </Col>
         </Row>
 
@@ -111,7 +137,7 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
             }}>
 
               <Col>
-                <strong>Total Earning(eth):</strong> <Badge
+                <strong>Total Earning(ETH):</strong> <Badge
                 variant="secondary">
                 {
                   parseFloat(Web3.utils.fromWei(
@@ -147,6 +173,29 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
             </Row>;
           }}
         </Query>
+
+        <Row style={{
+          borderBottom: "1px",
+          borderBottomStyle: "solid",
+          borderColor: "#e7eaf3",
+          marginTop: ".75rem",
+          marginBottom: ".75rem",
+          padding:"5px"
+        }}>
+          <Col>
+            <strong>Total Jurors who staked:</strong> <Badge variant="secondary">
+
+            <Query<TotalJurorData, Variable> query={TOTAL_JUROR}>
+            {({loading, error, data}) => {
+              if (loading) return <span>{'Loading...'}</span>;
+              if (error) return <span>{`Error! ${error.message}`}</span>;
+
+              return <span>{data.totalJurors[0].totalJurorCount}</span>;
+            }}
+          </Query>
+          </Badge>
+        </Col>
+      </Row>
 
       </Card.Body>
     </Card>
