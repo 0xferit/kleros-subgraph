@@ -41,12 +41,20 @@ export const TOP_FIVE_JURY_BY_STAKE_AMOUNT = gql`
 
 export const DISPUTES = gql`
   {
-    disputeCreations(orderBy: timestamp, orderDirection: desc, first:10){
+    disputeCreations(orderBy: blockNumber, orderDirection:asc, first:10){
       id
       disputeID
       arbitrable
       contractAddress
       timestamp
+      blockNumber
+      subcourtID
+      numberOfChoices
+      period
+      lastPeriodChange
+      drawsInRound
+      commitsInRound
+      ruled
     }
   }
 `;

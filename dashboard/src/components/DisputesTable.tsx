@@ -8,6 +8,7 @@ import Address from "./Address";
 import {Query} from 'react-apollo'
 import {TOTAL_COURTS, DISPUTES} from "../graphql/queries";
 import Badge from "react-bootstrap/Badge";
+import {Period} from "./Home";
 
 interface Props {
 }
@@ -26,7 +27,15 @@ interface DisputesData {
     contractAddress:string;
     disputeID:string;
     id:string;
-    timestamp:string
+    timestamp: string;
+    blockNumber: string;
+    subcourtID: string;
+    numberOfChoices: string;
+    period: string;
+    lastPeriodChange: string;
+    drawsInRound: string;
+    commitsInRound: string;
+    ruled: boolean
   }>
 }
 
@@ -47,7 +56,8 @@ export default class DisputesTable extends React.Component<Props, State> {
             <strong>Id</strong>,
             <strong>Period(Status)</strong>,
             <strong>Arbitrable</strong>,
-            <strong>court</strong>
+            <strong>court</strong>,
+            <strong>ruled</strong>
           ]}/>
         <Query<DisputesData, Variable> query={DISPUTES}>
           {({loading, error, data}) => {
@@ -57,8 +67,8 @@ export default class DisputesTable extends React.Component<Props, State> {
             console.log('dataa of disputes ',data);
             return data.disputeCreations.map(d => {
               return <TableRow
-                col={[d.disputeID, "Appeal", <Address
-                  address={d.arbitrable}/>, "1"]}/>
+                col={[d.disputeID, Period[parseInt(d.period)], <Address
+                  address={d.arbitrable}/>, d.subcourtID, d.ruled+""]}/>
             })
           }}
         </Query>
