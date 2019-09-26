@@ -134,6 +134,7 @@ export function handleStakeSet(event: StakeSetEvent): void {
   }
   log.debug('updated total staked', [totalStakedEntity.totalStaked.toString()])
   jurorStakedAmountEntity.save()
+  totalStakedEntity.save()
 }
 
 export function handleDraw(event: DrawEvent): void {
