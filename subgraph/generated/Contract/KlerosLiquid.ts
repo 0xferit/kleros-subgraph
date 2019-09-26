@@ -442,7 +442,7 @@ export class Contract__getVoteCounterResult {
 
 export class KlerosLiquid extends SmartContract {
   static bind(address: Address): KlerosLiquid {
-    return new KlerosLiquid("Contract", address);
+      return new KlerosLiquid("KlerosLiquid", address);
   }
 
   RNBlock(): BigInt {

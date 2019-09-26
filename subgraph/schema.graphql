@@ -45,6 +45,9 @@ type DisputeCreation @entity {
   numberOfChoices: BigInt! # unit256
   period: Int! # Enum
   lastPeriodChange: BigInt! # unit256
+  drawsInRound: BigInt! # uint256
+  commitsInRound: BigInt! # uint256
+  ruled: Boolean! # Boolean
 }
 
 type StakeSet @entity {

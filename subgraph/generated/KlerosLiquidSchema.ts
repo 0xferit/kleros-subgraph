@@ -547,6 +547,34 @@ export class DisputeCreation extends Entity {
   set lastPeriodChange(value: BigInt) {
     this.set("lastPeriodChange", Value.fromBigInt(value));
   }
+
+  set drawsInRound(value: BigInt) {
+    this.set("drawsInRound", Value.fromBigInt(value));
+  }
+
+  get drawsInRound(): BigInt {
+    let value = this.get("drawsInRound");
+    return value.toBigInt();
+  }
+
+  set commitsInRound(value: BigInt) {
+    this.set("commitsInRound", Value.fromBigInt(value));
+  }
+
+  get commitsInRound(): BigInt {
+    let value = this.get("commitsInRound");
+    return value.toBigInt();
+  }
+
+  set ruled(value: boolean) {
+    this.set("ruled", Value.fromBoolean(value));
+  }
+
+  get ruled(): Boolean {
+    let value = this.get("ruled");
+    return value.toBoolean();
+  }
+
 }
 
 export class AppealPossible extends Entity {

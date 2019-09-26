@@ -174,6 +174,9 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   entity.numberOfChoices = disputeObj.value2
   entity.period = disputeObj.value3
   entity.lastPeriodChange = disputeObj.value4
+  entity.drawsInRound = disputeObj.value5;
+  entity.commitsInRound = disputeObj.value6;
+  entity.ruled = disputeObj.value7;
   log.debug('Saving entity', [])
   entity.save()
 
