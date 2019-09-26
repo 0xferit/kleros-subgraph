@@ -845,6 +845,46 @@ export class PeriodDisputeStatistic extends Entity {
   }
 }
 
+export class DisputePeriodMap extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save DisputePeriodMap entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save DisputePeriodMap entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("DisputePeriodMap", id.toString(), this);
+  }
+
+  static load(id: string): DisputePeriodMap | null {
+    return store.get("DisputePeriodMap", id) as DisputePeriodMap | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get period(): i32 {
+    let value = this.get("period");
+    return value.toI32();
+  }
+
+  set period(value: i32) {
+    this.set("period", Value.fromI32(value));
+  }
+}
+
 export class JurorStakeAmount extends Entity {
   constructor(id: string) {
     super();

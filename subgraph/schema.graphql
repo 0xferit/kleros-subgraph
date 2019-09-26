@@ -143,6 +143,11 @@ type PeriodDisputeStatistic @entity {
   totalDisputes: BigInt! #uint256
 }
 
+type DisputePeriodMap @entity {
+  id: ID! # id is dispute ID
+  period: Int! # uint8
+}
+
 type JurorStakeAmount @entity {
   id: ID! # id
   juror: Bytes! # address
