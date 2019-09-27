@@ -118,69 +118,70 @@ export default class Home extends React.Component<Props, State> {
       </Row>
       <Row>
         <Col>
+          <Query<TopFiveJuryByStakeAmount, Variable>
+          query={TOP_FIVE_JURY_BY_STAKE_AMOUNT}>
+          {({loading, error, data}) => {
+            if (loading) return <span>{'Loading...'}</span>;
+            if (error) return <span>{`Error! ${error.message}`}</span>;
+
+            console.log(data);
+            const graphData = data.jurorStakeAmounts.map(d => {
+                return {
+                  tokens: parseInt(Web3.utils.fromWei(d.stakeAmount, 'ether')) / 1000,
+                  name: d.juror
+                };
+              }
+            );
+
+            return <BarGraphComponent data={graphData}
+                                      dataKey='tokens'
+                                      xAxis={"Juror"}
+                                      yAxis={"PNK Token in Kilo(1000) ether"}
+                                      title={"Top 5 Jurors by stake amount"}
+                                      hideXAxis={true}
+            />;
+          }}
+        </Query>
+
+      </Col>
+      <Col>
+
+        <Query<DisputeWithPeriod, Variable> query={DISPUTE_WITH_PERIOD}>
+        {({loading, error, data}) => {
+          if (loading) return <span>{'Loading...'}</span>;
+          if (error) return <span>{`Error! ${error.message}`}</span>;
+
+          console.log(data);
+          const graphData = data.periodDisputeStatistics.map(d => {
+              return {
+                value: parseInt(d.totalDisputes),
+                name: Period[parseInt(d.period + "")]
+              };
+            }
+          );
+
+          console.log('pie graph data  ',graphData)
+          return <PieGraph title={"Disputes by period"} data={graphData}/>
+          // return <BarGraphComponent data={graphData}
+          //                           dataKey='disputes'
+          //                           xAxis={"Disputes state(period)"}
+          //                           yAxis={"Disputes count"}
+          //                           title={"Disputes by status(Period)"}
+          // />;
+        }}
+      </Query>
+
+      </Col>
+    </Row>
+      <Row>
+        <Col>
           <CourtsTable/>
         </Col>
         <Col>
           <DisputesTable/>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <Query<TopFiveJuryByStakeAmount, Variable>
-            query={TOP_FIVE_JURY_BY_STAKE_AMOUNT}>
-            {({loading, error, data}) => {
-              if (loading) return <span>{'Loading...'}</span>;
-              if (error) return <span>{`Error! ${error.message}`}</span>;
 
-              console.log(data);
-              const graphData = data.jurorStakeAmounts.map(d => {
-                  return {
-                    tokens: parseInt(Web3.utils.fromWei(d.stakeAmount, 'ether')) / 1000,
-                    name: d.juror
-                  };
-                }
-              );
-
-              return <BarGraphComponent data={graphData}
-                                        dataKey='tokens'
-                                        xAxis={"Juror"}
-                                        yAxis={"PNK Token in Kilo(1000) ether"}
-                                        title={"Top 5 Jurors by stake amount"}
-                                        hideXAxis={true}
-              />;
-            }}
-          </Query>
-
-        </Col>
-        <Col>
-
-          <Query<DisputeWithPeriod, Variable> query={DISPUTE_WITH_PERIOD}>
-            {({loading, error, data}) => {
-              if (loading) return <span>{'Loading...'}</span>;
-              if (error) return <span>{`Error! ${error.message}`}</span>;
-
-              console.log(data);
-              const graphData = data.periodDisputeStatistics.map(d => {
-                  return {
-                    value: parseInt(d.totalDisputes),
-                    name: Period[parseInt(d.period + "")]
-                  };
-                }
-              );
-
-              console.log('pie graph data  ',graphData)
-              return <PieGraph title={"Disputes by period"} data={graphData}/>
-              // return <BarGraphComponent data={graphData}
-              //                           dataKey='disputes'
-              //                           xAxis={"Disputes state(period)"}
-              //                           yAxis={"Disputes count"}
-              //                           title={"Disputes by status(Period)"}
-              // />;
-            }}
-          </Query>
-
-        </Col>
-      </Row>
     </Container>;
   }
 }
