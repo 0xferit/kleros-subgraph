@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import TableRow from "./TableRow";
 import {Query} from "react-apollo";
 import {COURTS, DISPUTES} from "../graphql/queries";
-import {Period} from "./Home";
+import {Court, Period} from "./Home";
 import Address from "./Address";
 import Web3 from 'web3'
 
@@ -39,6 +39,11 @@ export default class CourtsTable extends React.Component<Props, State> {
     super(props);
   }
 
+  getJurorFee(feeForJuror): string {
+    const str = (Web3.utils.fromWei(feeForJuror, 'ether'))
+    return str.substring(0, str.indexOf(".") +5);
+  }
+
 
   render() {
     return <Card style={{height:"400px",overflow:"scroll"}}>
@@ -48,7 +53,8 @@ export default class CourtsTable extends React.Component<Props, State> {
           col={[
             <strong>Court</strong>,
            // <strong>Title</strong>,
-            <strong>Total disputes</strong>,
+           // <strong>Total disputes</strong>,
+            <strong>Juror fee</strong>,
             <strong>Min stake amount</strong>
               ]}/>
         <Query<CourtData, Variable> query={COURTS}>
@@ -58,9 +64,10 @@ export default class CourtsTable extends React.Component<Props, State> {
 
             return data.courts.map(d => {
               return <TableRow
-                col={[d.subcourtID,
+                col={[Court[d.subcourtID],
                 //  'Some title',
-                  0,
+               //   0,
+                  d.feeForJuror != null ? this.getJurorFee(d.feeForJuror) : 0,
                   d.minStake != null ? Web3.utils.fromWei(d.minStake, 'ether') : 0
                 ]}/>
             })

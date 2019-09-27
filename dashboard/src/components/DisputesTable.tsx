@@ -8,7 +8,7 @@ import Address from "./Address";
 import {Query} from 'react-apollo'
 import {TOTAL_COURTS, DISPUTES} from "../graphql/queries";
 import Badge from "react-bootstrap/Badge";
-import {Period} from "./Home";
+import {Court, Period} from "./Home";
 import VerticallyCenteredModal from "./VerticallyCenteredModal";
 import DisputesDetails from "./DisputeDetails";
 
@@ -94,7 +94,7 @@ export default class DisputesTable extends React.Component<Props, State> {
                                col={[d.disputeID, /*Period[parseInt(d.period)]*/,
                                  <Address
                   address={d.arbitrable}/>,
-                                 d.subcourtID,
+                                 Court[d.subcourtID],
                                  d.numberOfChoices]}/>
             })
           }}

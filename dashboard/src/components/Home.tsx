@@ -35,6 +35,17 @@ export enum Period {
   "Ruling done"
 }
 
+export enum Court  {
+  "General",
+  "Blockchain",
+  "Non-Technical",
+  "Exchange Token Listing",
+  "Technical",
+  "Marketing Services",
+  "English Language",
+  "Video Production"
+}
+
 
 interface DisputeWithPeriod {
   periodDisputeStatistics: Array<{

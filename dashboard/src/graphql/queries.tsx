@@ -112,7 +112,7 @@ export const TOTAL_JUROR = gql`{
 // `;
 
 export const COURTS = gql`  
-  query{courts(where:{subcourtID_not:null})
+  query{courts(where:{subcourtID_not:null, minStake_not: null})
   {
     id
     subcourtID
