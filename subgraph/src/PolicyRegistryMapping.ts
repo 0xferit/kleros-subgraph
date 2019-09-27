@@ -27,10 +27,10 @@ export function handlePolicyUpdate(event: NewPolicyUpdateEvent): void {
   )
   entity.subcourtID = event.params.subcourtID
   entity.policy = event.params.policy
-  let hash = entity.policy.split('"/ipfs/"')[1]
+  let hash = event.params.policy.split('"/ipfs/"')[1]
   log.debug('handlePolicyUpdate: hash ', [hash])
   let data = ipfs.cat(hash)
-  log.debug('handlePolicyUpdate: data from ipfs {}', [data!.toString()])
+  log.debug('handlePolicyUpdate: data from ipfs {}', [data!.toHexString()])
   if (data != null) {
     let parsedData = json.fromBytes(data!).toObject()
     log.debug('handlePolicyUpdate  court details {}', [parsedData.get('name').toString()])
