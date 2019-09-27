@@ -7,7 +7,7 @@ import {
   DisputeCreation as DisputeCreationEvent,
   AppealPossible as AppealPossibleEvent,
   AppealDecision as AppealDecisionEvent,
-  KlerosLiquid,
+  KlerosLiquid, CreateSubcourtCall,
 } from "../generated/Contract/KlerosLiquid"
 import {
   NewPolicy,
@@ -24,7 +24,10 @@ import {
   RewardStatistic,
   DisputePeriodMap,
   SubCourtDisputeStatistic,
-  TotalStaked, TotalJuror
+  TotalStaked,
+  TotalJuror,
+  Court,
+  CourtCount
 } from "../generated/KlerosLiquidSchema"
 import {
   log,
@@ -37,7 +40,8 @@ import {
   Bytes,
   BigInt,
   BigDecimal,
-  json
+  json,
+  ipfs
 } from "@graphprotocol/graph-ts";
 
 export function handleNewPhase(event: NewPhaseEvent): void {
@@ -247,6 +251,19 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   }
   entity2.save()
 
+  let court = Court.load(id)
+  if (court == null) {
+    court = new Court(id)
+  }
+
+  let courtObject = contract.courts(entity.subcourtID)
+  court.alpha = courtObject.value3
+  court.feeForJuror = courtObject.value4
+  court.jurorsForCourtJump = courtObject.value5
+  court.minStake = courtObject.value2
+  court.subcourtID = entity.subcourtID
+  court.save();
+
 }
 
 export function handleAppealPossible(event: AppealPossibleEvent): void {
@@ -271,4 +288,36 @@ export function handleAppealDecision(event: AppealDecisionEvent): void {
   entity.timestamp = event.block.timestamp
   entity.blockNumber = event.block.number
   entity.save()
+}
+
+export function handleCreateSubcourt(call: CreateSubcourtCall): void {
+
+  log.debug('handleCreateSubcourt: Handling call for  create sub court',[])
+  log.debug('handleCreateSubcourt: call.to {} ', [call.to.toString()])
+  let contract = KlerosLiquid.bind(call.to)
+  let courtCount = CourtCount.load('ID')
+  if (courtCount == null) {
+    courtCount = new CourtCount('ID')
+    courtCount.count = BigInt.fromI32(0)
+  }
+
+  courtCount.count = courtCount.count.plus(BigInt.fromI32(1))
+  courtCount.save();
+  log.debug('handleCreateSubcourt: Saved court count',[])
+  let idCount = courtCount.count.minus(BigInt.fromI32(1))
+  let id = idCount.toHexString()
+  let court = Court.load(id)
+  if (court == null) {
+    court = new Court(id)
+  }
+
+  let courtObject = contract.courts(idCount)
+  log.debug('handleCreateSubcourt: contract call data value 0 {}', [courtObject.value0.toHexString()])
+  log.debug('handleCreateSubcourt: contract call data value 5 {}', [courtObject.value5.toHexString()])
+  court.alpha = courtObject.value3
+  court.feeForJuror = courtObject.value4
+  court.jurorsForCourtJump = courtObject.value5
+  court.minStake = courtObject.value2
+  court.subcourtID = courtCount.count
+  court.save();
 }

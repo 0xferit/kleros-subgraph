@@ -1120,3 +1120,128 @@ export class TotalJuror extends Entity {
     this.set("totalJurorCount", Value.fromBigInt(value));
   }
 }
+
+export class Court extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Court entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Court entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Court", id.toString(), this);
+  }
+
+  static load(id: string): Court | null {
+    return store.get("Court", id) as Court | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get policy(): string {
+    let value = this.get("policy");
+    return value.toString();
+  }
+
+  set policy(value: string) {
+    this.set("policy", Value.fromString(value));
+  }
+
+  get feeForJuror(): BigInt {
+    let value = this.get("feeForJuror");
+    return value.toBigInt();
+  }
+
+  set feeForJuror(value: BigInt) {
+    this.set("feeForJuror", Value.fromBigInt(value));
+  }
+
+  get subcourtID(): BigInt {
+    let value = this.get("subcourtID");
+    return value.toBigInt();
+  }
+
+  set subcourtID(value: BigInt) {
+    this.set("subcourtID", Value.fromBigInt(value));
+  }
+
+  get minStake(): BigInt {
+    let value = this.get("minStake");
+    return value.toBigInt();
+  }
+
+  set minStake(value: BigInt) {
+    this.set("minStake", Value.fromBigInt(value));
+  }
+
+  get jurorsForCourtJump(): BigInt {
+    let value = this.get("jurorsForCourtJump");
+    return value.toBigInt();
+  }
+
+  set jurorsForCourtJump(value: BigInt) {
+    this.set("jurorsForCourtJump", Value.fromBigInt(value));
+  }
+
+  get alpha(): BigInt {
+    let value = this.get("alpha");
+    return value.toBigInt();
+  }
+
+  set alpha(value: BigInt) {
+    this.set("alpha", Value.fromBigInt(value));
+  }
+}
+
+export class CourtCount extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save CourtCount entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save CourtCount entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Court", id.toString(), this);
+  }
+
+  static load(id: string): CourtCount | null {
+    return store.get("Court", id) as CourtCount | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get count(): BigInt {
+    let value = this.get("count");
+    return value.toBigInt();
+  }
+
+  set count(value: BigInt) {
+    this.set("count", Value.fromBigInt(value));
+  }
+}

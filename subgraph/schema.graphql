@@ -176,3 +176,18 @@ type TotalStaked @entity {
   id: ID!
   totalStakedAmount: BigInt!
 }
+
+type CourtCount @entity {
+  id: ID!
+  count: BigInt!
+}
+
+type Court @entity {
+  id: ID!
+  subcourtID: BigInt! # uint256
+  policy: String # String
+  feeForJuror: BigInt #uint256
+  minStake: BigInt #uint256
+  jurorsForCourtJump: BigInt #uint256
+  alpha : BigInt #uint256
+}
