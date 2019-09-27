@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/kleros-subgraph/precache-manifest.12e64de7ed27233cf0948130c3aecaf5.js"
+  "/kleros-subgraph/precache-manifest.e02d48b87593c6ca3a454b85aeff67d5.js"
 );
 
 self.addEventListener('message', (event) => {
