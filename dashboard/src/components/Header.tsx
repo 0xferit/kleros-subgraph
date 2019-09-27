@@ -22,14 +22,14 @@ export default class Header extends React.Component<Props, State> {
       <Navbar bg="white">
         <Navbar.Brand href="#home">
           <img
-            alt="Kleros Dashboard"
+            alt="Metrics Dashboard | Kleros"
             src="logo.png"
             width="90"
             height="90"
             className="d-inline-block align-top"
           />
         </Navbar.Brand>
-        <Navbar.Brand style={{marginLeft: "31%"}}><strong style={{fontSize:"34px"}}>Kleros Dashboard</strong></Navbar.Brand>
+        <Navbar.Brand style={{marginLeft: "20%"}}><strong style={{fontSize:"24px"}}>Performance Metrics Dashboard</strong></Navbar.Brand>
       </Navbar>
     </Container>
   }
