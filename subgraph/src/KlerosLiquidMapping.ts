@@ -255,11 +255,10 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   let court = Court.load(id)
   if (court == null) {
     court = new Court(id)
-    court.subcourtID = entity.subcourtID
-    court.disputeCount = BigInt.fromI32(1)
+    // court.disputeCount = BigInt.fromI32(1)
   } else {
-    court.subcourtID = entity.subcourtID
-    court.disputeCount = court.disputeCount.plus(BigInt.fromI32(1))
+    // court.subcourtID = entity.subcourtID
+    // court.disputeCount = court.disputeCount.plus(BigInt.fromI32(1))
   }
 
   let courtObject = contract.courts(entity.subcourtID)
