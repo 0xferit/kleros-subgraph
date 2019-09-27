@@ -65,38 +65,6 @@ interface TopFiveJuryByStakeAmount {
 interface Variable {
 
 }
-const topTenBountyHunters = [
-  {
-    name: 'Ram', count: 100,
-  },
-  {
-    name: 'Shayam', count: 90,
-  },
-  {
-    name: 'Golu', count: 80,
-  },
-  {
-    name: 'Molu', count: 70,
-  },
-  {
-    name: 'Kittu', count: 60,
-  },
-  {
-    name: 'Pittu', count: 50,
-  },
-  {
-    name: 'Sittu', count: 40,
-  },
-  {
-    name: 'tittu', count: 30,
-  },
-  {
-    name: 'littu', count: 20,
-  },
-  {
-    name: 'Lottu', count: 10,
-  },
-];
 
 export default class Home extends React.Component<Props, State> {
 

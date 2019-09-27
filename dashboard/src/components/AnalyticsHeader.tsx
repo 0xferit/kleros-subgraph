@@ -102,8 +102,7 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
           </Badge>
           </Col>
           <Col>
-            <strong>Total staked amount:</strong>
-            <Badge variant="secondary">
+            <strong>Total staked amount:</strong> <Badge variant="secondary">
             <Query<TotalStakedData, Variable> query={TOTAL_STAKED_AMOUNT}>
             {({loading, error, data}) => {
               if (loading) return <span>{'Loading...'}</span>;
