@@ -16,6 +16,8 @@ import {
 } from "../graphql/queries";
 import Badge from "react-bootstrap/Badge";
 import Web3 from 'web3';
+import PieGraph from "./PieGraph";
+
 
 interface Props {
 
@@ -26,11 +28,11 @@ interface State {
 }
 
 export enum Period {
-  evidence,
-  commit,
-  vote,
-  appeal,
-  execution
+  EVIDENCE,
+  COMMIT,
+  VOTE,
+  APPEAL,
+  EXECUTION
 }
 
 
@@ -149,18 +151,20 @@ export default class Home extends React.Component<Props, State> {
               console.log(data);
               const graphData = data.periodDisputeStatistics.map(d => {
                   return {
-                    disputes: d.totalDisputes,
+                    value: parseInt(d.totalDisputes),
                     name: Period[parseInt(d.period + "")]
                   };
                 }
               );
 
-              return <BarGraphComponent data={graphData}
-                                        dataKey='disputes'
-                                        xAxis={"Disputes state(period)"}
-                                        yAxis={"Disputes count"}
-                                        title={"Disputes by status(Period)"}
-              />;
+              console.log('pie graph data  ',graphData)
+              return <PieGraph title={"Disputes by period"} data={graphData}/>
+              // return <BarGraphComponent data={graphData}
+              //                           dataKey='disputes'
+              //                           xAxis={"Disputes state(period)"}
+              //                           yAxis={"Disputes count"}
+              //                           title={"Disputes by status(Period)"}
+              // />;
             }}
           </Query>
 
