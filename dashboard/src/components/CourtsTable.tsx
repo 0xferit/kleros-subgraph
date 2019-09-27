@@ -47,9 +47,9 @@ export default class CourtsTable extends React.Component<Props, State> {
         <TableRow
           col={[
             <strong>Court</strong>,
-            <strong>Title</strong>,
+           // <strong>Title</strong>,
             <strong>Total disputes</strong>,
-            <strong>Min Stake amount</strong>
+            <strong>Min stake amount</strong>
               ]}/>
         <Query<CourtData, Variable> query={COURTS}>
           {({loading, error, data}) => {
@@ -59,7 +59,7 @@ export default class CourtsTable extends React.Component<Props, State> {
             return data.courts.map(d => {
               return <TableRow
                 col={[d.subcourtID,
-                  'Some title',
+                //  'Some title',
                   0,
                   d.minStake != null ? Web3.utils.fromWei(d.minStake, 'ether') : 0
                 ]}/>

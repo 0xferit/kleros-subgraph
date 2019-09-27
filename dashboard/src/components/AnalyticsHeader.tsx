@@ -76,7 +76,7 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
           padding:"5px"
         }}>
           <Col>
-            <strong>Total Disputes:</strong> <Badge variant="secondary">
+            <strong>Total disputes:</strong> <Badge variant="secondary">
 
             <Query<DisputeData, Variable> query={DISPUTE_COUNT}>
               {({loading, error, data}) => {
@@ -137,7 +137,7 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
             }}>
 
               <Col>
-                <strong>Total Earning(ETH):</strong> <Badge
+                <strong>Total earnings(ETH):</strong> <Badge
                 variant="secondary">
                 {
                   parseFloat(Web3.utils.fromWei(
@@ -148,7 +148,7 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
               </Badge>
               </Col>
               <Col>
-                <strong>Total Earning(PNK):</strong> <Badge
+                <strong>Total earnings(PNK):</strong> <Badge
                 variant="secondary">
                 {
                   parseFloat(Web3.utils.fromWei(
@@ -160,7 +160,7 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
               </Badge>
               </Col>
               <Col>
-                <strong>Total Penalty(PNK):</strong> <Badge
+                <strong>Total penalty(PNK):</strong> <Badge
                 variant="secondary">
                 {
                   parseFloat(Web3.utils.fromWei(data.rewardStatistics[0].totalPunishedTokenAmount.substr(1),
@@ -183,7 +183,7 @@ export default class AnalyticsHeader extends React.Component<Props, State> {
           padding:"5px"
         }}>
           <Col>
-            <strong>Total Jurors who staked:</strong> <Badge variant="secondary">
+            <strong>Total jurors who staked:</strong> <Badge variant="secondary">
 
             <Query<TotalJurorData, Variable> query={TOTAL_JUROR}>
             {({loading, error, data}) => {

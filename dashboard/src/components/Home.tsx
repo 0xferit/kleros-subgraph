@@ -28,11 +28,11 @@ interface State {
 }
 
 export enum Period {
-  EVIDENCE,
-  COMMIT,
-  VOTE,
-  APPEAL,
-  EXECUTION
+  "Evidence submission",
+  "Commit vote",
+  "Vote casting",
+  "Appeal",
+  "Ruling done"
 }
 
 
@@ -134,7 +134,7 @@ export default class Home extends React.Component<Props, State> {
                                         dataKey='tokens'
                                         xAxis={"Juror"}
                                         yAxis={"PNK Token in Kilo(1000) ether"}
-                                        title={"Top 5 juror by stake amount"}
+                                        title={"Top 5 Jurors by stake amount"}
                                         hideXAxis={true}
               />;
             }}

@@ -77,10 +77,10 @@ export default class DisputesTable extends React.Component<Props, State> {
         <TableRow
           col={[
             <strong>Id</strong>,
-            <strong>Period(Status)</strong>,
+            //<strong>Dispute Period(Status)</strong>,
             <strong>Arbitrable</strong>,
             <strong>Court</strong>,
-            /* <strong>Ruling status</strong> */
+            <strong>Choices for Juror</strong>
           ]}/>
         <Query<DisputesData, Variable> query={DISPUTES}>
           {({loading, error, data}) => {
@@ -91,11 +91,11 @@ export default class DisputesTable extends React.Component<Props, State> {
               return <TableRow /*onClick={() => {
                 this.onClickDispute(d.disputeID)
               }}*/
-                               col={[d.disputeID, Period[parseInt(d.period)].toUpperCase(),
+                               col={[d.disputeID, /*Period[parseInt(d.period)]*/,
                                  <Address
                   address={d.arbitrable}/>,
                                  d.subcourtID,
-                                 /*d.ruled*/+""]}/>
+                                 d.numberOfChoices]}/>
             })
           }}
         </Query>
