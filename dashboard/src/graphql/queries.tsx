@@ -95,3 +95,31 @@ export const TOTAL_JUROR = gql`{
     }
 }
 `;
+
+// export const COURTS = gql`{
+//
+//   courts {
+//     id
+//     subcourtID
+//     policy
+//     feeForJuror
+//     minStake
+//     jurorsForCourtJump
+//     alpha
+//     disputeCount
+//   }
+// }
+// `;
+
+export const COURTS = gql`  
+  query{courts(where:{subcourtID_not:null})
+  {
+    id
+    subcourtID
+    policy
+    feeForJuror
+    minStake
+    jurorsForCourtJump
+    alpha
+  }
+  }`

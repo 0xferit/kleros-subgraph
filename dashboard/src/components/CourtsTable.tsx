@@ -4,6 +4,11 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import TableRow from "./TableRow";
+import {Query} from "react-apollo";
+import {COURTS, DISPUTES} from "../graphql/queries";
+import {Period} from "./Home";
+import Address from "./Address";
+import Web3 from 'web3'
 
 interface Props {
 }
@@ -12,6 +17,21 @@ interface State {
 
 }
 
+interface CourtData {
+  courts: Array<{
+    id: string;
+    subcourtID: string;
+    policy: string;
+    feeForJuror: string;
+    minStake: string;
+    jurorsForCourtJump: string;
+    alpha
+  }>
+}
+
+interface Variable {
+
+}
 export default class CourtsTable extends React.Component<Props, State> {
 
 
@@ -29,16 +49,23 @@ export default class CourtsTable extends React.Component<Props, State> {
             <strong>Court</strong>,
             <strong>Title</strong>,
             <strong>Total disputes</strong>,
-            <strong>Stake amount</strong>
+            <strong>Min Stake amount</strong>
               ]}/>
-        <TableRow
-          col={["Court 1", "Title 1", "50", "34PNK"]}/>
-        <TableRow
-          col={["Court 2", "Title 2", "63", "23PNK"]}/>
-        <TableRow
-          col={["Court 3", "Title 3", "32", "12PNK"]}/>
-        <TableRow
-          col={["Court 4", "Title 4", "46", "10PNK"]}/>
+        <Query<CourtData, Variable> query={COURTS}>
+          {({loading, error, data}) => {
+            if (loading) return <span>{'Loading...'}</span>;
+            if (error) return <span>{`Error! ${error.message}`}</span>;
+
+            return data.courts.map(d => {
+              return <TableRow
+                col={[d.subcourtID,
+                  'Some title',
+                  0,
+                  d.minStake != null ? Web3.utils.fromWei(d.minStake, 'ether') : 0
+                ]}/>
+            })
+          }}
+        </Query>
       </Card.Body>
     </Card>
   }
