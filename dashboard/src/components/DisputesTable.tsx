@@ -80,7 +80,7 @@ export default class DisputesTable extends React.Component<Props, State> {
             <strong>Period(Status)</strong>,
             <strong>Arbitrable</strong>,
             <strong>Court</strong>,
-            <strong>Ruling status</strong>
+            /* <strong>Ruling status</strong> */
           ]}/>
         <Query<DisputesData, Variable> query={DISPUTES}>
           {({loading, error, data}) => {
@@ -93,7 +93,9 @@ export default class DisputesTable extends React.Component<Props, State> {
               }}
                                col={[d.disputeID, Period[parseInt(d.period)].toUpperCase(),
                                  <Address
-                  address={d.arbitrable}/>, d.subcourtID, d.ruled+""]}/>
+                  address={d.arbitrable}/>,
+                                 d.subcourtID,
+                                 /*d.ruled*/+""]}/>
             })
           }}
         </Query>
