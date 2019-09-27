@@ -80,7 +80,7 @@ export default class DisputesTable extends React.Component<Props, State> {
             //<strong>Dispute Period(Status)</strong>,
             <strong>Arbitrable</strong>,
             <strong>Court</strong>,
-            <strong>Choices for Juror</strong>
+            <strong>Choices</strong>
           ]}/>
         <Query<DisputesData, Variable> query={DISPUTES}>
           {({loading, error, data}) => {
