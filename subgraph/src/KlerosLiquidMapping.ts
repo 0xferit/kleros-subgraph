@@ -240,20 +240,26 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
 
   // Save SubCourtDisputeStatistic
   let id = entity.subcourtID.toHex()
-  let entity2 = SubCourtDisputeStatistic.load(id)
-  if (entity2 == null) {
-    entity2 = new SubCourtDisputeStatistic(id)
-    entity2.subcourtID = entity.subcourtID
-    entity2.totalDisputes = BigInt.fromI32(1)
+  let subCourtDisputeCount = SubCourtDisputeStatistic.load(id)
+  if (subCourtDisputeCount == null) {
+    subCourtDisputeCount = new SubCourtDisputeStatistic(id)
+    subCourtDisputeCount.subcourtID = entity.subcourtID
+    subCourtDisputeCount.totalDisputes = BigInt.fromI32(1)
   } else{
-    entity2.subcourtID = entity.subcourtID
-    entity2.totalDisputes = entity2.totalDisputes.plus(BigInt.fromI32(1))
+    subCourtDisputeCount.subcourtID = entity.subcourtID
+    subCourtDisputeCount.totalDisputes = subCourtDisputeCount.totalDisputes.plus(BigInt.fromI32(1))
   }
-  entity2.save()
+  subCourtDisputeCount.save()
 
+  // Save subcourtID Vs disputeCount
   let court = Court.load(id)
   if (court == null) {
     court = new Court(id)
+    court.subcourtID = entity.subcourtID
+    court.disputeCount = BigInt.fromI32(1)
+  } else {
+    court.subcourtID = entity.subcourtID
+    court.disputeCount = court.disputeCount.plus(BigInt.fromI32(1))
   }
 
   let courtObject = contract.courts(entity.subcourtID)

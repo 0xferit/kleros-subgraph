@@ -189,5 +189,6 @@ type Court @entity {
   feeForJuror: BigInt #uint256
   minStake: BigInt #uint256
   jurorsForCourtJump: BigInt #uint256
-  alpha : BigInt #uint256
+  alpha: BigInt #uint256
+  disputeCount: BigInt # uint256
 }

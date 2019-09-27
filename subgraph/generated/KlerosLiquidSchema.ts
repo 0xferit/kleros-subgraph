@@ -1204,6 +1204,15 @@ export class Court extends Entity {
   set alpha(value: BigInt) {
     this.set("alpha", Value.fromBigInt(value));
   }
+
+  get disputeCount(): BigInt {
+    let value = this.get("disputeCount");
+    return value.toBigInt();
+  }
+
+  set disputeCount(value: BigInt) {
+    this.set("disputeCount", Value.fromBigInt(value));
+  }
 }
 
 export class CourtCount extends Entity {
