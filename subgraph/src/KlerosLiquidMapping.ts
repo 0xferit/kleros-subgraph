@@ -299,7 +299,7 @@ export function handleAppealDecision(event: AppealDecisionEvent): void {
 export function handleCreateSubcourt(call: CreateSubcourtCall): void {
 
   log.debug('handleCreateSubcourt: Handling call for  create sub court',[])
-  log.debug('handleCreateSubcourt: call.to {} ', [call.to.toString()])
+  log.debug('handleCreateSubcourt: call.to {} ', [call.to.toHexString()])
   let contract = KlerosLiquid.bind(call.to)
   let courtCount = CourtCount.load('ID')
   if (courtCount == null) {
