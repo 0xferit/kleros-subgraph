@@ -2,7 +2,8 @@
   "name": "dashboard",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dappalyzer.github.io/blog-subgraph",
+  "homepage": "https://dappalyzer.github.io/kleros-subgraph",
+
   "dependencies": {
     "@types/jest": "24.0.18",
     "@types/node": "12.7.7",
