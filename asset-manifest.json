@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/kleros-subgraph/static/css/main.dfca195d.chunk.css",
-    "main.js": "/kleros-subgraph/static/js/main.a46f30dd.chunk.js",
-    "main.js.map": "/kleros-subgraph/static/js/main.a46f30dd.chunk.js.map",
+    "main.js": "/kleros-subgraph/static/js/main.229521c6.chunk.js",
+    "main.js.map": "/kleros-subgraph/static/js/main.229521c6.chunk.js.map",
     "runtime-main.js": "/kleros-subgraph/static/js/runtime-main.71f1a62c.js",
     "runtime-main.js.map": "/kleros-subgraph/static/js/runtime-main.71f1a62c.js.map",
     "static/css/2.0624914a.chunk.css": "/kleros-subgraph/static/css/2.0624914a.chunk.css",
     "static/js/2.c1f45b20.chunk.js": "/kleros-subgraph/static/js/2.c1f45b20.chunk.js",
     "static/js/2.c1f45b20.chunk.js.map": "/kleros-subgraph/static/js/2.c1f45b20.chunk.js.map",
     "index.html": "/kleros-subgraph/index.html",
-    "precache-manifest.e02d48b87593c6ca3a454b85aeff67d5.js": "/kleros-subgraph/precache-manifest.e02d48b87593c6ca3a454b85aeff67d5.js",
+    "precache-manifest.ee91b62184178261b5ab7c898d4c36db.js": "/kleros-subgraph/precache-manifest.ee91b62184178261b5ab7c898d4c36db.js",
     "service-worker.js": "/kleros-subgraph/service-worker.js",
     "static/css/2.0624914a.chunk.css.map": "/kleros-subgraph/static/css/2.0624914a.chunk.css.map",
     "static/css/main.dfca195d.chunk.css.map": "/kleros-subgraph/static/css/main.dfca195d.chunk.css.map"
