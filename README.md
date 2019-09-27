@@ -15,11 +15,11 @@ Below mainnet contracts are indexed.
  
 ## Features:
 
-This PoC aims to demonstrate how easy and scalable Kleros dispute data can be indexed and queried using GraphQL. The subgraph includes indexed dispute data from the smart 
+This PoC aims to demonstrate how easily [Kleros](https://kleros.io) dispute data can be indexed and queried using GraphQL. The subgraph includes indexed dispute data from the smart 
 contract deployed on the Ethereum mainnet. Among the main features that can be exploited through the graph we have:
 
 * **Up-to-date Kleros dashboard**: Dashboard data is indexed as soon as transaction is mined. 
-* **Aggregated Statistics data for Analysis**: Our subgraph aggregates user’s contributions in real-time and displays on dashboard:
+* **Aggregated statistics for Analysis**: Our subgraph aggregates user’s contributions in real-time and displays on dashboard:
   Below statistics are displayed on dashboard:
     * Total disputes created
     * Total active courts
@@ -35,8 +35,8 @@ contract deployed on the Ethereum mainnet. Among the main features that can be e
  
 ## Kleros Explorer
 
-You can query Kleros data using [explorer](https://thegraph.com/explorer/subgraph/quilldata/kleros).
-There are saved queries which covers different analytics use cases.
+You can query Kleros data using the [explorer](https://thegraph.com/explorer/subgraph/quilldata/kleros).
+There are saved queries which covers different business use cases.
   
  
 ## Demo
@@ -46,3 +46,7 @@ You can visit [Kleros Dashboard](https://dappalyzer.github.io/kleros-subgraph) a
 ## Contributing
 
 If you want to contribute to the indexing of Kleros dispute data, feel free to fork the project and open a PR.
+
+## Licence
+
+[MIT](https://github.com/dappalyzer/kleros-subgraph/blob/master/LICENSE)
