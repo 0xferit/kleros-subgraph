@@ -88,9 +88,9 @@ export default class DisputesTable extends React.Component<Props, State> {
             if (error) return <span>{`Error! ${error.message}`}</span>;
 
             return data.disputeCreations.map(d => {
-              return <TableRow onClick={() => {
+              return <TableRow /*onClick={() => {
                 this.onClickDispute(d.disputeID)
-              }}
+              }}*/
                                col={[d.disputeID, Period[parseInt(d.period)].toUpperCase(),
                                  <Address
                   address={d.arbitrable}/>,
