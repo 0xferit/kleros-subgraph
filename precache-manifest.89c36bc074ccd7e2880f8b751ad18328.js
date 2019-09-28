@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bdf9be4f8a4d2f3fcc9317737687b01b",
+    "revision": "534c9fd13f1d257a1a080fcdfc9ab9af",
     "url": "/kleros-subgraph/index.html"
   },
   {
@@ -8,15 +8,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/kleros-subgraph/static/css/2.0624914a.chunk.css"
   },
   {
-    "revision": "8efac0c3b0db42cc233e",
-    "url": "/kleros-subgraph/static/css/main.57d93ed6.chunk.css"
+    "revision": "8ea44ed12b7547f01358",
+    "url": "/kleros-subgraph/static/css/main.2840d724.chunk.css"
   },
   {
     "revision": "09c60c993312d3427af5",
     "url": "/kleros-subgraph/static/js/2.a8e3156e.chunk.js"
   },
   {
-    "revision": "8efac0c3b0db42cc233e",
+    "revision": "8ea44ed12b7547f01358",
     "url": "/kleros-subgraph/static/js/main.67f719c3.chunk.js"
   },
   {
