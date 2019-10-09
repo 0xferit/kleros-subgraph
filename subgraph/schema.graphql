@@ -19,7 +19,7 @@ type NewPeriod @entity {
 type AppealPossible @entity {
   id: ID!
   disputeID: BigInt! # uint256
-  arbitrable: Bytes # address
+  arbitrable: Bytes! # address
   contractAddress: Bytes! # address
   timestamp: BigInt! # uint256
   blockNumber: BigInt! # unit256
@@ -185,10 +185,10 @@ type CourtCount @entity {
 type Court @entity {
   id: ID!
   subcourtID: BigInt! # uint256
-  policy: String # String
-  feeForJuror: BigInt #uint256
-  minStake: BigInt #uint256
-  jurorsForCourtJump: BigInt #uint256
-  alpha: BigInt #uint256
-  disputeCount: BigInt # uint256
+  policy: String! # String
+  feeForJuror: BigInt! #uint256
+  minStake: BigInt! #uint256
+  jurorsForCourtJump: BigInt! #uint256
+  alpha: BigInt! #uint256
+  disputeCount: BigInt! # uint256
 }

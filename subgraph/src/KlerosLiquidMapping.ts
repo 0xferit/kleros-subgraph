@@ -255,9 +255,12 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   let court = Court.load(id)
   if (court == null) {
     court = new Court(id)
-    // court.disputeCount = BigInt.fromI32(1)
+    court.disputeCount = BigInt.fromI32(1)
   } else {
-    // court.subcourtID = entity.subcourtID
+    court.disputeCount = BigInt.fromI32(0)
+    // if(court.disputeCount == null) {
+    //  court.disputeCount = BigInt.fromI32(0)
+    // }
     // court.disputeCount = court.disputeCount.plus(BigInt.fromI32(1))
   }
 
@@ -265,7 +268,7 @@ export function handleDisputeCreation(event: DisputeCreationEvent): void {
   court.alpha = courtObject.value3
   court.feeForJuror = courtObject.value4
   court.jurorsForCourtJump = courtObject.value5
-  court.minStake = courtObject.value2
+  court.minStake = BigInt.fromI32(0)// courtObject.value2
   court.subcourtID = entity.subcourtID
   court.save();
 
@@ -322,7 +325,8 @@ export function handleCreateSubcourt(call: CreateSubcourtCall): void {
   court.alpha = courtObject.value3
   court.feeForJuror = courtObject.value4
   court.jurorsForCourtJump = courtObject.value5
-  court.minStake = courtObject.value2
+  court.minStake = BigInt.fromI32(0) //courtObject.value2
   court.subcourtID = courtCount.count
+  court.disputeCount = BigInt.fromI32(0)
   court.save();
 }
