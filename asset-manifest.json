@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/kleros-subgraph/static/css/main.dfca195d.chunk.css",
-    "main.js": "/kleros-subgraph/static/js/main.d57a96cd.chunk.js",
-    "main.js.map": "/kleros-subgraph/static/js/main.d57a96cd.chunk.js.map",
+    "main.css": "/kleros-subgraph/static/css/main.2840d724.chunk.css",
+    "main.js": "/kleros-subgraph/static/js/main.6a1ca021.chunk.js",
+    "main.js.map": "/kleros-subgraph/static/js/main.6a1ca021.chunk.js.map",
     "runtime-main.js": "/kleros-subgraph/static/js/runtime-main.71f1a62c.js",
     "runtime-main.js.map": "/kleros-subgraph/static/js/runtime-main.71f1a62c.js.map",
     "static/css/2.0624914a.chunk.css": "/kleros-subgraph/static/css/2.0624914a.chunk.css",
-    "static/js/2.147bf1bd.chunk.js": "/kleros-subgraph/static/js/2.147bf1bd.chunk.js",
-    "static/js/2.147bf1bd.chunk.js.map": "/kleros-subgraph/static/js/2.147bf1bd.chunk.js.map",
+    "static/js/2.35b5db4c.chunk.js": "/kleros-subgraph/static/js/2.35b5db4c.chunk.js",
+    "static/js/2.35b5db4c.chunk.js.map": "/kleros-subgraph/static/js/2.35b5db4c.chunk.js.map",
     "index.html": "/kleros-subgraph/index.html",
-    "precache-manifest.f1bb84315baaed92e74f0facca575a99.js": "/kleros-subgraph/precache-manifest.f1bb84315baaed92e74f0facca575a99.js",
+    "precache-manifest.a0e33c36a512537186930214bddc0a72.js": "/kleros-subgraph/precache-manifest.a0e33c36a512537186930214bddc0a72.js",
     "service-worker.js": "/kleros-subgraph/service-worker.js",
     "static/css/2.0624914a.chunk.css.map": "/kleros-subgraph/static/css/2.0624914a.chunk.css.map",
-    "static/css/main.dfca195d.chunk.css.map": "/kleros-subgraph/static/css/main.dfca195d.chunk.css.map"
+    "static/css/main.2840d724.chunk.css.map": "/kleros-subgraph/static/css/main.2840d724.chunk.css.map"
   }
 }
